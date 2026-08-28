@@ -1,0 +1,36 @@
+{
+  "schema": "sanka-examples/manifest/v1",
+  "apps": [
+    {
+      "id": "django/order-tracker",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "showcase",
+      "recommended": true,
+      "features": ["foreign-key", "related-name", "unique-constraint", "choices", "decimal-field", "nested-items"],
+      "seed": "db.sqlite3",
+      "license": "Apache-2.0",
+      "provenance": "synthetic"
+    },
+    {
+      "id": "django/blog-posts",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "showcase",
+      "features": ["auth-user-foreign-key", "seeded-users"],
+      "seed": "db.sqlite3",
+      "license": "Apache-2.0",
+      "provenance": "synthetic"
+    },
+    {
+      "id": "django/widget-inventory",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "showcase",
+      "features": ["single-model-crud"],
+      "seed": "db.sqlite3",
+      "license": "Apache-2.0",
+      "provenance": "synthetic"
+    }
+  ]
+}
