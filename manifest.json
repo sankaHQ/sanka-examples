@@ -7,7 +7,14 @@
       "language": "python",
       "tier": "showcase",
       "recommended": true,
-      "features": ["foreign-key", "related-name", "unique-constraint", "choices", "decimal-field", "nested-items"],
+      "features": [
+        "foreign-key",
+        "related-name",
+        "unique-constraint",
+        "choices",
+        "decimal-field",
+        "nested-items"
+      ],
       "seed": "db.sqlite3",
       "license": "Apache-2.0",
       "provenance": "synthetic"
@@ -17,7 +24,10 @@
       "framework": "django-rest-framework",
       "language": "python",
       "tier": "showcase",
-      "features": ["auth-user-foreign-key", "seeded-users"],
+      "features": [
+        "auth-user-foreign-key",
+        "seeded-users"
+      ],
       "seed": "db.sqlite3",
       "license": "Apache-2.0",
       "provenance": "synthetic"
@@ -27,10 +37,64 @@
       "framework": "django-rest-framework",
       "language": "python",
       "tier": "showcase",
-      "features": ["single-model-crud"],
+      "features": [
+        "single-model-crud"
+      ],
       "seed": "db.sqlite3",
       "license": "Apache-2.0",
       "provenance": "synthetic"
+    },
+    {
+      "id": "upstream/peering-manager",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "bench",
+      "provenance": "upstream",
+      "license": "Apache-2.0",
+      "source": {
+        "repo": "https://github.com/peering-manager/peering-manager",
+        "ref": "08294637c08e9c6beb89a1bb72ee5268107e29c0"
+      },
+      "features": [
+        "real-product",
+        "666-endpoints",
+        "custom-actions",
+        "config-at-import"
+      ],
+      "scan": {
+        "engine": "sanka-migrate 0.1.0a7",
+        "endpoints": 666,
+        "serializers": 43,
+        "models": 43,
+        "scan_hash": "sha256:da8e41e2bf5ee174f97c455b74571a5b50aca312ff46b31b9ab3c5570c2b4e97"
+      },
+      "notes": "Bench-tier candidate from the 2026-08-28 OSS scan sweep; referenced by pin, not vendored. Bench task authoring (behavior oracle scenarios) pending."
+    },
+    {
+      "id": "upstream/readthedocs.org",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "bench",
+      "provenance": "upstream",
+      "license": "MIT",
+      "source": {
+        "repo": "https://github.com/readthedocs/readthedocs.org",
+        "ref": "edae2d4423e3f022e117b888410f165e00e729e0"
+      },
+      "features": [
+        "real-product",
+        "201-endpoints",
+        "dynamic-regex-routes",
+        "py3.14-syntax"
+      ],
+      "scan": {
+        "engine": "sanka-migrate 0.1.0a7",
+        "endpoints": 201,
+        "serializers": 17,
+        "models": 0,
+        "scan_hash": "sha256:cbf6cc4c3473f38fe15021b4533d238b060ceef5c63410a25be9b919fe13311e"
+      },
+      "notes": "Bench-tier candidate from the 2026-08-28 OSS scan sweep; referenced by pin, not vendored (requires Python 3.14). Bench task authoring pending."
     }
   ]
 }

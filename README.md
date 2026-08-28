@@ -28,6 +28,21 @@ project's Django code, so tool and app must share an environment.
 | [django/blog-posts](django/blog-posts/) | Django + DRF | Foreign key to `AUTH_USER_MODEL`, seeded users |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
 
+### Bench-tier corpus (referenced by pin, not vendored)
+
+Real applications adopted as benchmark-corpus candidates. Each entry pins an
+upstream commit in `manifest.json` under `tier: "bench"`, with the recorded
+`sanka scan` inventory from the corpus sweep that selected it:
+
+| App | License | Endpoints | Pinned ref |
+| --- | --- | --- | --- |
+| [peering-manager](https://github.com/peering-manager/peering-manager) | Apache-2.0 | 666 | `0829463` |
+| [readthedocs.org](https://github.com/readthedocs/readthedocs.org) | MIT | 201 | `edae2d4` |
+
+Behavior-oracle bench tasks for these apps are authored in
+[Sanka Migration Bench](https://github.com/sankaHQ/sanka-bench) as the corpus
+grows.
+
 `manifest.json` is the machine-readable index (id, framework, tier, features).
 Apps tagged `showcase` are small and legible for documentation; the corpus
 grows over time with `bench`-tier apps — larger, messier applications that
