@@ -33,6 +33,20 @@
       "provenance": "synthetic"
     },
     {
+      "id": "django/gadget-inventory",
+      "framework": "django-rest-framework",
+      "language": "python",
+      "tier": "showcase",
+      "features": [
+        "documentation-fixture",
+        "single-model-crud",
+        "serializer-validation"
+      ],
+      "seed": "db.sqlite3",
+      "license": "Apache-2.0",
+      "provenance": "synthetic"
+    },
+    {
       "id": "django/widget-inventory",
       "framework": "django-rest-framework",
       "language": "python",
