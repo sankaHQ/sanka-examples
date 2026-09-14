@@ -1,0 +1,17 @@
+{
+  "schema_version": "sanka-extension-manifest/v2",
+  "id": "example/config-upgrade",
+  "version": "0.1.0",
+  "kind": "migration",
+  "runtime": {"sanka_cli": "==0.2.12"},
+  "distribution": {
+    "name": "example-sanka-config-upgrade",
+    "version": "0.1.0",
+    "executable": "example-sanka-config-upgrade"
+  },
+  "protocol_version": "sanka-extension/v1",
+  "commands": ["scan", "plan"],
+  "targets": ["example-config-v2"],
+  "match": {"all": [{"kind": "file", "value": "example-app.json"}], "any": []},
+  "wheels": []
+}

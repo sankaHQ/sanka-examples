@@ -1,24 +1,37 @@
 # Sanka Examples
 
 Real, runnable applications for trying [Sanka](https://sanka.com) migrations.
-Every app ships with a seeded SQLite database, so the migration lifecycle works
-seconds after cloning — no accounts, no API tokens.
+The application examples include seeded SQLite databases for local migration
+experiments. The extension starter demonstrates how to build a capability.
+Neither requires a Sanka account or API token.
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first,
+then use separate CLI and application environments with Python 3.12:
 
 ```bash
+uv tool install --python 3.12 sanka-cli
 git clone https://github.com/sankaHQ/sanka-examples
 cd sanka-examples/django/order-tracker
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt sanka-cli "sqlalchemy[asyncio]" httpx uvicorn
-
+uv venv --python 3.12 .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+sanka extension add sanka/drf-to-fastapi
 sanka scan .
-sanka plan . --to fastapi --orm sqlalchemy
-sanka apply --to fastapi
-sanka test
-sanka verify --to fastapi
+sanka plan . --to fastapi --generation minimal \
+  --output .sanka/output/fastapi --strategy native --package-manager uv
 ```
 
-Install `sanka-cli` inside the app's virtualenv — the scanner imports the
-project's Django code, so tool and app must share an environment.
+The CLI discovers the application's `.venv`; it does not need to share that
+environment. Review the generated plan before proceeding with apply, test and
+verify. Follow the [complete quickstart](https://sanka.com/docs/developers/quickstart/cli/)
+for those stages and their generated-environment requirements.
+
+## Build an extension
+
+The [Config upgrade starter](extensions/config-upgrade/) demonstrates packaging,
+the typed SDK contract, trusted installation and CLI scan/plan using published
+artifacts. Its single acceptance command runs without a runtime checkout or
+private services. It is independent of the application migration examples below.
 
 ## Apps
 
