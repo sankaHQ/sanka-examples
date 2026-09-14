@@ -15,6 +15,7 @@ import subprocess
 import tempfile
 import threading
 import urllib.request
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -66,6 +67,12 @@ def check(work: Path) -> dict:
             raise RuntimeError(f"Published SDK hash mismatch: {filename}")
     run(uv, "build", "--wheel", "--out-dir", str(wheels), str(ROOT), cwd=work, env=env)
     all_wheels = sorted(wheels.glob("*.whl"))
+    example_wheel = next(w for w in all_wheels if w.name.startswith("example_"))
+    with zipfile.ZipFile(example_wheel) as archive:
+        license_name = next(
+            name for name in archive.namelist() if name.endswith("/licenses/LICENSE")
+        )
+        assert archive.read(license_name) == (ROOT / "LICENSE").read_bytes()
     cli_env = work / "cli"
     dev_env = work / "developer"
     for target in (cli_env, dev_env):
@@ -243,6 +250,7 @@ def check(work: Path) -> dict:
             "wheel_hashes": {item["name"]: item["sha256"] for item in manifest["wheels"]},
             "plan": plan,
             "checks": [
+                "bundled Apache license",
                 "installed-wheel unit tests",
                 "explicit marketplace trust",
                 "isolated wheel installation",

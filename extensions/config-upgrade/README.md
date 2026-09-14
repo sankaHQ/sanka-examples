@@ -112,4 +112,4 @@ and [CLI compatibility table](https://github.com/sankaHQ/sanka/blob/main/docs/co
 Do not add hosted SaaS clients or credentials to a local extension. A subprocess
 is an execution boundary, not a complete operating-system sandbox.
 
-Apache-2.0; see the repository [LICENSE](../../LICENSE).
+Apache-2.0; see the bundled [LICENSE](LICENSE).

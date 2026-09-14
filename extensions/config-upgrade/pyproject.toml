@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "A scan-and-plan Sanka Code extension starter"
 requires-python = ">=3.12"
 license = "Apache-2.0"
+license-files = ["LICENSE"]
 dependencies = ["sanka-extension-sdk==0.1.0a4"]
 
 [project.scripts]
