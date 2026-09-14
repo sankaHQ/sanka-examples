@@ -24,7 +24,8 @@ uv run --no-project --python 3.12 python check.py --report acceptance.json
 ```
 
 The command downloads Python 3.12 when needed, builds this package and verifies
-it against **published CLI 0.2.12 and Extension SDK 0.1.0a4**. It requires internet
+it against **published CLI 0.2.12 and Extension SDK 0.1.0a4**. It also replaces
+the CLI while preserving and reusing the original extension lock. It requires internet
 access to PyPI and public GitHub releases. No other Sanka repository, account,
 API token, project dependencies or preinstalled CLI is required.
 
@@ -113,3 +114,31 @@ Do not add hosted SaaS clients or credentials to a local extension. A subprocess
 is an execution boundary, not a complete operating-system sandbox.
 
 Apache-2.0; see the bundled [LICENSE](LICENSE).
+
+## Check a CLI release candidate
+
+Release tooling can use the same consumer without importing runtime source:
+
+```bash
+uv run --no-project --python 3.12 python check.py \
+  --cli-wheel /absolute/path/to/sanka_cli-0.2.13-py3-none-any.whl \
+  --upgrade-from 0.2.12 --report acceptance.json
+```
+
+The wheel path is an example; supply the actual built candidate. This command
+installs the published baseline CLI, installs the starter and creates a plan,
+then replaces only the CLI with the candidate wheel. It runs scan and plan
+again without reinstalling the extension. The lock must stay byte-for-byte
+identical and the extension's plan and source must remain unchanged.
+
+Before baseline installation, the temporary fixture manifest admits the explicit
+baseline-to-candidate version range. Neither the installed manifest nor its lock
+is edited after upgrading. This is a compatibility test fixture, not a change to
+the starter's published compatibility claim. A baseline newer than the candidate,
+a non-Sanka wheel or an unsupported version format is rejected.
+
+The report includes candidate wheel identity, installed version, test stage and
+lock hashes. Failures return a nonzero exit code and replace any old success
+report with failure evidence. Release automation must check both exit status and
+report identity. CI also exercises a real 0.2.11 → 0.2.12 version upgrade; testing
+a 0.2.12 candidate against the 0.2.12 baseline is a same-version replacement.

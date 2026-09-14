@@ -5,3 +5,4 @@ __pycache__/
 dist/
 acceptance.json
 extension-starter.json
+version-upgrade.json
