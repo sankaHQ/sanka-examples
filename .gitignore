@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 .sanka/
+dist/
+acceptance.json
+extension-starter.json

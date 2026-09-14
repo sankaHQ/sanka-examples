@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "example-sanka-config-upgrade"
+version = "0.1.0"
+description = "A scan-and-plan Sanka Code extension starter"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = ["sanka-extension-sdk==0.1.0a4"]
+
+[project.scripts]
+example-sanka-config-upgrade = "example_config_upgrade:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/example_config_upgrade"]

@@ -1,0 +1,31 @@
+name: Extension developer journey
+on:
+  pull_request:
+    paths: ['extensions/**', '.github/workflows/extension-starter.yml']
+  push:
+    branches: [main]
+    paths: ['extensions/**', '.github/workflows/extension-starter.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+      - run: uvx --from ruff==0.12.12 ruff check --select E4,E7,E9,F,I extensions/config-upgrade
+      - run: uvx --from ruff==0.12.12 ruff format --check --line-length 100 extensions/config-upgrade
+      - run: uv run --no-project --python 3.12 python extensions/config-upgrade/check.py --report extension-starter.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: extension-starter-${{ matrix.os }}
+          path: extension-starter.json
+          retention-days: 10
