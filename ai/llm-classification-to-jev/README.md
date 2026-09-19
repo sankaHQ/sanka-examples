@@ -228,7 +228,8 @@ cannot justify CSV adoption. The separate CSV experiment is outside this example
 ## Limits and publication
 
 Version one supports only the documented direct synchronous Responses enum pattern
-with one text argument and the known JSON return/error pattern. Aliases, factories,
+in a project-root Python file, with one text argument and the known JSON return/error
+pattern. Nested packages, reflection/monkeypatching, aliases, factories,
 dynamic schemas/options, tools, explanations, multimodal input, conversation state,
 multi-field dependencies and automatic confidence translation require manual work.
 CSV matching with dynamic candidates and global constraints is outside v1.
