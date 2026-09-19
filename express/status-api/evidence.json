@@ -1,6 +1,5 @@
 {
   "candidate": {
-    "catalog_sha256": "a42c90f43f592b68799c2d0b5d51078a4f60717620b731ebf832b3475c6c7844",
     "cli_dependencies": [
       "anyio==4.15.1",
       "certifi==2026.7.22",
@@ -33,9 +32,11 @@
         "extension",
         "marketplace",
         "add",
-        "/private/var/folders/x6/vwj434cx3zjdtsq41m9xqn1w0000gn/T/sanka-example-o9nngz5r/marketplace",
+        "https://github.com/sankaHQ/extensions.git",
+        "--revision",
+        "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
         "--name",
-        "candidate",
+        "api-converters",
         "--trust",
         "--json"
       ],
@@ -44,7 +45,7 @@
         "add",
         "sanka/typescript-to-rust",
         "--marketplace",
-        "candidate",
+        "api-converters",
         "--json"
       ],
       [
@@ -139,7 +140,7 @@
       [
         "apply",
         "--plan-hash",
-        "sha256:58ffb68436f35026f0b8361c7af39f61be9eef22d91d74c936ec1297871ff805",
+        "sha256:6c411c52e21e748058802bf6c81d93a2f47b39eab0314897b36851dfec61470e",
         "--extension-config",
         "{\"source_framework\": \"express\", \"target_framework\": \"axum\", \"source_file\": \"src/app.ts\"}",
         "--extension-env",
@@ -200,29 +201,42 @@
       ]
     ],
     "extension_id": "sanka/typescript-to-rust",
-    "extension_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
-    "release_status": "experimental-unpublished",
+    "extension_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+    "manifest_sha256": "cd2707971d0597a7fa5c4ac660087b8ab4f7e5443136aea5a1f013aec39e587a",
+    "release_status": "experimental-published",
+    "release_tag": "api-converters-v0.1.0a1",
     "sdk_version": "0.1.0a4",
     "wheels": {
       "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
       "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
-      "sanka_extension_typescript_to_rust-0.1.0a1-py3-none-any.whl": "d0ad26f7d7d610713a7e3f1158ce1bdb5a0c158b96f7ede10786b88d41b4f642",
+      "sanka_extension_typescript_to_rust-0.1.0a1-py3-none-any.whl": "c305e5da8f10c0af6f8eb28732074f4e995403cd158d1179485b491df0e7bd23",
       "sanka_http_replay-0.1.0a1-py3-none-any.whl": "ec9902f150e14fd7d508b506ac6f60de50e764de1205a482337c2a6f35611604",
       "sanka_ts_capture-0.1.0a1-py3-none-any.whl": "a1f348b45bf3fc7f335599e4f976d077c5e97815e49536ad988aa10e39ba6c68"
     }
   },
-  "extension_plan_hash": "sha256:f6077539cf029a9643d7beca1241528c70a5cd2ae5987ddf8ae2e2876f4a912b",
+  "extension_plan_hash": "sha256:6fd166181b66295f4bc1b892d2dd0cc72f3ee0607af793fba8405c6df588ae2a",
   "generated_sha256": {
     "Cargo.lock": "cc1e6667f5bbc88c501a63a1ac8ae8f5d2884b2411f461ff1c453e5b980f99ad",
     "Cargo.toml": "9a21580f99fe976aab4ecea1cdabc92d8eeeef5002714f2fb7648cf17a8d718a",
     "README.md": "2173a5235b1ce34bafe7a911f4e11e1cd553497cbc977066bcc1a7cc607be1d9",
-    "contract.json": "a036f6c6a738f239f5447bd2b6cb520a2a5520ec75b7c081c7b2ce750f3bd1c1",
+    "contract.json": "72ddccee149e26057ba9d02bad86f99070c9f14e92d89371f62c974cf7a3e74e",
     "rust-toolchain.toml": "b3ccdd58a73b2e4c1be662ce41af1906970522d989d72458beb1be2723b6c19a",
     "src/lib.rs": "5f2e90c226b8ada06fd33a160d11933139faa05590d0b1167e5bd3c62214dbaf",
     "src/main.rs": "38d60865a667134cf97553441a9ccff5e9ef168bf0aced26646a76004e6a5c4e"
   },
+  "independent_acceptance": {
+    "contract_change": "Only source_digest changed because README.md, check.py and migration.json changed. Old and new contract hashes independently reproduced; routes, configuration, launcher, package and TypeScript identity are unchanged.",
+    "generated_application_files_match_original": "passed",
+    "independent_fixture_revision": "e4b9990ccc21ec3d1e775b0955f021f2083fc524",
+    "linux_release_qualification": "https://github.com/sankaHQ/extensions/actions/runs/35475713170",
+    "public_catalog_lifecycle": "passed",
+    "public_download_hashes": "passed",
+    "release": "https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1",
+    "release_commit": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6"
+  },
+  "observed_on": "2026-09-20",
   "platform": "macOS-26.6.2-arm64-arm-64bit",
-  "reviewed_runtime_plan_hash": "sha256:58ffb68436f35026f0b8361c7af39f61be9eef22d91d74c936ec1297871ff805",
+  "reviewed_runtime_plan_hash": "sha256:6c411c52e21e748058802bf6c81d93a2f47b39eab0314897b36851dfec61470e",
   "source_http": {
     "/health": {
       "body": {
@@ -247,9 +261,9 @@
   "source_sha256": {
     ".gitignore": "63381653b993e177ba8e0825c94ce4d5f93c84547eb22a6c2805a35c25726b27",
     "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
-    "README.md": "3b300e3985a45affff7afc18281ce5b0cd5def577abf15b0f0b76f7b97065101",
-    "check.py": "bf0b27d5325be1c03f0ca93d69c596d8b82824cb97a9e2183768a344362e4de9",
-    "migration.json": "5e792f20b1d031331dd129116639ce6c1b70e33d50bceff537b77334b38faab4",
+    "README.md": "fbc7fe53d4a956280b8ef582d1a862061e090be45844c3d36fe8201b549de046",
+    "check.py": "802528325d08bb1f2a00c54c56794bf118773f7b354a1f51ef5d1972a90241e6",
+    "migration.json": "267dc3abe5fec5b5621b95fe3d42dc1c4b69acfdf481db331b1553c6ab65c5f7",
     "package-lock.json": "07b8bbf51fbf814685b2f15332dfb0a4bbdded80d47e5ea4bf78b2730b47dcfb",
     "package.json": "820ed56a0be85a5dd2821f263576ee67ba926ae8b0b3f33dca951a6db1c9e28e",
     "source_check.py": "3c0cc97016872b6bf5791f9395f422fa0f440080f4f2d71974a4a781ccfc7cc8",
@@ -313,7 +327,7 @@
         "status": 202
       }
     ],
-    "candidate_digest": "sha256:4984be83378c27c07894918303741db2e60f24744ab7b5df9bed917a81e93564",
+    "candidate_digest": "sha256:4be2713371b85fc3bb3c0f65902bd5af0de658f186cde37a13c29e59ac262ff4",
     "command": "test",
     "comparison": {
       "ok": true,
@@ -332,7 +346,7 @@
     },
     "complete_backend": false,
     "ok": true,
-    "plan_hash": "sha256:f6077539cf029a9643d7beca1241528c70a5cd2ae5987ddf8ae2e2876f4a912b",
+    "plan_hash": "sha256:6fd166181b66295f4bc1b892d2dd0cc72f3ee0607af793fba8405c6df588ae2a",
     "rust_version": "rustc 1.93.1",
     "scenario_origin": "default",
     "scenarios": [
@@ -353,7 +367,7 @@
     ],
     "schema": "sanka.typescript-to-rust.replay/v2",
     "scope": "axum handler execution, JSON responses and expected statuses per scenario",
-    "source_digest": "sha256:76be54443fe320a389611af0c133403dba4892823981218223adb733ada60996"
+    "source_digest": "sha256:03500cb8fd9663521cd71229e2f48dac6835fc110e8c17a8d5fb5d6f2634ee9f"
   },
   "toolchains": {
     "node": "v22.14.0",
@@ -391,7 +405,7 @@
         "status": 202
       }
     ],
-    "candidate_digest": "sha256:4984be83378c27c07894918303741db2e60f24744ab7b5df9bed917a81e93564",
+    "candidate_digest": "sha256:4be2713371b85fc3bb3c0f65902bd5af0de658f186cde37a13c29e59ac262ff4",
     "command": "verify",
     "comparison": {
       "ok": true,
@@ -411,7 +425,7 @@
     "complete_backend": false,
     "node_version": "v22.14.0",
     "ok": true,
-    "plan_hash": "sha256:f6077539cf029a9643d7beca1241528c70a5cd2ae5987ddf8ae2e2876f4a912b",
+    "plan_hash": "sha256:6fd166181b66295f4bc1b892d2dd0cc72f3ee0607af793fba8405c6df588ae2a",
     "rust_version": "rustc 1.93.1",
     "scenario_origin": "default",
     "scenarios": [
@@ -456,6 +470,6 @@
         "status": 202
       }
     ],
-    "source_digest": "sha256:76be54443fe320a389611af0c133403dba4892823981218223adb733ada60996"
+    "source_digest": "sha256:03500cb8fd9663521cd71229e2f48dac6835fc110e8c17a8d5fb5d6f2634ee9f"
   }
 }

@@ -111,6 +111,27 @@ class CatalogTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Missing source"):
             validate(self.root)
 
+    def test_published_release_requires_public_evidence(self):
+        destination = self.metadata["destinations"][0]
+        destination.update(
+            release_status="experimental-published",
+            release_revision="c" * 40,
+            release_tag="api-converters-v0.1.0a1",
+            manifest_sha256="d" * 64,
+        )
+        self.write()
+        with self.assertRaisesRegex(ValueError, "Published release evidence"):
+            validate(self.root)
+        self.evidence["candidate"].update(
+            release_status="experimental-published",
+            extension_revision="c" * 40,
+            release_tag="api-converters-v0.1.0a1",
+            manifest_sha256="d" * 64,
+            wheels={"converter.whl": "e" * 64},
+        )
+        self.write()
+        validate(self.root)
+
     def test_wrong_candidate(self):
         self.evidence["candidate"]["extension_revision"] = "b" * 40
         self.write()

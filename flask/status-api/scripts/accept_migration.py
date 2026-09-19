@@ -20,11 +20,10 @@ from pathlib import Path
 EXAMPLE = Path(__file__).resolve().parents[1]
 REPOSITORY = EXAMPLE.parents[1]
 sys.path.insert(0, str(REPOSITORY / "scripts"))
-from candidate import Candidate  # noqa: E402
+from released import Released as Candidate  # noqa: E402
 
 CONFIG = json.dumps({"source_framework": "flask", "target_framework": "fiber",
                      "source_file": "app.py", "database_layer": "none"})
-CANDIDATE_REVISION = "83e290614b784dab33e7271ecb8533a726e111d2"
 
 
 def hashes(root):
@@ -83,7 +82,7 @@ def accept():
     expected = json.loads((EXAMPLE / "expected.json").read_text())
     dependencies = (EXAMPLE / "source/requirements.txt").read_text().splitlines()
     with Candidate(example=EXAMPLE / "source", extension="python-to-golang", packages=[],
-                   targets=["fiber"], match_file="app.py", revision=CANDIDATE_REVISION) as candidate:
+                   targets=["fiber"], match_file="app.py") as candidate:
         project = candidate.project
         source_env = candidate.root / "source-env"
         candidate.run("uv", "venv", "--python", "3.12", str(source_env))

@@ -1,10 +1,10 @@
 name: Flask to Go example
 on:
   pull_request:
-    paths: ['flask/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/flask-status-api.yml']
+    paths: ['flask/status-api/**', 'scripts/candidate.py', 'scripts/released.py', 'scripts/api-release.json', 'scripts/check_catalog.py', '.github/workflows/flask-status-api.yml']
   push:
     branches: [main]
-    paths: ['flask/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/flask-status-api.yml']
+    paths: ['flask/status-api/**', 'scripts/candidate.py', 'scripts/released.py', 'scripts/api-release.json', 'scripts/check_catalog.py', '.github/workflows/flask-status-api.yml']
   workflow_dispatch:
 permissions:
   contents: read

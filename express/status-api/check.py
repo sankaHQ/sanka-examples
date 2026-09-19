@@ -1,4 +1,4 @@
-"""Clean public-CLI consumer acceptance for the unpublished Express-to-axum candidate."""
+"""Clean public-CLI consumer acceptance for the published Express-to-axum prerelease."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,7 @@ import sys
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parents[1] / "scripts"))
-from candidate import Candidate
+from released import Released as Candidate
 from source_check import available_port, wait_observe
 
 

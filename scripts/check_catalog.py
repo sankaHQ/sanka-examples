@@ -87,13 +87,33 @@ def validate(root: Path) -> None:
                 if observed not in ("success", "passed"):
                     raise ValueError(f"Stage not passed: {identifier}/{stage}")
             candidate = result.get("candidate", result)
-            revision = destination.get(
-                "candidate_revision", metadata.get("candidate_revision")
+            published = destination["release_status"] == "experimental-published"
+            revision = (
+                destination.get("release_revision")
+                if published
+                else destination.get(
+                    "candidate_revision", metadata.get("candidate_revision")
+                )
             )
+            if published:
+                if (
+                    candidate.get("release_status") != "experimental-published"
+                    or candidate.get("release_tag") != destination.get("release_tag")
+                    or not destination.get("release_tag")
+                    or candidate.get("manifest_sha256")
+                    != destination.get("manifest_sha256")
+                    or not re.fullmatch(
+                        r"[0-9a-f]{64}", destination.get("manifest_sha256", "")
+                    )
+                    or not candidate.get("wheels")
+                ):
+                    raise ValueError(
+                        f"Published release evidence mismatch: {identifier}"
+                    )
             if not isinstance(revision, str) or not re.fullmatch(
                 r"[0-9a-f]{40}", revision
             ):
-                raise ValueError("Migration metadata must pin its candidate commit")
+                raise ValueError("Migration metadata must pin its converter commit")
             if (
                 candidate.get("extension_revision") != revision
                 or candidate.get("extension_id") != destination["extension_id"]

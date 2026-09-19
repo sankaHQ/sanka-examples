@@ -7,8 +7,8 @@ The Django examples include seeded SQLite databases; the extension starter
 demonstrates how to build a capability. Neither requires a Sanka account or API token.
 
 The [migration index](migrations.json) and [example contract](MIGRATIONS.md) track
-new language paths, candidate versions and acceptance evidence. Experimental
-converters use immutable candidate installation, not public-catalog install claims.
+new language paths, pinned converter versions and acceptance evidence. Go and Rust
+use verified experimental releases; mobile uses an immutable unpublished candidate.
 
 ## Published Django quickstart
 
@@ -40,10 +40,10 @@ the typed SDK contract, trusted installation and CLI scan/plan using published
 artifacts. Its single acceptance command runs without a runtime checkout or
 private services. It is independent of the application migration examples below.
 
-## Classifier conversion candidate
+## Classifier conversion
 
 The [LLM classification to Jev cookbook](ai/llm-classification-to-jev/) exercises
-an unpublished Sanka Code converter candidate with an explicit reviewed decision
+the separately published [Jev prerelease](https://github.com/sankaHQ/extensions/releases/tag/llm-to-jev-v0.1.0a1) with an explicit reviewed decision
 specification, isolated CLI acceptance, and offline compatibility tests. Live
 model quality and economics are separate, unverified gates. No provider keys are
 needed for the offline walkthrough.
@@ -59,7 +59,7 @@ needed for the offline walkthrough.
 
 ## Experimental migration walkthroughs
 
-These are synthetic runnable sources. Each guide pins its candidate and records
+These are synthetic runnable sources. Each guide pins its converter and records
 what passed. Generated applications are ignored `.sanka/` artifacts.
 
 | Source example | Source | Destination | Verified migration scope |
@@ -74,7 +74,8 @@ SwiftUI verification does not establish pixels, layout, accessibility or simulat
 device parity. React Native source checks cover types, an iOS bundle and Metro
 startup; execution on a device remains unverified.
 
-Experimental candidates are unpublished; these results do not qualify arbitrary
+The Go and Rust guides use the published `api-converters-v0.1.0a1` prerelease.
+The mobile converter remains unpublished. These results do not qualify arbitrary
 applications or production cutover.
 
 ### Bench-tier corpus (referenced by pin, not vendored)

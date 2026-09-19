@@ -1,0 +1,24 @@
+{
+  "revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+  "tag": "api-converters-v0.1.0a1",
+  "extensions": {
+    "python-to-golang": {
+      "manifest_sha256": "0b5a5344d5500c281c914808a84ded4273b4734adfb99fe38f59a9b67fd4250e",
+      "wheels": {
+        "sanka_extension_python_to_golang-0.1.0a1-py3-none-any.whl": "0e7bb083ae9dbd8add38c866c62802bace6f1d1596124f1e239b4cd7c9f67c9f",
+        "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+        "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e"
+      }
+    },
+    "typescript-to-rust": {
+      "manifest_sha256": "cd2707971d0597a7fa5c4ac660087b8ab4f7e5443136aea5a1f013aec39e587a",
+      "wheels": {
+        "sanka_extension_typescript_to_rust-0.1.0a1-py3-none-any.whl": "c305e5da8f10c0af6f8eb28732074f4e995403cd158d1179485b491df0e7bd23",
+        "sanka_ts_capture-0.1.0a1-py3-none-any.whl": "a1f348b45bf3fc7f335599e4f976d077c5e97815e49536ad988aa10e39ba6c68",
+        "sanka_http_replay-0.1.0a1-py3-none-any.whl": "ec9902f150e14fd7d508b506ac6f60de50e764de1205a482337c2a6f35611604",
+        "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+        "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e"
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
 {
   "candidate": {
-    "catalog_sha256": "a42c90f43f592b68799c2d0b5d51078a4f60717620b731ebf832b3475c6c7844",
     "cli_dependencies": [
       "anyio==4.15.1",
       "certifi==2026.7.22",
@@ -28,9 +27,120 @@
       "typing-extensions==4.16.0"
     ],
     "cli_version": "0.2.12",
+    "commands": [
+      [
+        "extension",
+        "marketplace",
+        "add",
+        "https://github.com/sankaHQ/extensions.git",
+        "--revision",
+        "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+        "--name",
+        "api-converters",
+        "--trust",
+        "--json"
+      ],
+      [
+        "extension",
+        "add",
+        "sanka/python-to-golang",
+        "--marketplace",
+        "api-converters",
+        "--json"
+      ],
+      [
+        "scan",
+        ".",
+        "--extension-config",
+        "{\"source_framework\": \"flask\", \"target_framework\": \"fiber\", \"source_file\": \"app.py\", \"database_layer\": \"none\"}",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "plan",
+        ".",
+        "--extension-config",
+        "{\"source_framework\": \"flask\", \"target_framework\": \"fiber\", \"source_file\": \"app.py\", \"database_layer\": \"none\"}",
+        "--to",
+        "fiber",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "plan",
+        ".",
+        "--to",
+        "fiber",
+        "--extension-config",
+        "{\"source_framework\": \"flask\", \"target_framework\": \"fiber\", \"source_file\": \"app.py\", \"database_layer\": \"none\"}",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "apply",
+        "--plan-hash",
+        "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "apply",
+        "--plan-hash",
+        "sha256:a7654e972803b9287ab5d119d1109cd15e68f2e5fd5be790b0bd32da752ec4af",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "test",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ],
+      [
+        "verify",
+        "--extension-env",
+        "SANKA_GO_SOURCE_PYTHON",
+        "--extension-env",
+        "GOMAXPROCS",
+        "--extension-env",
+        "GOFLAGS",
+        "--json"
+      ]
+    ],
     "extension_id": "sanka/python-to-golang",
-    "extension_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
-    "release_status": "experimental-unpublished",
+    "extension_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+    "manifest_sha256": "0b5a5344d5500c281c914808a84ded4273b4734adfb99fe38f59a9b67fd4250e",
+    "release_status": "experimental-published",
+    "release_tag": "api-converters-v0.1.0a1",
     "sdk_version": "0.1.0a4",
     "source_dependencies": [
       "blinker==1.9.0",
@@ -44,7 +154,7 @@
     "source_python": "Python 3.12.14",
     "wheels": {
       "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
-      "sanka_extension_python_to_golang-0.1.0a1-py3-none-any.whl": "7aee4d5500771d00219ae44c8281db2306711c4b111c73190e86c83ddef8d590",
+      "sanka_extension_python_to_golang-0.1.0a1-py3-none-any.whl": "0e7bb083ae9dbd8add38c866c62802bace6f1d1596124f1e239b4cd7c9f67c9f",
       "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307"
     }
   },
@@ -109,49 +219,31 @@
     }
   ],
   "independent_acceptance": {
-    "date": "2026-09-19",
-    "extension_plan_hash_matches": true,
-    "generated_hashes_match": true,
-    "outcome": "passed",
-    "source_hashes_match": true,
-    "stages": {
-      "apply": "success",
-      "plan": "success",
-      "scan": "success",
-      "test": "success",
-      "verify": "success"
-    },
-    "wheel_hashes_match": true
+    "generated_hashes_match_original_and_linux": "passed",
+    "independent_fixture_revision": "e4b9990ccc21ec3d1e775b0955f021f2083fc524",
+    "linux_release_qualification": "https://github.com/sankaHQ/extensions/actions/runs/35475713170",
+    "public_catalog_lifecycle": "passed",
+    "public_download_hashes": "passed",
+    "release": "https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1",
+    "release_commit": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6"
   },
   "native_checks": {
     "build": "",
-    "test": "go: downloading github.com/gofiber/fiber/v3 v3.5.0\ngo: downloading github.com/gofiber/schema v1.8.3\ngo: downloading github.com/gofiber/utils/v2 v2.4.1\ngo: downloading github.com/mattn/go-colorable v0.1.15\ngo: downloading github.com/google/uuid v1.6.0\ngo: downloading github.com/mattn/go-isatty v0.0.24\ngo: downloading github.com/tinylib/msgp v1.6.4\ngo: downloading github.com/valyala/bytebufferpool v1.0.0\ngo: downloading github.com/valyala/fasthttp v1.73.0\ngo: downloading golang.org/x/crypto v0.54.0\ngo: downloading golang.org/x/net v0.57.0\ngo: downloading golang.org/x/sys v0.47.0\ngo: downloading github.com/philhofer/fwd v1.2.0\ngo: downloading github.com/andybalholm/brotli v1.2.2\ngo: downloading github.com/klauspost/compress v1.19.2\ngo: downloading golang.org/x/text v0.40.0\n?   \tmigrated.backend\t[no test files]\nok  \tmigrated.backend/cmd/api\t0.316s",
+    "test": "go: downloading github.com/gofiber/fiber/v3 v3.5.0\ngo: downloading github.com/gofiber/schema v1.8.3\ngo: downloading github.com/gofiber/utils/v2 v2.4.1\ngo: downloading github.com/google/uuid v1.6.0\ngo: downloading github.com/mattn/go-colorable v0.1.15\ngo: downloading github.com/mattn/go-isatty v0.0.24\ngo: downloading github.com/tinylib/msgp v1.6.4\ngo: downloading github.com/valyala/bytebufferpool v1.0.0\ngo: downloading github.com/valyala/fasthttp v1.73.0\ngo: downloading golang.org/x/crypto v0.54.0\ngo: downloading golang.org/x/net v0.57.0\ngo: downloading golang.org/x/sys v0.47.0\ngo: downloading github.com/philhofer/fwd v1.2.0\ngo: downloading github.com/andybalholm/brotli v1.2.2\ngo: downloading github.com/klauspost/compress v1.19.2\ngo: downloading golang.org/x/text v0.40.0\n?   \tmigrated.backend\t[no test files]\nok  \tmigrated.backend/cmd/api\t0.312s",
     "vet": ""
   },
   "not_run": [
     "Production deployment",
     "Database migrations"
   ],
-  "observed_on": "2026-09-19",
+  "observed_on": "2026-09-20",
   "outcome": "passed",
   "repeated_plan_identical": true,
-  "reproduction": {
-    "earlier_candidate": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
-    "earlier_public_verify": "failed: source Flask unavailable in locked interpreter; fixed by explicit source interpreter in current candidate",
-    "extension_plan_identical": true,
-    "generated_files_identical_across_two_clean_installations": true
-  },
-  "reviewed_core_plan_hash": "sha256:f373b1fdfd13b5b74eeb3f23e4b70a8e5e73a19833da1338756c52916771e811",
+  "reviewed_core_plan_hash": "sha256:a7654e972803b9287ab5d119d1109cd15e68f2e5fd5be790b0bd32da752ec4af",
   "schema": "sanka-examples/acceptance/v1",
   "source_checks": {
-    "commands": [
-      "scripts/check_source.py",
-      "flask --app source/app.py run --host 127.0.0.1 --port 5050 --no-reload",
-      "curl -i http://127.0.0.1:5050/health",
-      "curl -i http://127.0.0.1:5050/info"
-    ],
-    "outcome": "passed",
-    "python": "3.12.13"
+    "command": "flask/status-api/.venv/bin/python flask/status-api/scripts/check_source.py",
+    "outcome": "passed"
   },
   "source_preserved": true,
   "source_sha256": {

@@ -1,10 +1,10 @@
 name: Express to Rust example
 on:
   pull_request:
-    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
+    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/released.py', 'scripts/api-release.json', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
   push:
     branches: [main]
-    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
+    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/released.py', 'scripts/api-release.json', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
   workflow_dispatch:
 permissions:
   contents: read

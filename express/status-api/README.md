@@ -1,14 +1,14 @@
 # Express status API to Rust / axum
 
 A synthetic TypeScript / Express app with two public, literal JSON GET endpoints.
-The unpublished experimental `sanka/typescript-to-rust` candidate generates a Rust
+The published experimental `sanka/typescript-to-rust` prerelease generates a Rust
 crate; this example makes no claim about arbitrary TypeScript applications or Rust
 source migrations. Source and scripts are Apache-2.0; see [LICENSE](LICENSE).
 Dependencies retain their own licenses. No customer data or services are used.
 
 ## Run and check the source
 
-Use macOS or Linux with npm, Python 3.12, Git, OpenSSL and uv. Installation downloads
+Use macOS or Linux with npm, Python 3.12, Git and uv. Installation downloads
 public dependencies; application execution has no network dependency beyond local
 HTTP. `package-lock.json` pins the full npm dependency tree. The project installs
 Node 22.14.0 locally, without replacing your global Node installation.
@@ -62,25 +62,24 @@ rustup toolchain install 1.93.1 --profile minimal
 uv run --no-project --python 3.12 python check.py --report .sanka/acceptance.json
 ```
 
-The pinned installer in [`../../scripts/candidate.py`](../../scripts/candidate.py)
-fetches `sankaHQ/extensions` commit
-`edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20`, checks that this converter is absent
-from that commit's public catalog, builds candidate version 0.1.0a1 and its
-`sanka-ts-capture` and `sanka-http-replay` dependencies, and installs them through
-an explicitly trusted temporary loopback HTTPS marketplace. Published CLI 0.2.12
-and Extension SDK 0.1.0a4 run in isolated environments. Wheel SHA-256 values and
-resolved CLI dependencies are recorded in the acceptance report. A sibling
-checkout is never required. There is no public-catalog install command for this
-unpublished converter.
+The pinned installer in [`../../scripts/released.py`](../../scripts/released.py)
+uses the immutable [`api-converters-v0.1.0a1` release](https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1).
+[`../../scripts/api-release.json`](../../scripts/api-release.json) records the
+exact public catalog commit, manifest digest and complete wheel closure. It installs
+converter 0.1.0a1, TypeScript capture and HTTP replay helpers, and published SDK
+0.1.0a4 through the public CLI 0.2.12 marketplace in isolated environments.
+No converter build or sibling checkout is required. The TypeScript compiler is
+included in its released wheel. The CLI default catalog remains unchanged.
 
-The harness executes these public commands inside a fresh source copy. `CATALOG`
-is its temporary marketplace; `FLAGS` represents the configuration and explicit
+The harness executes these public commands inside a fresh source copy. `CATALOG_REVISION`
+is the full commit in the release pin file; `FLAGS` represents the configuration and explicit
 toolchain environment forwarding assembled in `check.py`; `PLAN_HASH` is the
 reviewed runtime plan hash, not the extension's separate plan hash:
 
 ```bash
-sanka extension marketplace add "$CATALOG" --name candidate --trust --json
-sanka extension add sanka/typescript-to-rust --marketplace candidate --json
+CATALOG_REVISION=db8953b596325b8ed982c69e92a5a08ad0d3a5d6
+sanka extension marketplace add https://github.com/sankaHQ/extensions.git --revision "$CATALOG_REVISION" --name api-converters --trust --json
+sanka extension add sanka/typescript-to-rust --marketplace api-converters --json
 sanka scan . --extension-config '{"source_framework":"express","target_framework":"axum","source_file":"src/app.ts"}' --json
 sanka plan . --to axum $FLAGS --json
 sanka apply --plan-hash "$PLAN_HASH" $FLAGS --json
@@ -103,7 +102,7 @@ No hand-maintained Rust counterpart is checked in.
 A passing report requires independent source compilation/HTTP tests, scan, plan,
 apply, generated Rust compilation/tests, extension behavioral replay, actual
 source and generated executable HTTP comparison, and unchanged source hashes.
-It records generated artifact hashes, both plan hashes, toolchains and candidate
+It records generated artifact hashes, both plan hashes, toolchains and release
 identity. Any missing toolchain, failed stage or download error fails the command.
 Read [evidence.json](evidence.json) for the checked-in execution record.
 

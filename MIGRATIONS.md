@@ -15,7 +15,9 @@ contracts; it does not claim that they have passed this index's migration/v1 gat
 Each `migration.json` has schema `sanka-examples/migration/v1`, its repository
 relative `id`, a `source` object with `language` and `framework`, and a
 `destinations` array. Every destination records `language`, `framework`,
-`extension_id`, `release_status`, `candidate_revision` and `supported_stages`. The example also records
+`extension_id`, `release_status` and `supported_stages`. Unpublished candidates
+pin `candidate_revision`; published examples pin `release_revision`, `release_tag`
+and `manifest_sha256`, retaining the earlier candidate pin as provenance. The example also records
 `license` and `provenance`. Destination stages are an explicit ordered subset of
 `scan`, `plan`, `apply`, `test`, `verify`; Compose is limited to scan/plan.
 Acceptance evidence must explicitly pass every advertised stage, match the
@@ -52,7 +54,17 @@ remain separate checks. This change does not change the runtime publication gate
 or its fixture pin. Candidate extension publication and human PR approval remain
 separate from example acceptance.
 
-## Candidate installation
+## Published API installation
+
+[`scripts/released.py`](scripts/released.py) creates a fresh source copy, CLI
+0.2.12 environment and extension store, verifies the release manifest and wheel
+closure against [`scripts/api-release.json`](scripts/api-release.json), and installs
+from the public Git catalog at the exact release commit. The CLI validates wheel
+SHA-256 values before installation. No converter compilation or sibling checkout
+is required. The report records the immutable release identity and commands.
+The default CLI catalog pin and independent runtime publication gate are unchanged.
+
+## Unpublished mobile candidate installation
 
 [`scripts/candidate.py`](scripts/candidate.py) creates a fresh consumer source
 copy, CLI environment and extension store for each run. It fetches exactly

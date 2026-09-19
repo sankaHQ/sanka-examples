@@ -14,14 +14,17 @@
           "framework": "fiber",
           "extension_id": "sanka/python-to-golang",
           "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
-          "release_status": "experimental-unpublished",
+          "release_status": "experimental-published",
           "supported_stages": [
             "scan",
             "plan",
             "apply",
             "test",
             "verify"
-          ]
+          ],
+          "release_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+          "release_tag": "api-converters-v0.1.0a1",
+          "manifest_sha256": "0b5a5344d5500c281c914808a84ded4273b4734adfb99fe38f59a9b67fd4250e"
         }
       ],
       "status": "checked-in",
@@ -38,7 +41,7 @@
           "language": "rust",
           "framework": "axum",
           "extension_id": "sanka/typescript-to-rust",
-          "release_status": "experimental-unpublished",
+          "release_status": "experimental-published",
           "supported_stages": [
             "scan",
             "plan",
@@ -46,7 +49,10 @@
             "test",
             "verify"
           ],
-          "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
+          "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+          "release_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+          "release_tag": "api-converters-v0.1.0a1",
+          "manifest_sha256": "cd2707971d0597a7fa5c4ac660087b8ab4f7e5443136aea5a1f013aec39e587a"
         }
       ],
       "status": "checked-in",

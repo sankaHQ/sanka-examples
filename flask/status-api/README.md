@@ -43,34 +43,39 @@ The generated destination must return the same statuses, media types and parsed
 JSON bodies. JSON whitespace, property order and optional Content-Type parameters
 are not compared. [expected.json](expected.json) is the executable contract.
 
-## Pinned migration candidate
+## Pinned experimental release
 
-This extension is **experimental and unpublished in its catalog** at candidate
-[`83e290614b784dab33e7271ecb8533a726e111d2`](https://github.com/sankaHQ/extensions/commit/83e290614b784dab33e7271ecb8533a726e111d2),
-the unmerged source-interpreter candidate in [extensions PR #95](https://github.com/sankaHQ/extensions/pull/95).
-The package version is `0.1.0a1`; the candidate commit identifies its implementation.
+This example uses `sanka/python-to-golang==0.1.0a1` from the immutable
+[`api-converters-v0.1.0a1` release](https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1).
+The exact catalog commit and manifest/wheel SHA-256 values are pinned in
+[`scripts/api-release.json`](../../scripts/api-release.json). The CLI default
+catalog is unchanged, so the installer explicitly selects this release catalog.
 This walkthrough uses published `sanka-cli==0.2.12`, extension SDK `0.1.0a4`, and
 Go **1.26.5**. No Sanka Python/Node client SDK is used.
 
-The [shared candidate installer](../../scripts/candidate.py) fetches that exact
-public Git commit, checks its catalog, builds the converter wheel with pinned build
-dependencies, verifies the SDK release wheel checksums, and installs through a
-temporary local marketplace using the public CLI. Its isolated HOME and extension
-store prevent reliance on a sibling checkout or a user's installed extensions.
-Do not substitute a public-catalog installation command: this converter is not
-published there.
+The [release installer](../../scripts/released.py) installs the published wheels
+through the public Git marketplace in a fresh CLI environment and extension store.
+It verifies the pinned manifest and wheel closure; no converter build, sibling
+checkout or temporary marketplace is needed. The acceptance report records the
+exact public installation commands and downloaded package identities.
+
+For an existing CLI 0.2.12 installation, the public installation commands are:
+
+```sh
+sanka extension marketplace add https://github.com/sankaHQ/extensions.git --revision db8953b596325b8ed982c69e92a5a08ad0d3a5d6 --name api-converters --trust
+sanka extension add sanka/python-to-golang --marketplace api-converters
+```
 
 The source dependencies are installed into a separate Python 3.12 environment.
 The runner sets `SANKA_GO_SOURCE_PYTHON` to that environment's absolute Python path
 and explicitly forwards it with `--extension-env SANKA_GO_SOURCE_PYTHON`. Verification
 uses this interpreter with Python isolation (`-I`), leaving the locked converter
-environment untouched. PR #95 adds that supported source-interpreter selection;
-the earlier candidate could not replay Flask from a clean locked installation.
+environment untouched. The release includes that supported source-interpreter selection.
 
 ## Reproduce acceptance
 
-Requirements: Python 3.12, `uv`, Git, OpenSSL and a supported macOS/Linux host.
-First-time setup downloads public wheels, the immutable converter source, the
+Requirements: Python 3.12, `uv`, Git and a supported macOS/Linux host.
+First-time setup downloads published CLI, converter and source dependencies, the
 checksum-pinned Go 1.26.5 compiler if needed, and Go modules. No customer service,
 private Sanka service or paid inference is contacted. The application checks use
 loopback HTTP only. Dependency setup needs network access; warmed source checks
@@ -82,7 +87,7 @@ From the repository root, after installing the source dependencies above:
 flask/status-api/.venv/bin/python flask/status-api/scripts/accept_migration.py
 ```
 
-The script performs a fresh candidate installation and runs these public lifecycle
+The script performs a fresh release installation and runs these public lifecycle
 commands in a clean source copy (the installer provides the isolated `sanka`
 executable and `SANKA_GO_SOURCE_PYTHON` environment):
 
@@ -112,7 +117,7 @@ source, copied source and generated source were unchanged by verification.
 Each successful run retains generated Go files and raw stage reports in a new
 `flask/status-api/.sanka/accepted-*/` directory. The latest report is
 `flask/status-api/.sanka/acceptance.json`; failures replace it with failure evidence.
-The report records tool versions, candidate wheel hashes, source digests, both
+The report records tool versions, release wheel hashes, source digests, both
 plan hashes, generated file digests and actual HTTP observations. Core plan hashes
 include environment-specific installation/artifact paths; compare the extension
 plan hash and generated file hashes across clean runs.
