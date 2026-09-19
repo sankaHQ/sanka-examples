@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-19",
+  "platform": "macOS",
+  "django_quickstart": {
+    "status": "passed",
+    "stage": "sanka plan . --to fastapi --generation minimal --output .sanka/output/fastapi --strategy native --package-manager uv",
+    "cli_version": "sanka, version 0.2.14"
+  },
+  "extension_starter": {
+    "status": "passed",
+    "cli": "0.2.12",
+    "sdk": "0.1.0a4",
+    "checks": [
+      "bundled Apache license",
+      "installed-wheel unit tests",
+      "explicit marketplace trust",
+      "isolated wheel installation",
+      "candidate CLI installed",
+      "existing lock preserved before and after execution",
+      "CLI scan",
+      "CLI plan",
+      "source unchanged",
+      "invalid input rejected",
+      "tampered wheel rejected"
+    ]
+  },
+  "legacy_manifest": "unchanged",
+  "runtime_publication_gate": "unchanged"
+}
