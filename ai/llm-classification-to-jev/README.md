@@ -1,6 +1,6 @@
 # Migrate an enum classifier to Jev with Sanka Code
 
-This unpublished cookbook candidate migrates one synchronous Python support
+This cookbook migrates one synchronous Python support
 classifier from OpenAI Responses to an application-owned Jev Choice adapter.
 Both functions take `text: str` and return `billing`, `technical`, `sales` or
 `unknown`. The converter works offline. Provider calls belong to the destination
@@ -39,15 +39,43 @@ This checks TypeSafe Choice serialization, pinned models, disabled hidden retrie
 response usage, OpenAI caching usage, and retention of billed usage when Jev returns
 an unexpected answer key. These tests prove transport and code contracts only.
 
-## Run the converter candidate through the public CLI
+## Install the published converter
 
-The converter has no published install recipe yet. Obtain the exact candidate
-wheel and manifest template from the extension PR's build, then run:
+[Converter 0.1.0a1](https://github.com/sankaHQ/extensions/releases/tag/llm-to-jev-v0.1.0a1)
+is published as an experimental prerelease. Its complete wheel closure is Extension
+SDK 0.1.0a4 and Connector SDK 0.1.0a12; provider SDKs remain destination-owned.
+The release commit is `9f978f265914dd3b5edab18bbdc88786c29a4000`.
+
+From this cookbook directory, install CLI 0.2.12 into an isolated environment and
+register that exact public catalog revision:
+
+```sh
+uv venv --python 3.12 .venv/cli
+uv pip install --python .venv/cli/bin/python sanka-cli==0.2.12
+cd source
+../.venv/cli/bin/sanka extension marketplace add https://github.com/sankaHQ/extensions.git \
+  --revision 9f978f265914dd3b5edab18bbdc88786c29a4000 --name jev-release --trust
+../.venv/cli/bin/sanka extension add sanka/llm-to-jev --marketplace jev-release
+../.venv/cli/bin/sanka scan .
+../.venv/cli/bin/sanka plan . --to jev-classifier
+```
+
+Review the generated plan and diff before applying it. The complete reproducible
+acceptance harness below also exercises apply, test, verify and tamper rejection.
+The CLI accepts a Git marketplace or a local catalog snapshot, not a standalone
+remote JSON catalog URL.
+
+## Reproduce full lifecycle acceptance
+
+Download the converter wheel from the release linked above. Its SHA-256 is
+`148107e83ff8427c7076aae511c55ef88e162b0d49ae4bfee0e6e2eab8f72825`.
+Use its published `sanka-extension-llm-to-jev.json` manifest as the harness template.
+From this cookbook directory, run:
 
 ```sh
 uv run --no-project --python 3.12 python check.py \
-  --extension-wheel /absolute/path/to/candidate.whl \
-  --extension-template /absolute/path/to/extension.template.json \
+  --extension-wheel /absolute/path/to/sanka_extension_llm_to_jev-0.1.0a1-py3-none-any.whl \
+  --extension-template /absolute/path/to/sanka-extension-llm-to-jev.json \
   --report reports/acceptance.json \
   --artifacts-dir reports/migration
 ```
@@ -57,14 +85,21 @@ and compatibility reports in a new directory; it refuses to overwrite existing
 work. The exported candidate is the application you can inspect and run with its
 own dependencies. The temporary CLI and extension environments are removed.
 
-These arguments are explicit local candidate inputs, not existing published URLs.
+These arguments are local paths to the downloaded release files. The harness also
+accepts candidate wheels for development, but those are not proof of publication.
 `check.py` uses public CLI `sanka-cli==0.2.12`, Extension SDK `0.1.0a4` and
 Connector SDK `0.1.0a12`. It checks immutable SDK wheel hashes, constructs a temporary
 HTTPS marketplace with the full wheel closure, requires explicit marketplace trust,
 and runs `sanka scan`, `sanka plan`, `sanka apply`, `sanka test`, and `sanka verify`.
 It also checks source preservation and rejects a tampered wheel. CLI, extension
 and destination environments are separate. Read its report for the exact candidate
-wheel hash and which checks actually passed; a candidate is not a published release.
+wheel hash and which checks actually passed.
+
+Published-artifact verification on 2026-09-19 downloaded all release assets without
+authentication, verified all three wheel hashes, passed all 15 isolated acceptance
+checks, and separately installed from the pinned public Git catalog and ran all five
+lifecycle stages. The original source was preserved. Inference was mocked; these
+results do not establish model quality, latency or savings.
 
 The report and the extension's `inventory.json`, `migration-plan.json`,
 `migration.diff`, `compatibility-report.json` and `verification-report.json` are
