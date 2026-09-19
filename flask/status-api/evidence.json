@@ -1,0 +1,177 @@
+{
+  "candidate": {
+    "catalog_sha256": "a42c90f43f592b68799c2d0b5d51078a4f60717620b731ebf832b3475c6c7844",
+    "cli_dependencies": [
+      "anyio==4.15.1",
+      "certifi==2026.7.22",
+      "cffi==2.1.1",
+      "click==8.5.0",
+      "cryptography==50.0.1",
+      "h11==0.16.0",
+      "httpcore==1.0.9",
+      "httpx==0.28.1",
+      "idna==3.20",
+      "jaraco-classes==3.4.0",
+      "jaraco-context==6.1.2",
+      "jaraco-functools==4.6.0",
+      "keyring==25.7.0",
+      "markdown-it-py==4.2.0",
+      "mdurl==0.1.2",
+      "more-itertools==11.1.0",
+      "packaging==26.3",
+      "platformdirs==4.11.11",
+      "pycparser==3.0",
+      "pygments==2.21.0",
+      "pyyaml==6.0.3",
+      "rich==14.3.4",
+      "sanka-cli==0.2.12",
+      "typing-extensions==4.16.0"
+    ],
+    "cli_version": "0.2.12",
+    "extension_id": "sanka/python-to-golang",
+    "extension_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
+    "release_status": "experimental-unpublished",
+    "sdk_version": "0.1.0a4",
+    "source_dependencies": [
+      "blinker==1.9.0",
+      "click==8.3.0",
+      "Flask==3.1.2",
+      "itsdangerous==2.2.0",
+      "Jinja2==3.1.6",
+      "MarkupSafe==3.0.3",
+      "Werkzeug==3.1.3"
+    ],
+    "source_python": "Python 3.12.14",
+    "wheels": {
+      "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
+      "sanka_extension_python_to_golang-0.1.0a1-py3-none-any.whl": "7aee4d5500771d00219ae44c8281db2306711c4b111c73190e86c83ddef8d590",
+      "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307"
+    }
+  },
+  "example": "flask/status-api",
+  "extension_plan_hash": "sha256:c0c42e0fc6b12ae323b7aa3622a8ab43a6775638493139dcfc5543d93ad5453b",
+  "generated_sha256": {
+    ".env.example": "8d3389866d382855adf8b0065f558d817cc43d75b68dfd852ee491c3e71c84be",
+    "app.go": "49da16212be495eb540c73c97346e85f251f6d6ac74f72090844bb952883e7cf",
+    "cmd/api/main.go": "595d9acc0fa731d9a46daee392f5f973178aff8b443b0bb87d19df7d6e9eaec8",
+    "cmd/api/main_test.go": "f73448917e8b193048c7994a32415c7da0c7fb7d64a05794298e6e4ace6254a2",
+    "contract.json": "345b4cdde5779ee13636dc5508ff7fc2fbe3b2d28874da57b73231fb8dde7dad",
+    "go.mod": "0696440f83e31550c063b42333191603eaa6c045bbcb47f394afdb67a4f36405",
+    "go.sum": "4ba6c55b940aa4ebdd9dfc7f81bab43c1b4ab0bb18ad195be4324cf76939ebf9"
+  },
+  "go_toolchain": "go version go1.26.5 darwin/arm64",
+  "http_comparison": [
+    {
+      "equal": true,
+      "source": {
+        "body": {
+          "status": "ok"
+        },
+        "media_type": "application/json",
+        "method": "GET",
+        "path": "/health",
+        "status": 200
+      },
+      "target": {
+        "body": {
+          "status": "ok"
+        },
+        "media_type": "application/json",
+        "method": "GET",
+        "path": "/health",
+        "status": 200
+      }
+    },
+    {
+      "equal": true,
+      "source": {
+        "body": {
+          "read_only": true,
+          "service": "status-api",
+          "version": 1
+        },
+        "media_type": "application/json",
+        "method": "GET",
+        "path": "/info",
+        "status": 200
+      },
+      "target": {
+        "body": {
+          "read_only": true,
+          "service": "status-api",
+          "version": 1
+        },
+        "media_type": "application/json",
+        "method": "GET",
+        "path": "/info",
+        "status": 200
+      }
+    }
+  ],
+  "independent_acceptance": {
+    "date": "2026-09-19",
+    "extension_plan_hash_matches": true,
+    "generated_hashes_match": true,
+    "outcome": "passed",
+    "source_hashes_match": true,
+    "stages": {
+      "apply": "success",
+      "plan": "success",
+      "scan": "success",
+      "test": "success",
+      "verify": "success"
+    },
+    "wheel_hashes_match": true
+  },
+  "native_checks": {
+    "build": "",
+    "test": "go: downloading github.com/gofiber/fiber/v3 v3.5.0\ngo: downloading github.com/gofiber/schema v1.8.3\ngo: downloading github.com/gofiber/utils/v2 v2.4.1\ngo: downloading github.com/mattn/go-colorable v0.1.15\ngo: downloading github.com/google/uuid v1.6.0\ngo: downloading github.com/mattn/go-isatty v0.0.24\ngo: downloading github.com/tinylib/msgp v1.6.4\ngo: downloading github.com/valyala/bytebufferpool v1.0.0\ngo: downloading github.com/valyala/fasthttp v1.73.0\ngo: downloading golang.org/x/crypto v0.54.0\ngo: downloading golang.org/x/net v0.57.0\ngo: downloading golang.org/x/sys v0.47.0\ngo: downloading github.com/philhofer/fwd v1.2.0\ngo: downloading github.com/andybalholm/brotli v1.2.2\ngo: downloading github.com/klauspost/compress v1.19.2\ngo: downloading golang.org/x/text v0.40.0\n?   \tmigrated.backend\t[no test files]\nok  \tmigrated.backend/cmd/api\t0.316s",
+    "vet": ""
+  },
+  "not_run": [
+    "Production deployment",
+    "Database migrations"
+  ],
+  "observed_on": "2026-09-19",
+  "outcome": "passed",
+  "repeated_plan_identical": true,
+  "reproduction": {
+    "earlier_candidate": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+    "earlier_public_verify": "failed: source Flask unavailable in locked interpreter; fixed by explicit source interpreter in current candidate",
+    "extension_plan_identical": true,
+    "generated_files_identical_across_two_clean_installations": true
+  },
+  "reviewed_core_plan_hash": "sha256:f373b1fdfd13b5b74eeb3f23e4b70a8e5e73a19833da1338756c52916771e811",
+  "schema": "sanka-examples/acceptance/v1",
+  "source_checks": {
+    "commands": [
+      "scripts/check_source.py",
+      "flask --app source/app.py run --host 127.0.0.1 --port 5050 --no-reload",
+      "curl -i http://127.0.0.1:5050/health",
+      "curl -i http://127.0.0.1:5050/info"
+    ],
+    "outcome": "passed",
+    "python": "3.12.13"
+  },
+  "source_preserved": true,
+  "source_sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "app.py": "62fd2f479c380089ed33ae27a07c1a8a5f753505a059848e76b2f9655ade6bfc",
+    "requirements.txt": "09eb9173d3219ad1dc73a1c3ba394b0c7cc12a6d211c3854da9e2fdd27da8b39"
+  },
+  "stages": {
+    "apply": "success",
+    "plan": "success",
+    "scan": "success",
+    "test": "success",
+    "verify": "success"
+  },
+  "unsupported": [
+    "Database and write handlers",
+    "Other Go routers",
+    "Authentication and middleware",
+    "HEAD/OPTIONS, default errors, redirects and content negotiation",
+    "Whole-app parity"
+  ],
+  "wrong_plan_rejected": true
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "sanka-examples/migration/v1",
+  "id": "react-native/task-list",
+  "source": {"language": "typescript", "framework": "react-native"},
+  "destinations": [
+    {"language": "swift", "framework": "swiftui", "extension_id": "sanka/react-native-to-native", "release_status": "experimental-unpublished", "supported_stages": ["scan", "plan", "apply", "test", "verify"]},
+    {"language": "kotlin", "framework": "compose", "extension_id": "sanka/react-native-to-native", "release_status": "experimental-unpublished", "supported_stages": ["scan", "plan"]}
+  ],
+  "license": "Apache-2.0",
+  "provenance": "synthetic",
+  "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+  "acceptance": "evidence.json",
+  "limitations": ["SwiftUI verification compares normalized trees with React Native stubs; no full-app, pixel/layout or accessibility parity.", "Source and target device/simulator sessions were not run.", "Compose has scan and plan only; no generated app or completed conversion."]
+}

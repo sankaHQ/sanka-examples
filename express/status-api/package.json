@@ -1,0 +1,18 @@
+{
+  "name": "sanka-example-express-status-api",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "start": "node .sanka/source/server.js",
+    "check": "npm run build && python3 source_check.py"
+  },
+  "dependencies": { "express": "5.2.1" },
+  "devDependencies": {
+    "@types/express": "5.0.3",
+    "@types/node": "22.13.10",
+    "node": "22.14.0",
+    "typescript": "5.8.2"
+  }
+}

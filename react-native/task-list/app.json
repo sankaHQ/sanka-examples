@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Sanka Task List",
+    "slug": "sanka-task-list",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "ios": {"bundleIdentifier": "com.example.sankatasklist"},
+    "android": {"package": "com.example.sankatasklist"}
+  }
+}

@@ -57,6 +57,26 @@ needed for the offline walkthrough.
 | [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Exact runnable project used by the Django-to-FastAPI migration guide |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
 
+## Experimental migration walkthroughs
+
+These are synthetic runnable sources. Each guide pins its candidate and records
+what passed. Generated applications are ignored `.sanka/` artifacts.
+
+| Source example | Source | Destination | Verified migration scope |
+| --- | --- | --- | --- |
+| [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI | All five CLI stages; macOS compilation and five structural action replays |
+| Same React Native source | TypeScript / React Native | Kotlin / Compose | Scan and plan only; no generated app |
+
+See each example's `evidence.json` and the [companion index](migrations.json).
+SwiftUI verification does not establish pixels, layout, accessibility or simulator/
+device parity. React Native source checks cover types, an iOS bundle and Metro
+startup; execution on a device remains unverified.
+
+Experimental candidates are unpublished; these results do not qualify arbitrary
+applications or production cutover.
+
 ### Bench-tier corpus (referenced by pin, not vendored)
 
 Real applications adopted as benchmark-corpus candidates. Each entry pins an
@@ -81,8 +101,8 @@ sources.
 New source framework directories are added only with runnable applications and
 reproduced migration acceptance. A Go or Rust destination does not establish a
 Go or Rust source migration. React Native support does not establish arbitrary
-React web conversion. Planned examples, including the separately planned Python
-Jev classifier, are listed separately in `migrations.json`.
+React web conversion. The checked-in Python Jev cookbook has its own acceptance and live-evaluation
+gates and is tracked separately in `migrations.json`.
 
 ## License
 

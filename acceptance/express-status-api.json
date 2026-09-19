@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "date": "2026-09-19",
+  "stages": {
+    "apply": "passed",
+    "http_comparison": "passed",
+    "plan": "passed",
+    "scan": "passed",
+    "source": "passed",
+    "target_build": "passed",
+    "test": "passed",
+    "verify": "passed"
+  },
+  "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+  "source_sha256": {
+    ".gitignore": "63381653b993e177ba8e0825c94ce4d5f93c84547eb22a6c2805a35c25726b27",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "3b300e3985a45affff7afc18281ce5b0cd5def577abf15b0f0b76f7b97065101",
+    "check.py": "bf0b27d5325be1c03f0ca93d69c596d8b82824cb97a9e2183768a344362e4de9",
+    "migration.json": "5e792f20b1d031331dd129116639ce6c1b70e33d50bceff537b77334b38faab4",
+    "package-lock.json": "07b8bbf51fbf814685b2f15332dfb0a4bbdded80d47e5ea4bf78b2730b47dcfb",
+    "package.json": "820ed56a0be85a5dd2821f263576ee67ba926ae8b0b3f33dca951a6db1c9e28e",
+    "source_check.py": "3c0cc97016872b6bf5791f9395f422fa0f440080f4f2d71974a4a781ccfc7cc8",
+    "src/app.ts": "9f3574476eefe5ef0e8c6980cb99ee759469c631fa1270077813a3d449ec7615",
+    "src/server.ts": "c48511d0093174472355877af0deabacbd44b6de714014142f15a66063db15a7",
+    "tsconfig.json": "090ab41f540d4647a64d924dd79df18f61f2e2338acd5f3325e035401365f480"
+  },
+  "generated_sha256": {
+    "Cargo.lock": "cc1e6667f5bbc88c501a63a1ac8ae8f5d2884b2411f461ff1c453e5b980f99ad",
+    "Cargo.toml": "9a21580f99fe976aab4ecea1cdabc92d8eeeef5002714f2fb7648cf17a8d718a",
+    "README.md": "2173a5235b1ce34bafe7a911f4e11e1cd553497cbc977066bcc1a7cc607be1d9",
+    "contract.json": "a036f6c6a738f239f5447bd2b6cb520a2a5520ec75b7c081c7b2ce750f3bd1c1",
+    "rust-toolchain.toml": "b3ccdd58a73b2e4c1be662ce41af1906970522d989d72458beb1be2723b6c19a",
+    "src/lib.rs": "5f2e90c226b8ada06fd33a160d11933139faa05590d0b1167e5bd3c62214dbaf",
+    "src/main.rs": "38d60865a667134cf97553441a9ccff5e9ef168bf0aced26646a76004e6a5c4e"
+  },
+  "extension_plan_hash": "sha256:f6077539cf029a9643d7beca1241528c70a5cd2ae5987ddf8ae2e2876f4a912b",
+  "wheel_hashes_match": true
+}

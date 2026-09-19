@@ -1,0 +1,30 @@
+{
+  "outcome": "passed",
+  "date": "2026-09-19",
+  "source_hashes_match": true,
+  "generated_hashes_match": true,
+  "extension_plan_hash_matches": true,
+  "wheel_hashes_match": true,
+  "stages": {
+    "apply": "success",
+    "plan": "success",
+    "scan": "success",
+    "test": "success",
+    "verify": "success"
+  },
+  "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
+  "source_sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "app.py": "62fd2f479c380089ed33ae27a07c1a8a5f753505a059848e76b2f9655ade6bfc",
+    "requirements.txt": "09eb9173d3219ad1dc73a1c3ba394b0c7cc12a6d211c3854da9e2fdd27da8b39"
+  },
+  "generated_sha256": {
+    ".env.example": "8d3389866d382855adf8b0065f558d817cc43d75b68dfd852ee491c3e71c84be",
+    "app.go": "49da16212be495eb540c73c97346e85f251f6d6ac74f72090844bb952883e7cf",
+    "cmd/api/main.go": "595d9acc0fa731d9a46daee392f5f973178aff8b443b0bb87d19df7d6e9eaec8",
+    "cmd/api/main_test.go": "f73448917e8b193048c7994a32415c7da0c7fb7d64a05794298e6e4ace6254a2",
+    "contract.json": "345b4cdde5779ee13636dc5508ff7fc2fbe3b2d28874da57b73231fb8dde7dad",
+    "go.mod": "0696440f83e31550c063b42333191603eaa6c045bbcb47f394afdb67a4f36405",
+    "go.sum": "4ba6c55b940aa4ebdd9dfc7f81bab43c1b4ab0bb18ad195be4324cf76939ebf9"
+  }
+}

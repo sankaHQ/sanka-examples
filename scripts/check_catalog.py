@@ -125,8 +125,20 @@ def validate(root: Path) -> None:
         if entry["id"] in seen or entry["status"] != "planned":
             raise ValueError("Planned examples cannot be checked-in migrations")
         seen.add(entry["id"])
+    for entry in index.get("separately_tracked", []):
+        if entry["id"] in seen or entry["status"] != "tracked-separately":
+            raise ValueError(
+                "Separately tracked examples must have distinct identities"
+            )
+        seen.add(entry["id"])
+        readme = (root / entry["readme"]).resolve()
+        if root.resolve() not in readme.parents or not readme.is_file():
+            raise ValueError(
+                "Separately tracked cookbook must exist inside the repository"
+            )
     print(
-        f"Catalog valid: {len(index['examples'])} checked-in, {len(index['planned'])} planned"
+        f"Catalog valid: {len(index['examples'])} qualified, "
+        f"{len(index['planned'])} planned, {len(index.get('separately_tracked', []))} separately tracked"
     )
 
 
