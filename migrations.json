@@ -26,6 +26,31 @@
       ],
       "status": "checked-in",
       "evidence": "evidence.json"
+    },
+    {
+      "id": "express/status-api",
+      "source": {
+        "language": "typescript",
+        "framework": "express"
+      },
+      "destinations": [
+        {
+          "language": "rust",
+          "framework": "axum",
+          "extension_id": "sanka/typescript-to-rust",
+          "release_status": "experimental-unpublished",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
+        }
+      ],
+      "status": "checked-in",
+      "evidence": "evidence.json"
     }
   ],
   "planned": [

@@ -57,6 +57,7 @@ what passed. Generated applications are ignored `.sanka/` artifacts.
 | Source example | Source | Destination | Verified migration scope |
 | --- | --- | --- | --- |
 | [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
 
 See each example's `evidence.json` and the [companion index](migrations.json).
 Experimental candidates are unpublished; these results do not qualify arbitrary

@@ -1,0 +1,49 @@
+name: Express to Rust example
+on:
+  pull_request:
+    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
+  push:
+    branches: [main]
+    paths: ['express/status-api/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/express-status-api.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - run: npm ci --no-audit --no-fund
+        working-directory: express/status-api
+      - run: npm run check
+        working-directory: express/status-api
+  migration:
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          version: '0.11.21'
+      - run: rustup toolchain install 1.93.1 --profile minimal
+      - run: uv run --no-project --python 3.12 python express/status-api/check.py --report express/status-api/.sanka/ci-acceptance.json
+      - run: python3 scripts/check_catalog.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: express-rust-acceptance
+          path: express/status-api/.sanka/ci-acceptance.json
+          include-hidden-files: true
+          retention-days: 10
