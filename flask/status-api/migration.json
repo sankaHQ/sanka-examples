@@ -1,0 +1,18 @@
+{
+  "schema": "sanka-examples/migration/v1",
+  "id": "flask/status-api",
+  "source": {"language": "python", "framework": "flask", "path": "source"},
+  "destinations": [
+    {
+      "language": "go",
+      "framework": "fiber",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
+      "release_status": "experimental-unpublished",
+      "supported_stages": ["scan", "plan", "apply", "test", "verify"]
+    }
+  ],
+  "license": "Apache-2.0",
+  "provenance": "synthetic",
+  "acceptance": "evidence.json"
+}
