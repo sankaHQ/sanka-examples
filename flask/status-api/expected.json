@@ -1,0 +1,4 @@
+[
+  {"method": "GET", "path": "/health", "status": 200, "media_type": "application/json", "body": {"status": "ok"}},
+  {"method": "GET", "path": "/info", "status": 200, "media_type": "application/json", "body": {"service": "status-api", "version": 1, "read_only": true}}
+]

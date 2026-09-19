@@ -1,0 +1,46 @@
+{
+  "schema": "sanka-examples/migrations/v1",
+  "examples": [
+    {
+      "id": "flask/status-api",
+      "source": {
+        "language": "python",
+        "framework": "flask",
+        "path": "source"
+      },
+      "destinations": [
+        {
+          "language": "go",
+          "framework": "fiber",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
+          "release_status": "experimental-unpublished",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ]
+        }
+      ],
+      "status": "checked-in",
+      "evidence": "evidence.json"
+    }
+  ],
+  "planned": [
+    {
+      "id": "ai/llm-classification-to-jev",
+      "status": "planned",
+      "source": {
+        "language": "python",
+        "framework": "openai-classifier"
+      },
+      "destination": {
+        "language": "python",
+        "framework": "jev-classifier"
+      },
+      "notes": "Separate converter and source-adapter acceptance required; no example or live evaluation is included here."
+    }
+  ]
+}
