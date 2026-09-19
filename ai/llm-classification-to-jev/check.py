@@ -44,7 +44,36 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-def check(work: Path, report: dict, wheel: Path, template: Path) -> dict:
+def export_artifacts(artifacts: Path, destination: Path) -> dict:
+    """Retain the reviewable application and evidence, never installation environments."""
+    destination = destination.absolute()
+    if destination.is_symlink() or destination.resolve() != destination or destination.exists():
+        raise ValueError("Artifact export requires a new path without symlink ancestors")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".jev-export-", dir=destination.parent) as temp:
+        staged = Path(temp) / "migration"
+        staged.mkdir()
+        shutil.copytree(artifacts / "candidate", staged / "candidate")
+        for name in (
+            "inventory.json",
+            "migration-plan.json",
+            "migration.diff",
+            "compatibility-report.json",
+            "verification-report.json",
+        ):
+            shutil.copyfile(artifacts / name, staged / name)
+        hashes = {
+            p.relative_to(staged).as_posix(): sha(p)
+            for p in sorted(staged.rglob("*"))
+            if p.is_file()
+        }
+        staged.rename(destination)
+    return {"directory": str(destination), "sha256": hashes}
+
+
+def check(
+    work: Path, report: dict, wheel: Path, template: Path, export: Path | None = None
+) -> dict:
     def stage(name: str) -> None:
         report["stage"] = name
         print(f"Extension acceptance: {name}", file=sys.stderr, flush=True)
@@ -377,6 +406,13 @@ def check(work: Path, report: dict, wheel: Path, template: Path) -> dict:
             "jev-candidate",
             code="SANKA_EXTENSION_HASH_MISMATCH",
         )
+        if export is not None:
+            report["exported_artifacts"] = export_artifacts(artifact_root, export)
+            assert {
+                name.removeprefix("candidate/"): value
+                for name, value in report["exported_artifacts"]["sha256"].items()
+                if name.startswith("candidate/")
+            } == generated
         return {
             "status": "passed",
             "cli": CLI_VERSION,
@@ -413,6 +449,11 @@ def main() -> int:
     parser.add_argument("--report", type=Path, help="Write acceptance evidence even on failure")
     parser.add_argument("--extension-wheel", required=True, type=Path)
     parser.add_argument("--extension-template", required=True, type=Path)
+    parser.add_argument(
+        "--artifacts-dir",
+        type=Path,
+        help="Export candidate and review artifacts to a new directory",
+    )
     args = parser.parse_args()
     report = {"status": "failed", "stage": "setup"}
     try:
@@ -423,11 +464,13 @@ def main() -> int:
                     report,
                     args.extension_wheel.resolve(),
                     args.extension_template.resolve(),
+                    args.artifacts_dir,
                 )
             )
     except Exception as error:
         report.update(status="failed", error=f"{type(error).__name__}: {error}")
     if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
     return 0 if report["status"] == "passed" else 1

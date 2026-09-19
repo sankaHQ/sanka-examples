@@ -48,8 +48,14 @@ wheel and manifest template from the extension PR's build, then run:
 uv run --no-project --python 3.12 python check.py \
   --extension-wheel /absolute/path/to/candidate.whl \
   --extension-template /absolute/path/to/extension.template.json \
-  --report reports/acceptance.json
+  --report reports/acceptance.json \
+  --artifacts-dir reports/migration
 ```
+
+The optional `--artifacts-dir` retains `candidate/`, the exact diff, plan, inventory
+and compatibility reports in a new directory; it refuses to overwrite existing
+work. The exported candidate is the application you can inspect and run with its
+own dependencies. The temporary CLI and extension environments are removed.
 
 These arguments are explicit local candidate inputs, not existing published URLs.
 `check.py` uses public CLI `sanka-cli==0.2.12`, Extension SDK `0.1.0a4` and
