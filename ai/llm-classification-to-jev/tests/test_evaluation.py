@@ -65,16 +65,28 @@ class EvaluationTests(unittest.TestCase):
                 raise TimeoutError("secret must never be serialized")
             return {
                 "prediction": "billing",
-                "returned_model": "gpt-5.6-luna",
+                "answer_type": "choice",
+                "confidence": 0.95,
+                "probabilities": {
+                    "billing": 0.97,
+                    "sales": 0.01,
+                    "technical": 0.01,
+                    "unknown": 0.01,
+                },
+                "returned_model": "jev-1.13.0",
                 "usage": {"input_tokens": 10, "output_tokens": 2},
             }
 
         self.policy["max_attempts"] = 2
-        result = evaluate.one_decision(fail_once, "example", "openai", self.policy)
+        result = evaluate.one_decision(fail_once, "example", "jev", self.policy)
         self.assertEqual(len(result["attempts"]), 2)
         self.assertIsNone(result["attempts"][0]["usage"])
         self.assertNotIn("secret", json.dumps(result))
         self.assertTrue(result["accepted"])
+        baseline = unittest.mock.Mock(side_effect=TimeoutError())
+        result = evaluate.one_decision(baseline, "example", "openai", self.policy)
+        self.assertEqual(baseline.call_count, 1)
+        self.assertTrue(result["failed"])
 
     def test_invalid_confidence_fails_with_recorded_usage(self):
         response = {

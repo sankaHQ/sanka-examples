@@ -98,7 +98,7 @@ def one_decision(call, text, provider, policy):
     attempts = []
     start = time.perf_counter()
     result = None
-    for index in range(policy["max_attempts"]):
+    for index in range(1 if provider == "openai" else policy["max_attempts"]):
         attempt_start = time.perf_counter()
         observation = None
         try:

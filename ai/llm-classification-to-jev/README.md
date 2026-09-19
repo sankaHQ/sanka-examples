@@ -206,7 +206,8 @@ first. It extracts literal OpenAI request settings without importing source, use
 the same Jev decision question, checks source/spec/policy drift, and pins official
 provider endpoints. There is one attempt by default, with a hard bound of three
 attempts, 30 seconds per HTTP operation and 100 cases. SDK retries are disabled;
-all outer attempts appear in the report. An HTTP timeout is not a strict total
+all outer Jev attempts appear in the report. The OpenAI baseline always makes one
+attempt, matching its original `max_retries=0` error behavior. An HTTP timeout is not a strict total
 wall-clock deadline for a slow stream.
 
 Reports contain requested/returned model IDs, source/prompt/dataset/decision/policy
