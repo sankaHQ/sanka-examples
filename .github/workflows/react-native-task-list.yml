@@ -1,0 +1,71 @@
+name: React Native migration example
+on:
+  pull_request:
+    paths: ['react-native/task-list/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/react-native-task-list.yml']
+  push:
+    branches: [main]
+    paths: ['react-native/task-list/**', 'scripts/candidate.py', 'scripts/check_catalog.py', '.github/workflows/react-native-task-list.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      EXPO_NO_TELEMETRY: '1'
+      EXPO_OFFLINE: '1'
+      CI: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: react-native/task-list
+      - run: npm run check
+        working-directory: react-native/task-list
+      - run: npm run bundle
+        working-directory: react-native/task-list
+  migration:
+    needs: source
+    name: ${{ matrix.scope }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-15
+            target: swiftui
+            scope: SwiftUI macOS build and structural replay
+          - os: ubuntu-24.04
+            target: compose
+            scope: Compose scan and plan only
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    env:
+      EXPO_NO_TELEMETRY: '1'
+      EXPO_OFFLINE: '1'
+      CI: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.14.0'
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          version: '0.11.21'
+      - if: runner.os == 'macOS'
+        run: echo 'DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer' >> "$GITHUB_ENV"
+      - run: uv run --no-project --python 3.12 python react-native/task-list/check.py --target ${{ matrix.target }} --report react-native/task-list/.sanka/ci-${{ matrix.target }}.json
+      - run: python3 scripts/check_catalog.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: react-native-${{ matrix.target }}-acceptance
+          path: react-native/task-list/.sanka/ci-${{ matrix.target }}.json
+          include-hidden-files: true
+          retention-days: 10

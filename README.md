@@ -58,8 +58,14 @@ what passed. Generated applications are ignored `.sanka/` artifacts.
 | --- | --- | --- | --- |
 | [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
 | [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI | All five CLI stages; macOS compilation and five structural action replays |
+| Same React Native source | TypeScript / React Native | Kotlin / Compose | Scan and plan only; no generated app |
 
 See each example's `evidence.json` and the [companion index](migrations.json).
+SwiftUI verification does not establish pixels, layout, accessibility or simulator/
+device parity. React Native source checks cover types, an iOS bundle and Metro
+startup; execution on a device remains unverified.
+
 Experimental candidates are unpublished; these results do not qualify arbitrary
 applications or production cutover.
 

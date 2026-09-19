@@ -51,6 +51,41 @@
       ],
       "status": "checked-in",
       "evidence": "evidence.json"
+    },
+    {
+      "id": "react-native/task-list",
+      "source": {
+        "language": "typescript",
+        "framework": "react-native"
+      },
+      "destinations": [
+        {
+          "language": "swift",
+          "framework": "swiftui",
+          "extension_id": "sanka/react-native-to-native",
+          "release_status": "experimental-unpublished",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ]
+        },
+        {
+          "language": "kotlin",
+          "framework": "compose",
+          "extension_id": "sanka/react-native-to-native",
+          "release_status": "experimental-unpublished",
+          "supported_stages": [
+            "scan",
+            "plan"
+          ]
+        }
+      ],
+      "status": "checked-in",
+      "evidence": "evidence.json",
+      "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
     }
   ],
   "planned": [
