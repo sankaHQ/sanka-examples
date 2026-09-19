@@ -1,0 +1,274 @@
+{
+  "schema": "sanka-examples/acceptance/v1",
+  "example": "react-native/task-list",
+  "checked_at": "2026-09-19",
+  "complete_app": false,
+  "targets": {
+    "swiftui": {
+      "status": "passed_within_scope",
+      "target": "swiftui",
+      "complete_app": false,
+      "stages": {
+        "scan": {
+          "outcome": "success",
+          "migration_state": "scanned",
+          "readiness": 1.0,
+          "gaps": []
+        },
+        "plan": {
+          "outcome": "success",
+          "migration_state": "planned",
+          "readiness": 1.0,
+          "gaps": []
+        },
+        "apply": {
+          "outcome": "success",
+          "migration_state": "generated_not_verified",
+          "readiness": 1.0,
+          "gaps": null
+        },
+        "test": {
+          "outcome": "success",
+          "migration_state": "generated_app_tested",
+          "readiness": null,
+          "gaps": null
+        },
+        "verify": {
+          "outcome": "success",
+          "migration_state": "verified_within_scope",
+          "readiness": null,
+          "gaps": null
+        }
+      },
+      "source_app_execution": "not-run; see source_checks for Metro bundle result, no simulator/device session",
+      "target_ios_execution": "not-run; macOS package build and structural replay only",
+      "cli_version": "0.2.12",
+      "extension_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+      "extension_id": "sanka/react-native-to-native",
+      "sdk_version": "0.1.0a4",
+      "release_status": "experimental-unpublished",
+      "catalog_sha256": "a42c90f43f592b68799c2d0b5d51078a4f60717620b731ebf832b3475c6c7844",
+      "wheels": {
+        "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
+        "sanka_extension_react_native_to_native-0.1.0a1-py3-none-any.whl": "2d77b1cd159bb07226ac783c4c4ef0761e11c3fe7d2ce37da6baee777077d3ca",
+        "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+        "sanka_ts_capture-0.1.0a1-py3-none-any.whl": "a1f348b45bf3fc7f335599e4f976d077c5e97815e49536ad988aa10e39ba6c68"
+      },
+      "cli_dependencies": [
+        "anyio==4.15.1",
+        "certifi==2026.7.22",
+        "cffi==2.1.1",
+        "click==8.5.0",
+        "cryptography==50.0.1",
+        "h11==0.16.0",
+        "httpcore==1.0.9",
+        "httpx==0.28.1",
+        "idna==3.20",
+        "jaraco-classes==3.4.0",
+        "jaraco-context==6.1.2",
+        "jaraco-functools==4.6.0",
+        "keyring==25.7.0",
+        "markdown-it-py==4.2.0",
+        "mdurl==0.1.2",
+        "more-itertools==11.1.0",
+        "packaging==26.3",
+        "platformdirs==4.11.11",
+        "pycparser==3.0",
+        "pygments==2.21.0",
+        "pyyaml==6.0.3",
+        "rich==14.3.4",
+        "sanka-cli==0.2.12",
+        "typing-extensions==4.16.0"
+      ],
+      "source_checks": {
+        "npm ci --ignore-scripts --no-audit --no-fund": "passed",
+        "npm run check": "passed",
+        "npm run bundle": "passed"
+      },
+      "repeated_plan_identical": true,
+      "extension_plan_hash": "sha256:649e69e903400a10e893c1625c11a25921a96e0c12e0db30ff9eda5135bdfbb5",
+      "source_capture_digest": "sha256:ad3c2a89732cd1eced628ded56c3cf3a2058933c9afdee0437445b5b1847b3b6",
+      "source_sha256": {
+        ".gitignore": "9ce813e1558c5a69b1fc3ae13aa2112d2615aa488441b7bd1d52bd3ec539a47b",
+        "App.tsx": "93d1a8233562ae10ef24aa7463ff4e572de195883352eecaeb6b752c0afd1c74",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "README.md": "afe0a69ab73b5a9dd5eb23479d878b1c78591267f101f93b1ae513f45543762c",
+        "app.json": "3b1d6080a50ab90e3dc88d6b8ae82ed22add08d1aa70cf8e0497189f909bdf29",
+        "check.py": "593416704083bbde3ded4afece8e472aa7e5c098bdfe1e069ef9a301edc3b2ba",
+        "migration.json": "381966d9162fd0a29a8c21504c400329504e9c4504ed41655127e4078637e90d",
+        "package-lock.json": "ff02655374779322af6fa66786eea33b3c04ce907d6c5906ad25a529d730dca0",
+        "package.json": "75fc2d673aa965642e8c1dc3444d19a33206203f822457806f355ace566e622d",
+        "src/screens/DetailScreen.tsx": "5f09e94092ab1dcd37e6b2060e1e45b5fd768dc3e5083c254202ece433744c88",
+        "src/screens/HomeScreen.tsx": "2405f78aa871828249fcdc9b912542a12ad0d21b5d16ffa87de30618f080ec8d",
+        "tsconfig.json": "99416de8c6fe8c7dbc68ea9482d761cd9c8e98bf16066b81780c2b8c2841fac7"
+      },
+      "unreviewed_plan_rejected": true,
+      "generated_sha256": {
+        "App/SankaTaskListApp.swift": "5d03648b1c3507a6d86c35b0343d665915c3afa919606f2cfc5bd21c75367901",
+        "App/project.yml": "c4bed1e12f600e42de6aecf49b12793f77da89a60cb1262338b604f2d191297a",
+        "Package.swift": "e9b186123e859a9cfb617917ec13b2af781c8c8530d2c90ccf62a26c24219b62",
+        "README.md": "cc0aec4953c8cbbdfdec4afb5883751db89f9001b155ee1e01ed8396c7da7d3b",
+        "Sources/AppUI/APIClient.swift": "6c636df22d5e4c62a7919be75ce5c64f1389dad46ffb23c4a37a699d00565f3b",
+        "Sources/AppUI/Models.swift": "d1c247641a5a122cb2b4bf13b9dd102f2dfb8f4001f8950f4fbb00505953d972",
+        "Sources/AppUI/Navigation.swift": "7f193399ce381efd39e7cd3c8e39da9f327fbdf7d2e26077b42134c3e8d6c4a9",
+        "Sources/AppUI/Screens/DetailScreen.swift": "52bd7c8341cd83c29a4796a7f03922660640aa371bae068194352d4a6f3c2c69",
+        "Sources/AppUI/Screens/HomeScreen.swift": "9d71eb28f2d54adf3e7285a20c1eacd2832fcf4999ff97b59d23dfa5534ff10b",
+        "Sources/AppUI/Styles.swift": "7db545bbd18117af5f6d43d88e90968c5da79596064ef3f8212775b527a71f8e",
+        "Sources/AppUI/Tree.swift": "ff5d78efe785b162f3afd708138af5b065d13b691cb3139d2714960e4078278f",
+        "Sources/SankaTreeDump/main.swift": "e7e82b5322bf2e06d83df9b864e028ed63e8d6d515701691421f67eb3e2b62db",
+        "contract.json": "eb99297afc92c3ee9783a667a9d782bd502e587879e32d81292d45332781ca55"
+      },
+      "replay": {
+        "ok": true,
+        "complete_app": false,
+        "swift_version": "Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)",
+        "node_version": "v22.14.0",
+        "react_version": "19.1.0",
+        "scope": "normalized screen trees per scenario (roles, text, labels, enabled/checked state, typed intents, raised intents and requests); layout, colors and pixels are not compared",
+        "failures": [],
+        "scenarios": [
+          [
+            "DetailScreen",
+            "initial"
+          ],
+          [
+            "DetailScreen",
+            "toggle:2"
+          ],
+          [
+            "HomeScreen",
+            "initial"
+          ],
+          [
+            "HomeScreen",
+            "press:2"
+          ],
+          [
+            "HomeScreen",
+            "type:1"
+          ]
+        ]
+      },
+      "source_preserved": true
+    },
+    "compose": {
+      "status": "passed_within_scope",
+      "target": "compose",
+      "complete_app": false,
+      "stages": {
+        "scan": {
+          "outcome": "success",
+          "migration_state": "scanned",
+          "readiness": 1.0,
+          "gaps": []
+        },
+        "plan": {
+          "outcome": "success",
+          "migration_state": "planned",
+          "readiness": 1.0,
+          "gaps": []
+        },
+        "apply": {
+          "outcome": "not_run"
+        },
+        "test": {
+          "outcome": "not_run"
+        },
+        "verify": {
+          "outcome": "not_run"
+        }
+      },
+      "source_app_execution": "not-run; see source_checks for Metro bundle result, no simulator/device session",
+      "target_ios_execution": "not-run; macOS package build and structural replay only",
+      "cli_version": "0.2.12",
+      "extension_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20",
+      "extension_id": "sanka/react-native-to-native",
+      "sdk_version": "0.1.0a4",
+      "release_status": "experimental-unpublished",
+      "catalog_sha256": "a42c90f43f592b68799c2d0b5d51078a4f60717620b731ebf832b3475c6c7844",
+      "wheels": {
+        "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
+        "sanka_extension_react_native_to_native-0.1.0a1-py3-none-any.whl": "2d77b1cd159bb07226ac783c4c4ef0761e11c3fe7d2ce37da6baee777077d3ca",
+        "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+        "sanka_ts_capture-0.1.0a1-py3-none-any.whl": "a1f348b45bf3fc7f335599e4f976d077c5e97815e49536ad988aa10e39ba6c68"
+      },
+      "cli_dependencies": [
+        "anyio==4.15.1",
+        "certifi==2026.7.22",
+        "cffi==2.1.1",
+        "click==8.5.0",
+        "cryptography==50.0.1",
+        "h11==0.16.0",
+        "httpcore==1.0.9",
+        "httpx==0.28.1",
+        "idna==3.20",
+        "jaraco-classes==3.4.0",
+        "jaraco-context==6.1.2",
+        "jaraco-functools==4.6.0",
+        "keyring==25.7.0",
+        "markdown-it-py==4.2.0",
+        "mdurl==0.1.2",
+        "more-itertools==11.1.0",
+        "packaging==26.3",
+        "platformdirs==4.11.11",
+        "pycparser==3.0",
+        "pygments==2.21.0",
+        "pyyaml==6.0.3",
+        "rich==14.3.4",
+        "sanka-cli==0.2.12",
+        "typing-extensions==4.16.0"
+      ],
+      "source_checks": {
+        "npm ci --ignore-scripts --no-audit --no-fund": "passed",
+        "npm run check": "passed",
+        "npm run bundle": "passed"
+      },
+      "repeated_plan_identical": true,
+      "extension_plan_hash": "sha256:be14f7e8a8e40187dba2150655364cdb8d90b869ab3b82426042b97e31d7970b",
+      "source_capture_digest": "sha256:ad3c2a89732cd1eced628ded56c3cf3a2058933c9afdee0437445b5b1847b3b6",
+      "source_sha256": {
+        ".gitignore": "9ce813e1558c5a69b1fc3ae13aa2112d2615aa488441b7bd1d52bd3ec539a47b",
+        "App.tsx": "93d1a8233562ae10ef24aa7463ff4e572de195883352eecaeb6b752c0afd1c74",
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "README.md": "afe0a69ab73b5a9dd5eb23479d878b1c78591267f101f93b1ae513f45543762c",
+        "app.json": "3b1d6080a50ab90e3dc88d6b8ae82ed22add08d1aa70cf8e0497189f909bdf29",
+        "check.py": "593416704083bbde3ded4afece8e472aa7e5c098bdfe1e069ef9a301edc3b2ba",
+        "migration.json": "381966d9162fd0a29a8c21504c400329504e9c4504ed41655127e4078637e90d",
+        "package-lock.json": "ff02655374779322af6fa66786eea33b3c04ce907d6c5906ad25a529d730dca0",
+        "package.json": "75fc2d673aa965642e8c1dc3444d19a33206203f822457806f355ace566e622d",
+        "src/screens/DetailScreen.tsx": "5f09e94092ab1dcd37e6b2060e1e45b5fd768dc3e5083c254202ece433744c88",
+        "src/screens/HomeScreen.tsx": "2405f78aa871828249fcdc9b912542a12ad0d21b5d16ffa87de30618f080ec8d",
+        "tsconfig.json": "99416de8c6fe8c7dbc68ea9482d761cd9c8e98bf16066b81780c2b8c2841fac7"
+      },
+      "unsupported": [
+        "apply",
+        "test",
+        "verify",
+        "kotlin-generation",
+        "android-build"
+      ],
+      "source_preserved": true
+    }
+  },
+  "source_startup": {
+    "command": "EXPO_NO_TELEMETRY=1 CI=1 npm start -- --port 19881 --max-workers 2",
+    "status": "passed",
+    "observation": "GET /status: HTTP 200, packager-status:running; owned Metro process stopped"
+  },
+  "report_guard": {
+    "status": "passed",
+    "observation": "Simulated unsupported Linux SwiftUI host fails and replaces a pre-existing passing report with failed, all lifecycle stages not_run"
+  },
+  "not_run": [
+    "React Native source application on a simulator/device",
+    "Generated iOS app build or simulator/device execution",
+    "Pixel/layout comparison",
+    "Accessibility behavior validation",
+    "Compose apply/test/verify or Kotlin generation"
+  ],
+  "notes": [
+    "SwiftUI success covers macOS package compilation and five normalized tree/action scenarios rendered with React Native stubs.",
+    "Compose success covers scan and plan only; no app is generated.",
+    "Detailed command transcripts and generated artifacts are ignored under .sanka/acceptance-<target>/."
+  ]
+}
