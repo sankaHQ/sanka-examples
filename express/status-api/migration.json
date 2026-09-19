@@ -1,0 +1,17 @@
+{
+  "schema": "sanka-examples/migration/v1",
+  "id": "express/status-api",
+  "source": { "language": "typescript", "framework": "express" },
+  "destinations": [{
+    "language": "rust",
+    "framework": "axum",
+    "extension_id": "sanka/typescript-to-rust",
+    "release_status": "experimental-unpublished",
+    "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+    "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
+  }],
+  "license": "Apache-2.0",
+  "provenance": "synthetic",
+  "provenance_notes": "Authored for Sanka examples; no customer code or data.",
+  "acceptance": { "command": "python3.12 check.py", "evidence": "evidence.json" }
+}

@@ -1,9 +1,16 @@
 # Sanka Examples
 
 Real, runnable applications for trying [Sanka](https://sanka.com) migrations.
-The application examples include seeded SQLite databases for local migration
-experiments. The extension starter demonstrates how to build a capability.
-Neither requires a Sanka account or API token.
+Applications are organized by their source framework. Each walkthrough names
+its source and destination separately and states the scope actually verified.
+The Django examples include seeded SQLite databases; the extension starter
+demonstrates how to build a capability. Neither requires a Sanka account or API token.
+
+The [migration index](migrations.json) and [example contract](MIGRATIONS.md) track
+new language paths, candidate versions and acceptance evidence. Experimental
+converters use immutable candidate installation, not public-catalog install claims.
+
+## Published Django quickstart
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first,
 then use separate CLI and application environments with Python 3.12:
@@ -42,6 +49,20 @@ private services. It is independent of the application migration examples below.
 | [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Exact runnable project used by the Django-to-FastAPI migration guide |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
 
+## Experimental migration walkthroughs
+
+These are synthetic runnable sources. Each guide pins its candidate and records
+what passed. Generated applications are ignored `.sanka/` artifacts.
+
+| Source example | Source | Destination | Verified migration scope |
+| --- | --- | --- | --- |
+| [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+
+See each example's `evidence.json` and the [companion index](migrations.json).
+Experimental candidates are unpublished; these results do not qualify arbitrary
+applications or production cutover.
+
 ### Bench-tier corpus (referenced by pin, not vendored)
 
 Real applications adopted as benchmark-corpus candidates. Each entry pins an
@@ -63,8 +84,11 @@ grows over time with `bench`-tier apps — larger, messier applications that
 double as [Sanka Migration Bench](https://github.com/sankaHQ/sanka-bench)
 sources.
 
-New framework directories appear when the Sanka engine gains that migration
-lane; today's lane is Django REST Framework → FastAPI.
+New source framework directories are added only with runnable applications and
+reproduced migration acceptance. A Go or Rust destination does not establish a
+Go or Rust source migration. React Native support does not establish arbitrary
+React web conversion. Planned examples, including the separately planned Python
+Jev classifier, are listed separately in `migrations.json`.
 
 ## License
 
