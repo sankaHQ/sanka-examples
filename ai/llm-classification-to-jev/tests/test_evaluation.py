@@ -174,6 +174,16 @@ class EvaluationTests(unittest.TestCase):
                 decision, self.policy, source, evaluate.source_request(source)
             )
 
+    def test_matching_target_settings_cannot_change_baseline_timeout(self):
+        decision = json.loads((ROOT / "source/jev-decision.json").read_text())
+        decision["target"]["timeout_seconds"] = 20
+        self.policy["timeout_seconds"] = 20
+        source = ROOT / "source/classifier.py"
+        with self.assertRaisesRegex(ValueError, "Source client timeout/retry"):
+            evaluate.validate_decision(
+                decision, self.policy, source, evaluate.source_request(source)
+            )
+
     def test_failed_run_replaces_previous_report(self):
         with tempfile.TemporaryDirectory() as tmp:
             report = Path(tmp) / "report.json"

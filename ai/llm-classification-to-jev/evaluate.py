@@ -296,6 +296,16 @@ def validate_inputs(dataset, policy, split, live):
 
 def validate_decision(decision, policy, source, request):
     tree = ast.parse(source.read_text())
+    constructors = [
+        n
+        for n in ast.walk(tree)
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "OpenAI"
+    ]
+    if len(constructors) != 1 or constructors[0].args:
+        raise ValueError("Expected one literal source client constructor")
+    settings = {k.arg: ast.literal_eval(k.value) for k in constructors[0].keywords}
+    if settings != {"max_retries": 0, "timeout": policy["timeout_seconds"]}:
+        raise ValueError("Source client timeout/retry policy drift")
     call = next(
         n
         for n in ast.walk(tree)
