@@ -9,6 +9,8 @@ It retains all existing IDs and fields. `migrations.json` is the companion index
 for the new migration walkthroughs; each checked-in entry points to its own
 `migration.json`, source, README and acceptance evidence. Planned entries have no
 runnable path and must not appear in the runnable application table.
+`separately_tracked` records existing cookbook paths with their own acceptance
+contracts; it does not claim that they have passed this index's migration/v1 gate.
 
 Each `migration.json` has schema `sanka-examples/migration/v1`, its repository
 relative `id`, a `source` object with `language` and `framework`, and a

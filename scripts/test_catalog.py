@@ -73,6 +73,25 @@ class CatalogTest(unittest.TestCase):
         self.write()
         validate(self.root)
 
+    def test_separately_tracked_cookbook_must_exist(self):
+        self.write()
+        path = self.root / "migrations.json"
+        index = json.loads(path.read_text())
+        index["separately_tracked"] = [
+            {
+                "id": "ai/classifier",
+                "status": "tracked-separately",
+                "readme": "ai/classifier/README.md",
+            }
+        ]
+        path.write_text(json.dumps(index))
+        with self.assertRaisesRegex(ValueError, "cookbook must exist"):
+            validate(self.root)
+        readme = self.root / "ai/classifier/README.md"
+        readme.parent.mkdir(parents=True)
+        readme.write_text("separate acceptance")
+        validate(self.root)
+
     def test_failed_or_missing_stages(self):
         for stage in self.evidence["stages"]:
             with self.subTest(stage=stage):

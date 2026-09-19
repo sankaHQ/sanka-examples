@@ -88,10 +88,11 @@
       "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
     }
   ],
-  "planned": [
+  "planned": [],
+  "separately_tracked": [
     {
       "id": "ai/llm-classification-to-jev",
-      "status": "planned",
+      "status": "tracked-separately",
       "source": {
         "language": "python",
         "framework": "openai-classifier"
@@ -100,7 +101,9 @@
         "language": "python",
         "framework": "jev-classifier"
       },
-      "notes": "Separate converter and source-adapter acceptance required; no example or live evaluation is included here."
+      "notes": "Checked-in Jev cookbook with its own offline acceptance workflow. Migration/v1 metadata integration is tracked separately; live model quality, latency and economics remain unverified.",
+      "path": "ai/llm-classification-to-jev",
+      "readme": "ai/llm-classification-to-jev/README.md"
     }
   ]
 }

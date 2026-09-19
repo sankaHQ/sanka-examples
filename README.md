@@ -101,8 +101,8 @@ sources.
 New source framework directories are added only with runnable applications and
 reproduced migration acceptance. A Go or Rust destination does not establish a
 Go or Rust source migration. React Native support does not establish arbitrary
-React web conversion. Planned examples, including the separately planned Python
-Jev classifier, are listed separately in `migrations.json`.
+React web conversion. The checked-in Python Jev cookbook has its own acceptance and live-evaluation
+gates and is tracked separately in `migrations.json`.
 
 ## License
 
