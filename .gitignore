@@ -6,3 +6,8 @@ dist/
 acceptance.json
 extension-starter.json
 version-upgrade.json
+node_modules/
+.expo/
+.build/
+target/
+.sanka-*.json

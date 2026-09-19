@@ -1,9 +1,16 @@
 # Sanka Examples
 
 Real, runnable applications for trying [Sanka](https://sanka.com) migrations.
-The application examples include seeded SQLite databases for local migration
-experiments. The extension starter demonstrates how to build a capability.
-Neither requires a Sanka account or API token.
+Applications are organized by their source framework. Each walkthrough names
+its source and destination separately and states the scope actually verified.
+The Django examples include seeded SQLite databases; the extension starter
+demonstrates how to build a capability. Neither requires a Sanka account or API token.
+
+The [migration index](migrations.json) and [example contract](MIGRATIONS.md) track
+new language paths, candidate versions and acceptance evidence. Experimental
+converters use immutable candidate installation, not public-catalog install claims.
+
+## Published Django quickstart
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first,
 then use separate CLI and application environments with Python 3.12:
@@ -71,8 +78,11 @@ grows over time with `bench`-tier apps — larger, messier applications that
 double as [Sanka Migration Bench](https://github.com/sankaHQ/sanka-bench)
 sources.
 
-New framework directories appear when the Sanka engine gains that migration
-lane; today's lane is Django REST Framework → FastAPI.
+New source framework directories are added only with runnable applications and
+reproduced migration acceptance. A Go or Rust destination does not establish a
+Go or Rust source migration. React Native support does not establish arbitrary
+React web conversion. Planned examples, including the separately planned Python
+Jev classifier, are listed separately in `migrations.json`.
 
 ## License
 

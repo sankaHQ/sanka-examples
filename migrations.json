@@ -1,0 +1,13 @@
+{
+  "schema": "sanka-examples/migrations/v1",
+  "examples": [],
+  "planned": [
+    {
+      "id": "ai/llm-classification-to-jev",
+      "status": "planned",
+      "source": {"language": "python", "framework": "openai-classifier"},
+      "destination": {"language": "python", "framework": "jev-classifier"},
+      "notes": "Separate converter and source-adapter acceptance required; no example or live evaluation is included here."
+    }
+  ]
+}
