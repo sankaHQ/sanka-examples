@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "review_status": "pending_human_review",
+  "reviewer": null,
+  "confidence_threshold": 0.8,
+  "threshold_status": "uncalibrated",
+  "calibration_dataset_sha256": null,
+  "criteria": {
+    "max_false_match_rate": 0.05,
+    "min_accepted_accuracy": 0.95,
+    "min_acceptance_coverage": 0.5,
+    "max_failure_rate": 0.0,
+    "min_pairs": 100
+  },
+  "models": {
+    "openai": "gpt-5.6-luna",
+    "jev": "jev-1.13.0"
+  },
+  "max_attempts": 1,
+  "timeout_seconds": 10,
+  "max_cases": 100,
+  "rate_card": {
+    "checked_on": "2026-09-19",
+    "kind": "rate-card-derived USD; not invoiced cost",
+    "openai": {
+      "input": 0.2,
+      "cached_input": 0.02,
+      "output": 1.2
+    },
+    "jev": {
+      "input": 0.042,
+      "cached_input": 0.042,
+      "output": 0.0
+    }
+  },
+  "sources": [
+    "https://docs.typesafe.ai/models",
+    "https://developers.openai.com/api/docs/pricing"
+  ],
+  "note": "Proposed acceptance criteria. Human review and larger held-out dataset required before conclusions. Tune only on calibration cases."
+}
