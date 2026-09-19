@@ -1,0 +1,3 @@
+# Application-owned, used only by the explicit live evaluator and SDK mock tests.
+openai==3.16.2
+typesafe-sdk==0.7.0

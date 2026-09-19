@@ -1,0 +1,22 @@
+name: Jev cookbook offline checks
+on:
+  pull_request:
+    paths: ['ai/llm-classification-to-jev/**', '.github/workflows/jev-example.yml']
+  push:
+    branches: [main]
+    paths: ['ai/llm-classification-to-jev/**', '.github/workflows/jev-example.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+      - run: uvx --from ruff==0.12.12 ruff check --select E4,E7,E9,F,I ai/llm-classification-to-jev
+      - run: uvx --from ruff==0.12.12 ruff format --check --line-length 100 ai/llm-classification-to-jev
+      - run: uv run --no-project --python 3.12 python -m unittest discover -s ai/llm-classification-to-jev/tests
+      - run: uv run --no-project --python 3.12 python ai/llm-classification-to-jev/evaluate.py --report /tmp/jev-mock-evaluation.json
