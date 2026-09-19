@@ -49,6 +49,19 @@ private services. It is independent of the application migration examples below.
 | [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Exact runnable project used by the Django-to-FastAPI migration guide |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
 
+## Experimental migration walkthroughs
+
+These are synthetic runnable sources. Each guide pins its candidate and records
+what passed. Generated applications are ignored `.sanka/` artifacts.
+
+| Source example | Source | Destination | Verified migration scope |
+| --- | --- | --- | --- |
+| [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+
+See each example's `evidence.json` and the [companion index](migrations.json).
+Experimental candidates are unpublished; these results do not qualify arbitrary
+applications or production cutover.
+
 ### Bench-tier corpus (referenced by pin, not vendored)
 
 Real applications adopted as benchmark-corpus candidates. Each entry pins an

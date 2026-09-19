@@ -108,7 +108,21 @@
       }
     }
   ],
-  "independent_acceptance": "Pending E4 rerun of the checked-in acceptance script",
+  "independent_acceptance": {
+    "date": "2026-09-19",
+    "extension_plan_hash_matches": true,
+    "generated_hashes_match": true,
+    "outcome": "passed",
+    "source_hashes_match": true,
+    "stages": {
+      "apply": "success",
+      "plan": "success",
+      "scan": "success",
+      "test": "success",
+      "verify": "success"
+    },
+    "wheel_hashes_match": true
+  },
   "native_checks": {
     "build": "",
     "test": "go: downloading github.com/gofiber/fiber/v3 v3.5.0\ngo: downloading github.com/gofiber/schema v1.8.3\ngo: downloading github.com/gofiber/utils/v2 v2.4.1\ngo: downloading github.com/mattn/go-colorable v0.1.15\ngo: downloading github.com/google/uuid v1.6.0\ngo: downloading github.com/mattn/go-isatty v0.0.24\ngo: downloading github.com/tinylib/msgp v1.6.4\ngo: downloading github.com/valyala/bytebufferpool v1.0.0\ngo: downloading github.com/valyala/fasthttp v1.73.0\ngo: downloading golang.org/x/crypto v0.54.0\ngo: downloading golang.org/x/net v0.57.0\ngo: downloading golang.org/x/sys v0.47.0\ngo: downloading github.com/philhofer/fwd v1.2.0\ngo: downloading github.com/andybalholm/brotli v1.2.2\ngo: downloading github.com/klauspost/compress v1.19.2\ngo: downloading golang.org/x/text v0.40.0\n?   \tmigrated.backend\t[no test files]\nok  \tmigrated.backend/cmd/api\t0.316s",
