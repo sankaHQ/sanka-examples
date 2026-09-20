@@ -69,7 +69,8 @@ sanka extension add sanka/<converter> --marketplace release --json
 Nothing is built locally. Examples whose `release_status` is
 `experimental-published` pin the release commit in `candidate_revision` and the
 tag in `release_tag`; the Go and Rust examples use `api-converters-v0.1.0a1`
-(`db8953b596325b8ed982c69e92a5a08ad0d3a5d6`). Examples that are still
+(`db8953b596325b8ed982c69e92a5a08ad0d3a5d6`) and the React Native example uses
+`mobile-converters-v0.1.0a1` (`826005294a616ae52bd166ee534a5b66513328b3`). Examples that are still
 `experimental-unpublished` keep the candidate installer below.
 
 ## Candidate installation

@@ -26,6 +26,14 @@ EXTENSIONS_REVISION = "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
 # The scoped Go and Rust prerelease: catalog commit and GitHub release tag.
 PUBLISHED_REVISION = "db8953b596325b8ed982c69e92a5a08ad0d3a5d6"
 PUBLISHED_TAG = "api-converters-v0.1.0a1"
+# The scoped React Native prerelease: catalog commit and GitHub release tag.
+MOBILE_PUBLISHED_REVISION = "826005294a616ae52bd166ee534a5b66513328b3"
+MOBILE_PUBLISHED_TAG = "mobile-converters-v0.1.0a1"
+PUBLISHED_TAGS = {
+    "python-to-golang": PUBLISHED_TAG,
+    "typescript-to-rust": PUBLISHED_TAG,
+    "react-native-to-native": MOBILE_PUBLISHED_TAG,
+}
 EXTENSIONS_GIT = "https://github.com/sankaHQ/extensions.git"
 RELEASE_DOWNLOADS = "https://github.com/sankaHQ/extensions/releases/download"
 CLI_VERSION = "0.2.12"
@@ -354,12 +362,12 @@ class Published(Candidate):
         targets: list[str],
         match_file: str,
         revision: str = PUBLISHED_REVISION,
-        release_tag: str = PUBLISHED_TAG,
+        release_tag: str | None = None,
     ):
         super().__init__(example, extension, packages, targets, match_file, revision)
-        self.release_tag = release_tag
+        self.release_tag = release_tag or PUBLISHED_TAGS[extension]
         self.report["release_status"] = "experimental-published"
-        self.report["release_tag"] = release_tag
+        self.report["release_tag"] = self.release_tag
 
     def _setup(self) -> None:
         if not shutil.which("uv"):

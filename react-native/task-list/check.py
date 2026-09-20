@@ -12,7 +12,12 @@ import sys
 
 EXAMPLE = Path(__file__).resolve().parent
 sys.path.insert(0, str(EXAMPLE.parents[1] / "scripts"))
-from candidate import Candidate
+# The published consumer keeps the ``Candidate`` name: the extensions release
+# qualification substitutes this symbol with its own release-wheel consumer.
+from candidate import Published as Candidate
+
+# Published catalog commit of the scoped mobile-converters-v0.1.0a1 prerelease.
+RELEASE_REVISION = "826005294a616ae52bd166ee534a5b66513328b3"
 
 
 def snapshot(root: Path) -> dict[str, str]:
@@ -34,7 +39,7 @@ def accept(target: str, report: dict) -> None:
     if target == "swiftui" and platform.system() != "Darwin":
         raise RuntimeError("SwiftUI requires macOS; a platform skip is not acceptance")
     with Candidate(EXAMPLE, "react-native-to-native", ["sanka-ts-capture"],
-                   ["swiftui", "compose"], "App.tsx") as c:
+                   ["swiftui", "compose"], "App.tsx", revision=RELEASE_REVISION) as c:
         report.update(c.report)
         # A checked-in evidence summary must not become part of its own source hash.
         (c.project / "evidence.json").unlink(missing_ok=True)
