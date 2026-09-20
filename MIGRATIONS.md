@@ -52,6 +52,26 @@ remain separate checks. This change does not change the runtime publication gate
 or its fixture pin. Candidate extension publication and human PR approval remain
 separate from example acceptance.
 
+## Published installation
+
+`scripts/candidate.py` also provides `Published`, the consumer for converters that
+are catalogued at an immutable public commit and attached to a GitHub release. It
+creates the same fresh source copy and isolated CLI environment, fetches exactly
+the pinned commit, requires the extension to be catalogued there, checks that the
+manifest at that commit is byte-identical to the release asset and that every wheel
+URL points at the release, and then installs with the public CLI's own commands:
+
+```text
+sanka extension marketplace add https://github.com/sankaHQ/extensions.git --revision <commit> --name release --trust --json
+sanka extension add sanka/<converter> --marketplace release --json
+```
+
+Nothing is built locally. Examples whose `release_status` is
+`experimental-published` pin the release commit in `candidate_revision` and the
+tag in `release_tag`; the Go and Rust examples use `api-converters-v0.1.0a1`
+(`db8953b596325b8ed982c69e92a5a08ad0d3a5d6`). Examples that are still
+`experimental-unpublished` keep the candidate installer below.
+
 ## Candidate installation
 
 [`scripts/candidate.py`](scripts/candidate.py) creates a fresh consumer source
