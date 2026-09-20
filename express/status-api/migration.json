@@ -1,17 +1,32 @@
 {
   "schema": "sanka-examples/migration/v1",
   "id": "express/status-api",
-  "source": { "language": "typescript", "framework": "express" },
-  "destinations": [{
-    "language": "rust",
-    "framework": "axum",
-    "extension_id": "sanka/typescript-to-rust",
-    "release_status": "experimental-unpublished",
-    "supported_stages": ["scan", "plan", "apply", "test", "verify"],
-    "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
-  }],
+  "source": {
+    "language": "typescript",
+    "framework": "express"
+  },
+  "destinations": [
+    {
+      "language": "rust",
+      "framework": "axum",
+      "extension_id": "sanka/typescript-to-rust",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "candidate_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+      "release_tag": "api-converters-v0.1.0a1"
+    }
+  ],
   "license": "Apache-2.0",
   "provenance": "synthetic",
   "provenance_notes": "Authored for Sanka examples; no customer code or data.",
-  "acceptance": { "command": "python3.12 check.py", "evidence": "evidence.json" }
+  "acceptance": {
+    "command": "python3.12 check.py",
+    "evidence": "evidence.json"
+  }
 }

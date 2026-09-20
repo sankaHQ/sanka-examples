@@ -1,7 +1,7 @@
 # Express status API to Rust / axum
 
 A synthetic TypeScript / Express app with two public, literal JSON GET endpoints.
-The unpublished experimental `sanka/typescript-to-rust` candidate generates a Rust
+The experimental, published `sanka/typescript-to-rust` extension generates a Rust
 crate; this example makes no claim about arbitrary TypeScript applications or Rust
 source migrations. Source and scripts are Apache-2.0; see [LICENSE](LICENSE).
 Dependencies retain their own licenses. No customer data or services are used.
@@ -48,8 +48,10 @@ The example checks exact body bytes as well as status and parsed JSON.
 Install Rust **1.93.1** using rustup before running acceptance. The generated
 `Cargo.lock` pins Rust dependencies. The check requires public download access
 for setup, wheel installation and the first Cargo build; conversion and HTTP
-replay use no private service, credentials or inference. On macOS where the full
-Xcode license is not accepted, select the installed command-line SDK:
+replay use no private service, credentials or inference. On macOS, select the
+Command Line Tools SDK for the Rust build (required when the Xcode license is not
+accepted, and also with Xcode 27, whose SDK stubs fail the Rust 1.93.1 linker with
+`ld: tapi error: malformed file`):
 
 ```bash
 export DEVELOPER_DIR=/Library/Developer/CommandLineTools
@@ -62,25 +64,27 @@ rustup toolchain install 1.93.1 --profile minimal
 uv run --no-project --python 3.12 python check.py --report .sanka/acceptance.json
 ```
 
-The pinned installer in [`../../scripts/candidate.py`](../../scripts/candidate.py)
-fetches `sankaHQ/extensions` commit
-`edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20`, checks that this converter is absent
-from that commit's public catalog, builds candidate version 0.1.0a1 and its
-`sanka-ts-capture` and `sanka-http-replay` dependencies, and installs them through
-an explicitly trusted temporary loopback HTTPS marketplace. Published CLI 0.2.12
+The converter is published as the scoped GitHub prerelease
+[`api-converters-v0.1.0a1`](https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1)
+from catalog commit `db8953b596325b8ed982c69e92a5a08ad0d3a5d6`, together with its `sanka-ts-capture` and
+`sanka-http-replay` dependencies (candidate version 0.1.0a1). The [shared consumer](../../scripts/candidate.py)
+(`Published`) checks that the manifest at that commit is byte-identical to the
+released asset and that every wheel URL points at the release, then installs through
+the public CLI's own marketplace commands pinned to that commit. Published CLI 0.2.12
 and Extension SDK 0.1.0a4 run in isolated environments. Wheel SHA-256 values and
-resolved CLI dependencies are recorded in the acceptance report. A sibling
-checkout is never required. There is no public-catalog install command for this
-unpublished converter.
+resolved CLI dependencies are recorded in the acceptance report. A sibling checkout
+is never required. The CLI's default marketplace snapshot predates this release, so
+the explicit revision is required.
 
-The harness executes these public commands inside a fresh source copy. `CATALOG`
-is its temporary marketplace; `FLAGS` represents the configuration and explicit
-toolchain environment forwarding assembled in `check.py`; `PLAN_HASH` is the
-reviewed runtime plan hash, not the extension's separate plan hash:
+The harness executes these public commands inside a fresh source copy. `FLAGS`
+represents the configuration and explicit toolchain environment forwarding
+assembled in `check.py`; `PLAN_HASH` is the reviewed runtime plan hash, not the
+extension's separate plan hash:
 
 ```bash
-sanka extension marketplace add "$CATALOG" --name candidate --trust --json
-sanka extension add sanka/typescript-to-rust --marketplace candidate --json
+sanka extension marketplace add https://github.com/sankaHQ/extensions.git \
+  --revision db8953b596325b8ed982c69e92a5a08ad0d3a5d6 --name release --trust --json
+sanka extension add sanka/typescript-to-rust --marketplace release --json
 sanka scan . --extension-config '{"source_framework":"express","target_framework":"axum","source_file":"src/app.ts"}' --json
 sanka plan . --to axum $FLAGS --json
 sanka apply --plan-hash "$PLAN_HASH" $FLAGS --json
@@ -103,7 +107,7 @@ No hand-maintained Rust counterpart is checked in.
 A passing report requires independent source compilation/HTTP tests, scan, plan,
 apply, generated Rust compilation/tests, extension behavioral replay, actual
 source and generated executable HTTP comparison, and unchanged source hashes.
-It records generated artifact hashes, both plan hashes, toolchains and candidate
+It records generated artifact hashes, both plan hashes, toolchains and release
 identity. Any missing toolchain, failed stage or download error fails the command.
 Read [evidence.json](evidence.json) for the checked-in execution record.
 

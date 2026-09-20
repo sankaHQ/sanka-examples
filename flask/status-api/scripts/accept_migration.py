@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""Clean-consumer acceptance. Downloads pinned packages; uses only local HTTP."""
+"""Clean-consumer acceptance of the published converter. Downloads pinned packages; uses only local HTTP."""
 
 from __future__ import annotations
 
@@ -20,11 +20,14 @@ from pathlib import Path
 EXAMPLE = Path(__file__).resolve().parents[1]
 REPOSITORY = EXAMPLE.parents[1]
 sys.path.insert(0, str(REPOSITORY / "scripts"))
-from candidate import Candidate  # noqa: E402
+# The published consumer keeps the ``Candidate`` name: the extensions release
+# qualification substitutes this symbol with its own release-wheel consumer.
+from candidate import Published as Candidate  # noqa: E402
 
 CONFIG = json.dumps({"source_framework": "flask", "target_framework": "fiber",
                      "source_file": "app.py", "database_layer": "none"})
-CANDIDATE_REVISION = "83e290614b784dab33e7271ecb8533a726e111d2"
+# Published catalog commit of the scoped api-converters-v0.1.0a1 prerelease.
+RELEASE_REVISION = "db8953b596325b8ed982c69e92a5a08ad0d3a5d6"
 
 
 def hashes(root):
@@ -83,7 +86,7 @@ def accept():
     expected = json.loads((EXAMPLE / "expected.json").read_text())
     dependencies = (EXAMPLE / "source/requirements.txt").read_text().splitlines()
     with Candidate(example=EXAMPLE / "source", extension="python-to-golang", packages=[],
-                   targets=["fiber"], match_file="app.py", revision=CANDIDATE_REVISION) as candidate:
+                   targets=["fiber"], match_file="app.py", revision=RELEASE_REVISION) as candidate:
         project = candidate.project
         source_env = candidate.root / "source-env"
         candidate.run("uv", "venv", "--python", "3.12", str(source_env))

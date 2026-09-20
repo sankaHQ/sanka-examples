@@ -1,6 +1,6 @@
 {
   "outcome": "passed",
-  "date": "2026-09-19",
+  "date": "2026-09-20",
   "source_hashes_match": true,
   "generated_hashes_match": true,
   "extension_plan_hash_matches": true,
@@ -12,7 +12,8 @@
     "test": "success",
     "verify": "success"
   },
-  "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
+  "candidate_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+  "release_tag": "api-converters-v0.1.0a1",
   "source_sha256": {
     "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "app.py": "62fd2f479c380089ed33ae27a07c1a8a5f753505a059848e76b2f9655ade6bfc",

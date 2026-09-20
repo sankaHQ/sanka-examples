@@ -1,4 +1,4 @@
-"""Clean public-CLI consumer acceptance for the unpublished Express-to-axum candidate."""
+"""Clean public-CLI consumer acceptance for the published Express-to-axum converter."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,9 @@ import sys
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parents[1] / "scripts"))
-from candidate import Candidate
+# The published consumer keeps the ``Candidate`` name: the extensions release
+# qualification substitutes this symbol with its own release-wheel consumer.
+from candidate import PUBLISHED_REVISION, Published as Candidate
 from source_check import available_port, wait_observe
 
 
@@ -27,7 +29,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--report", type=Path, default=ROOT / ".sanka/acceptance.json")
     args = parser.parse_args()
-    candidate = Candidate(ROOT, "typescript-to-rust", ["sanka-ts-capture", "sanka-http-replay"], ["axum"], "src/app.ts")
+    candidate = Candidate(ROOT, "typescript-to-rust", ["sanka-ts-capture", "sanka-http-replay"], ["axum"], "src/app.ts", revision=PUBLISHED_REVISION)
     report = {"status": "failed", "stages": {name: "not_run" for name in ("source", "scan", "plan", "apply", "test", "verify", "target_build", "http_comparison")}, "platform": platform.platform(), "unsupported": ["middleware", "dynamic payloads", "database and write handlers", "production cutover"]}
     try:
         with candidate as c:

@@ -1,15 +1,26 @@
 {
   "schema": "sanka-examples/migration/v1",
   "id": "flask/status-api",
-  "source": {"language": "python", "framework": "flask", "path": "source"},
+  "source": {
+    "language": "python",
+    "framework": "flask",
+    "path": "source"
+  },
   "destinations": [
     {
       "language": "go",
       "framework": "fiber",
       "extension_id": "sanka/python-to-golang",
-      "candidate_revision": "83e290614b784dab33e7271ecb8533a726e111d2",
-      "release_status": "experimental-unpublished",
-      "supported_stages": ["scan", "plan", "apply", "test", "verify"]
+      "candidate_revision": "db8953b596325b8ed982c69e92a5a08ad0d3a5d6",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "release_tag": "api-converters-v0.1.0a1"
     }
   ],
   "license": "Apache-2.0",

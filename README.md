@@ -7,8 +7,9 @@ The Django examples include seeded SQLite databases; the extension starter
 demonstrates how to build a capability. Neither requires a Sanka account or API token.
 
 The [migration index](migrations.json) and [example contract](MIGRATIONS.md) track
-new language paths, candidate versions and acceptance evidence. Experimental
-converters use immutable candidate installation, not public-catalog install claims.
+new language paths, converter versions and acceptance evidence. Published
+experimental converters install from the public catalog pinned to their release
+commit; unpublished candidates use immutable candidate installation instead.
 
 ## Published Django quickstart
 
@@ -59,13 +60,13 @@ needed for the offline walkthrough.
 
 ## Experimental migration walkthroughs
 
-These are synthetic runnable sources. Each guide pins its candidate and records
-what passed. Generated applications are ignored `.sanka/` artifacts.
+These are synthetic runnable sources. Each guide pins its converter commit and
+records what passed. Generated applications are ignored `.sanka/` artifacts.
 
 | Source example | Source | Destination | Verified migration scope |
 | --- | --- | --- | --- |
-| [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
-| [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
 | [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI | All five CLI stages; macOS compilation and five structural action replays |
 | Same React Native source | TypeScript / React Native | Kotlin / Compose | Scan and plan only; no generated app |
 
@@ -74,8 +75,9 @@ SwiftUI verification does not establish pixels, layout, accessibility or simulat
 device parity. React Native source checks cover types, an iOS bundle and Metro
 startup; execution on a device remains unverified.
 
-Experimental candidates are unpublished; these results do not qualify arbitrary
-applications or production cutover.
+The Go and Rust converters are published as an experimental scoped prerelease;
+the React Native converter remains an unpublished candidate. These results do not
+qualify arbitrary applications or production cutover.
 
 ### Bench-tier corpus (referenced by pin, not vendored)
 
