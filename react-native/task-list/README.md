@@ -2,7 +2,7 @@
 
 A synthetic two-screen TypeScript / React Native application. Expo supplies the
 source runtime and Metro configuration; the source is not just a scanner fixture.
-The candidate converter generates Swift / SwiftUI. Kotlin / Compose is a separate
+The published converter generates Swift / SwiftUI. Kotlin / Compose is a separate
 **scan/plan-only** walkthrough; it does not produce a completed application.
 
 ## Source setup and behavior
@@ -40,13 +40,25 @@ State is in memory. Empty task titles are allowed by this deliberately small
 application. There is no database, network request, persistence, paid inference or
 customer information.
 
-## Candidate and toolchains
+## Published converter and toolchains
 
 Extension ID: `sanka/react-native-to-native`; distribution version: `0.1.0a1`.
-It is **experimental and unpublished in the catalog** at the pinned candidate:
-[`sankaHQ/extensions@edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20`](https://github.com/sankaHQ/extensions/tree/edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20/packages/sanka-extension-react-native-to-native).
-The consumer uses published `sanka-cli==0.2.12`, extension SDK `0.1.0a4`, and
-`sanka-ts-capture` built from that same candidate (vendored TypeScript 5.9.3).
+It is **experimental**, published as the scoped GitHub prerelease
+[`mobile-converters-v0.1.0a1`](https://github.com/sankaHQ/extensions/releases/tag/mobile-converters-v0.1.0a1)
+from catalog commit
+[`826005294a616ae52bd166ee534a5b66513328b3`](https://github.com/sankaHQ/extensions/commit/826005294a616ae52bd166ee534a5b66513328b3).
+The consumer uses published `sanka-cli==0.2.12`, extension SDK `0.1.0a4`, and the
+released `sanka-ts-capture` wheel (vendored TypeScript 5.9.3). The public CLI installs
+it from the public catalog pinned to that exact commit:
+
+```sh
+sanka extension marketplace add https://github.com/sankaHQ/extensions.git \
+  --revision 826005294a616ae52bd166ee534a5b66513328b3 --name release --trust --json
+sanka extension add sanka/react-native-to-native --marketplace release --json
+```
+
+The CLI's default marketplace snapshot predates this release, so the explicit
+revision is required.
 
 Prerequisites for the clean consumer walkthrough: Python 3.10 or later, `uv`, Git,
 OpenSSL, Node 22 and npm. SwiftUI also requires macOS 14 or later with the Swift
@@ -70,15 +82,14 @@ From the repository root, run:
 python3 react-native/task-list/check.py --target swiftui
 ```
 
-[`check.py`](check.py) calls the shared [`candidate.py`](../../scripts/candidate.py)
-installer. It fetches the immutable public Git revision into a fresh temporary
-checkout, verifies the candidate is absent from that revision's public catalog,
-builds its wheels with pinned build dependencies, checks the released SDK wheel
-hashes, creates an isolated CLI environment and registers a task-owned local
-candidate marketplace. It installs using the **public CLI extension commands**.
-There is no dependency on a sibling checkout and no invented public-catalog
-installation command. Setup needs public package downloads; migration uses local
-files and a loopback candidate package server only.
+[`check.py`](check.py) uses the shared [`candidate.py`](../../scripts/candidate.py)
+consumer (`Published`). It fetches the immutable public Git revision into a fresh
+temporary checkout, requires the extension to be catalogued there, checks that the
+manifest at that commit is byte-identical to the released asset and that every wheel
+URL points at the release, creates an isolated CLI environment and installs with
+the two **public CLI extension commands** above. There is no dependency on a
+sibling checkout and nothing is built locally. Setup needs public package
+downloads; migration uses local files only.
 
 Within the clean source copy, the harness installs and checks the source, then
 runs these public CLI commands (each also receives `--json`):

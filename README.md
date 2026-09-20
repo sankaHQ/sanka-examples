@@ -67,17 +67,17 @@ records what passed. Generated applications are ignored `.sanka/` artifacts.
 | --- | --- | --- | --- |
 | [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
 | [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
-| [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI | All five CLI stages; macOS compilation and five structural action replays |
-| Same React Native source | TypeScript / React Native | Kotlin / Compose | Scan and plan only; no generated app |
+| [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI (published `mobile-converters-v0.1.0a1`) | All five CLI stages; macOS compilation and five structural action replays |
+| Same React Native source | TypeScript / React Native | Kotlin / Compose (published `mobile-converters-v0.1.0a1`) | Scan and plan only; no generated app |
 
 See each example's `evidence.json` and the [companion index](migrations.json).
 SwiftUI verification does not establish pixels, layout, accessibility or simulator/
 device parity. React Native source checks cover types, an iOS bundle and Metro
 startup; execution on a device remains unverified.
 
-The Go and Rust converters are published as an experimental scoped prerelease;
-the React Native converter remains an unpublished candidate. These results do not
-qualify arbitrary applications or production cutover.
+The Go, Rust and React Native converters are published as experimental scoped
+prereleases. These results do not qualify arbitrary applications or production
+cutover.
 
 ### Bench-tier corpus (referenced by pin, not vendored)
 

@@ -65,7 +65,7 @@
           "language": "swift",
           "framework": "swiftui",
           "extension_id": "sanka/react-native-to-native",
-          "release_status": "experimental-unpublished",
+          "release_status": "experimental-published",
           "supported_stages": [
             "scan",
             "plan",
@@ -78,7 +78,7 @@
           "language": "kotlin",
           "framework": "compose",
           "extension_id": "sanka/react-native-to-native",
-          "release_status": "experimental-unpublished",
+          "release_status": "experimental-published",
           "supported_stages": [
             "scan",
             "plan"
@@ -87,7 +87,8 @@
       ],
       "status": "checked-in",
       "evidence": "evidence.json",
-      "candidate_revision": "edc6e27744e9a0cb1a8f72cd5bb0f3003288fc20"
+      "candidate_revision": "826005294a616ae52bd166ee534a5b66513328b3",
+      "release_tag": "mobile-converters-v0.1.0a1"
     }
   ],
   "planned": [],
