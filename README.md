@@ -91,13 +91,13 @@ upstream commit in `manifest.json` under `tier: "bench"`, with the recorded
 | [readthedocs.org](https://github.com/readthedocs/readthedocs.org) | MIT | 201 | `edae2d4` |
 
 Behavior-oracle bench tasks for these apps are authored in
-[Sanka Migration Bench](https://github.com/sankaHQ/sanka-bench) as the corpus
+[Sanka Migration Bench](https://github.com/sankaHQ/bench) as the corpus
 grows.
 
 `manifest.json` is the machine-readable index (id, framework, tier, features).
 Apps tagged `showcase` are small and legible for documentation; the corpus
 grows over time with `bench`-tier apps — larger, messier applications that
-double as [Sanka Migration Bench](https://github.com/sankaHQ/sanka-bench)
+double as [Sanka Migration Bench](https://github.com/sankaHQ/bench)
 sources.
 
 New source framework directories are added only with runnable applications and
