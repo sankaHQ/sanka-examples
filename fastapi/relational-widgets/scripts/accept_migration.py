@@ -23,7 +23,7 @@ sys.path.insert(0, str(REPOSITORY / "scripts"))
 from candidate import Published
 
 RELEASE_TAG = "api-converters-v0.1.0a6"
-RELEASE_REVISION = ""  # Set to the immutable a6 merge commit after publication.
+RELEASE_REVISION = "5b7fdeb80c524d87795ddae75ea356d00cea0d12"
 CONFIG = {
     "source_framework": "fastapi",
     "target_framework": "fiber",

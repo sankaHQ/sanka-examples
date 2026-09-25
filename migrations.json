@@ -29,6 +29,33 @@
       "evidence": "evidence.json"
     },
     {
+      "id": "fastapi/relational-widgets",
+      "source": {
+        "language": "python",
+        "framework": "fastapi",
+        "path": "source"
+      },
+      "destinations": [
+        {
+          "language": "go",
+          "framework": "fiber",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "5b7fdeb80c524d87795ddae75ea356d00cea0d12",
+          "release_status": "experimental-published",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "release_tag": "api-converters-v0.1.0a6"
+        }
+      ],
+      "status": "checked-in",
+      "evidence": "evidence.json"
+    },
+    {
       "id": "express/status-api",
       "source": {
         "language": "typescript",

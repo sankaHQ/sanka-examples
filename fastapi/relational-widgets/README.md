@@ -27,8 +27,8 @@ Python 3.12, `uv`, Git, Go 1.26.5, and a local PostgreSQL database are required.
 The database role must be able to create and drop schemas. Use a disposable
 database; the runner never touches existing application schemas.
 
-After `api-converters-v0.1.0a6` is published and this example pins its merge
-commit, run from the repository root:
+The published `api-converters-v0.1.0a6` release is pinned to merge commit
+`5b7fdeb80c524d87795ddae75ea356d00cea0d12`. Run from the repository root:
 
 ```sh
 export SANKA_MIGRATE_TEST_POSTGRES_DSN='postgresql://USER:PASSWORD@127.0.0.1:5432/sanka_example'
@@ -45,3 +45,6 @@ This example does not transfer existing application data, support branching or
 schema-altering Alembic migrations, or qualify a production cutover. Fiber is
 the public walkthrough target; the Extensions a6 tests also exercise chi, mux,
 and Gin against PostgreSQL.
+
+The [acceptance evidence](evidence.json) records 17 matching HTTP and database
+observations, equal indexes, a successful rollback, and all five CLI stages.

@@ -107,6 +107,7 @@ class Candidate:
             capture_output=True,
             text=True,
             timeout=1200,
+            check=False,
         )
         if result.returncode:
             raise RuntimeError(
@@ -346,7 +347,6 @@ class Candidate:
             self.temporary.cleanup()
 
 
-
 class Published(Candidate):
     """Install a converter that is published in the public catalog at an immutable commit.
 
@@ -367,7 +367,9 @@ class Published(Candidate):
         release_tag: str | None = None,
         cli_version: str = CLI_VERSION,
     ):
-        super().__init__(example, extension, packages, targets, match_file, revision, cli_version)
+        super().__init__(
+            example, extension, packages, targets, match_file, revision, cli_version
+        )
         self.release_tag = release_tag or PUBLISHED_TAGS[extension]
         self.report["release_status"] = "experimental-published"
         self.report["release_tag"] = self.release_tag

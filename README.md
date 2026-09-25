@@ -66,6 +66,7 @@ records what passed. Generated applications are ignored `.sanka/` artifacts.
 | Source example | Source | Destination | Verified migration scope |
 | --- | --- | --- | --- |
 | [flask/status-api](flask/status-api/) | Python / Flask | Go / Fiber (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
+| [fastapi/relational-widgets](fastapi/relational-widgets/) | Python / FastAPI + PostgreSQL | Go / Fiber (published `api-converters-v0.1.0a6`) | All five CLI stages; two Alembic revisions, 17 HTTP/database comparisons, index parity and rollback |
 | [express/status-api](express/status-api/) | TypeScript / Express | Rust / axum (published `api-converters-v0.1.0a1`) | All five CLI stages; two literal GET routes; native build/tests and live HTTP comparison |
 | [react-native/task-list](react-native/task-list/) | TypeScript / React Native | Swift / SwiftUI (published `mobile-converters-v0.1.0a1`) | All five CLI stages; macOS compilation and five structural action replays |
 | Same React Native source | TypeScript / React Native | Kotlin / Compose (published `mobile-converters-v0.1.0a1`) | Scan and plan only; no generated app |
