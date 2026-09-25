@@ -1,0 +1,47 @@
+name: FastAPI to Go PostgreSQL example
+on:
+  pull_request:
+    paths: ['fastapi/relational-widgets/**', 'scripts/candidate.py', 'scripts/check_catalog.py', 'migrations.json', '.github/workflows/fastapi-relational-widgets.yml']
+  push:
+    branches: [main]
+    paths: ['fastapi/relational-widgets/**', 'scripts/candidate.py', 'scripts/check_catalog.py', 'migrations.json', '.github/workflows/fastapi-relational-widgets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  migration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: sanka
+          POSTGRES_PASSWORD: sanka
+          POSTGRES_DB: sanka_example
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd=pg_isready
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          version: '0.11.21'
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: '1.26.5'
+          cache: false
+      - run: uv run --no-project --python 3.12 --with 'psycopg[binary]==3.3.4' python fastapi/relational-widgets/scripts/accept_migration.py
+        env:
+          SANKA_MIGRATE_TEST_POSTGRES_DSN: postgresql://sanka:sanka@localhost:5432/sanka_example
+      - run: python3 scripts/check_catalog.py
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: fastapi-go-postgres-acceptance
+          path: fastapi/relational-widgets/.sanka/acceptance.json
+          include-hidden-files: true
+          retention-days: 10
