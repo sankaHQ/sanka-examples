@@ -12,6 +12,10 @@ jobs:
   migration:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [fiber, chi, mux, gin]
     services:
       postgres:
         image: postgres:16
@@ -34,14 +38,14 @@ jobs:
         with:
           go-version: '1.26.5'
           cache: false
-      - run: uv run --no-project --python 3.12 --with 'psycopg[binary]==3.3.4' python fastapi/relational-widgets/scripts/accept_migration.py
+      - run: uv run --no-project --python 3.12 --with 'psycopg[binary]==3.3.4' python fastapi/relational-widgets/scripts/accept_migration.py --target ${{ matrix.target }}
         env:
           SANKA_MIGRATE_TEST_POSTGRES_DSN: postgresql://sanka:sanka@localhost:5432/sanka_example
       - run: python3 scripts/check_catalog.py
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:
-          name: fastapi-go-postgres-acceptance
-          path: fastapi/relational-widgets/.sanka/acceptance.json
+          name: fastapi-go-postgres-${{ matrix.target }}-acceptance
+          path: fastapi/relational-widgets/.sanka/acceptance-${{ matrix.target }}.json
           include-hidden-files: true
           retention-days: 10

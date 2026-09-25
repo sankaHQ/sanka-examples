@@ -6,10 +6,13 @@ successful writes, updates, deletes, unique-key conflicts, and foreign-key
 conflicts. The checked-in `sanka-verify.json` holds the ordered HTTP cases.
 
 The Python-to-Go converter lowers these revisions to Goose migrations and the
-routes to Go/Fiber. The acceptance runner uses the published Sanka CLI 0.3.0
-and a pinned public converter release. It creates separate disposable PostgreSQL
-schemas, runs `scan`, `plan`, `apply`, `test`, and `verify`, compares source and Go
-HTTP/database state, then runs the generated rollback. It drops both schemas
+routes to Go/Fiber, chi, mux, or Gin. The acceptance runner uses the published
+Sanka CLI 0.3.0 and a pinned public converter release. For each router it creates
+four disposable PostgreSQL schemas: two for `scan`, `plan`, `apply`, `test`, and
+`verify`, and two for an existing-row transfer. It applies the source Alembic
+revisions, seeds related rows, applies generated Goose migrations to an empty
+target, checks transfer dry-run/execute/verify, compares source and Go HTTP and
+database state, and rolls back both generated targets. All schemas are dropped
 even when a check fails. Nothing is deployed.
 
 The source files are in [`source/`](source/). They match the qualified a6
@@ -27,24 +30,32 @@ Python 3.12, `uv`, Git, Go 1.26.5, and a local PostgreSQL database are required.
 The database role must be able to create and drop schemas. Use a disposable
 database; the runner never touches existing application schemas.
 
-The published `api-converters-v0.1.0a6` release is pinned to merge commit
-`5b7fdeb80c524d87795ddae75ea356d00cea0d12`. Run from the repository root:
+The published `api-converters-v0.1.0a7` release is pinned to merge commit
+`0dee899b2da67a1f2e801fffc5234c5219818887`. Run from the repository root:
 
 ```sh
 export SANKA_MIGRATE_TEST_POSTGRES_DSN='postgresql://USER:PASSWORD@127.0.0.1:5432/sanka_example'
 uv run --no-project --python 3.12 --with 'psycopg[binary]==3.3.4' \
-  python fastapi/relational-widgets/scripts/accept_migration.py
+  python fastapi/relational-widgets/scripts/accept_migration.py --target fiber
 ```
+
+The other qualified targets are `chi`, `mux`, and `gin`. CI runs each target
+independently. The fixture seeds two parents and three widgets with nontrivial ID
+sequence state. The transfer requires explicit acknowledgement of its excluded
+`alembic_version` table, verifies copied rows and sequences, rejects a second
+copy into the nonempty target, and compares seven further HTTP requests and the
+resulting database state. A real transfer requires a source write freeze and an
+application-specific plan for excluded tables and jobs.
 
 The runner installs the source dependencies from `source/requirements.txt`
 into an isolated environment. It installs the converter through the CLI's
 public marketplace at the pinned release commit; no adjacent Extensions
 checkout or local wheel is used. Raw local artifacts go under ignored `.sanka/`.
 
-This example does not transfer existing application data, support branching or
-schema-altering Alembic migrations, or qualify a production cutover. Fiber is
-the public walkthrough target; the Extensions a6 tests also exercise chi, mux,
-and Gin against PostgreSQL.
+This synthetic example does not support branching or schema-altering Alembic
+migrations, synchronize writes after transfer, or qualify a production cutover.
 
-The [acceptance evidence](evidence.json) records 17 matching HTTP and database
-observations, equal indexes, a successful rollback, and all five CLI stages.
+The [acceptance evidence](evidence.json) records all five CLI stages, 17
+source-to-Go observations and seven post-transfer HTTP comparisons per router,
+equal rows, indexes and sequences, refusal of unsafe transfer attempts, and
+successful rollbacks.
