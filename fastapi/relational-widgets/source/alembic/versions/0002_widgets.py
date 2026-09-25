@@ -15,8 +15,6 @@ def upgrade():
         sa.Column(
             "parent_id", sa.Integer(), sa.ForeignKey("parents.id"), nullable=False
         ),
-        sa.Column("enabled", sa.Boolean(), nullable=False),
-        sa.Column("note", sa.Text(), nullable=True),
     )
     op.create_index("ix_widgets_parent_id", "widgets", ["parent_id"], unique=False)
 

@@ -42,7 +42,7 @@
             "add",
             "https://github.com/sankaHQ/extensions.git",
             "--revision",
-            "0dee899b2da67a1f2e801fffc5234c5219818887",
+            "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
             "--name",
             "release",
             "--trust",
@@ -130,7 +130,7 @@
           [
             "apply",
             "--plan-hash",
-            "sha256:05208afeb04c3db0f61d186eb9a3f6e93f12e4b87874930d3a383f1cd23126e5",
+            "sha256:f35fc5be9e7a194045d7a73984a9b25e25af9d567d6821c7ad47272a477f0028",
             "--extension-env",
             "SANKA_GO_SOURCE_PYTHON",
             "--extension-env",
@@ -173,39 +173,41 @@
           ]
         ],
         "extension_id": "sanka/python-to-golang",
-        "extension_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
-        "manifest_sha256": "42a5c9774ef1d09af19e6540b165e8776f477c13446488818a824b4ade4e3345",
+        "extension_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
+        "manifest_sha256": "b16bb4daccee5ab3fd0eca0da12f7a68241dd1f54777026723e61d9a8460c46c",
         "release_status": "experimental-published",
-        "release_tag": "api-converters-v0.1.0a7",
+        "release_tag": "api-converters-v0.1.0a8",
         "sdk_version": "0.1.0a4",
         "wheels": {
           "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
-          "sanka_extension_python_to_golang-0.1.0a7-py3-none-any.whl": "5c8640e494d0cc11f595c298f7a6cbb96717ca7f295212beb3e3a6b9c3be00a5",
+          "sanka_extension_python_to_golang-0.1.0a8-py3-none-any.whl": "2a8e44d4b420f070ade2af94342b3964a7b03457d42460fff7f6566418649d52",
           "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
           "sanka_http_replay-0.1.0a2-py3-none-any.whl": "df9e62cd4fec94a4b2c454a5273efa2abfa8e56032e6d7a2e0a1491adad995b4"
         }
       },
       "example": "fastapi/relational-widgets",
-      "extension_plan_hash": "sha256:989466f5aee7cbff7d17da8fc7b6632a0c4d9da939e92da6b5041da7af5f8e11",
+      "existing_rows_backfilled": true,
+      "extension_plan_hash": "sha256:64c9951923dad135e159014d65bf19d23f958d75c6e6ff2be45562702c265e72",
       "generated_sha256": {
         ".env.example": "f5557abf7627ef106b3d3e7f77a6377de6dede6e583b07021ac45c1521c58aa4",
         "app.go": "0ef0fc76f744b64c1a50db814599daddaa1e60314977ab0e8e42a3e351d0db07",
         "cmd/api/main.go": "4bfb2451553bea48c3718e535df32eb30df707612419e38dce9cd6faa25e1fe7",
         "cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
         "cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
-        "contract.json": "978822b8baffb79bfad99e9815af4f429ff80e36988245fec2bd5589774b099c",
+        "contract.json": "e43faef5af776a6f4a70ea312f62a9da409df21c064ddf21a8e9b492c373d8df",
         "database.go": "da42017b43eb652169f6a0d24580596fc51641bdf9c36dce8ca7acce1e4cad2c",
         "go.mod": "7bbdc6bf76358306a43aaae7c9e2a393fe36bbd3ebf27bc08ce59c1216eac7bd",
         "go.sum": "166c3fb82026178f099f05ad78a9809a8d10bacf06cf2ccbf0969dcc4c4d9ee6",
         "migrations/00001_0001.sql": "175221067c43fe3271106e585369b890bd2a0be6135ba20a942214df8340b24e",
-        "migrations/00002_0002.sql": "49ca3920851c688794e7489268431503edbadc20968de74315db97a25e10dd01",
+        "migrations/00002_0002.sql": "0944aa57fe9419170e45de46dc732d5e49a4b6141c6ac31fa429a0fd2be659a6",
+        "migrations/00003_0003.sql": "fc7dd5992fac3227c8a344186ee3d7e55d1693edf09ec1daf947b55c82253c62",
         "models.go": "700134b8500209743c8497042b62cc0814e42507a624f35e2fb8b91e00fb9309",
-        "tools/transfer_existing.py": "e059d87476f3427421298db53b8f0d3ff34bc32eb7d2621114d760f4780df843"
+        "tools/transfer_existing.py": "44556be450a237e2b4c85681ee78d9362eb0bcba8d5a83b494412026d2db0a04"
       },
       "outcome": "passed",
       "postgresql_indexes_equal": true,
       "repeated_plan_identical": true,
-      "reviewed_core_plan_hash": "sha256:05208afeb04c3db0f61d186eb9a3f6e93f12e4b87874930d3a383f1cd23126e5",
+      "reviewed_core_plan_hash": "sha256:f35fc5be9e7a194045d7a73984a9b25e25af9d567d6821c7ad47272a477f0028",
       "rollback_tables_removed": true,
       "scenarios_compared": 17,
       "schema": "sanka-examples/acceptance/v1",
@@ -213,7 +215,8 @@
       "source_sha256": {
         "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
         "alembic/versions/0001_parents.py": "304cedc9c0ba4ca1ae7212f35449dbb42ed2c3fdd161815734bddab922062c05",
-        "alembic/versions/0002_widgets.py": "83f5c103f5cd594f19c4eed7c8b6c8f30ffc85a3dfdaf7736c06b83bae70d1e3",
+        "alembic/versions/0002_widgets.py": "1bf536d23a29369294cdbc46da85d53db40098bc04e3b38f262d3cb8649f1df0",
+        "alembic/versions/0003_widget_fields.py": "0aba7b4d0d0cc966bc4c7815578c5007216c8c45fd47442aa245d569639b0d0a",
         "app.py": "1273f998c8df115d45fcb22aa11a41da6ea82b54736179654517c676d5430cc6",
         "models.py": "bda5b52c4b4272223bf2180a5e430a6249bcb870ee9056355947dded4cd65456",
         "requirements.in": "b3ea730faae2c7172d6d0b13bc9b6ccec6beca87223e8e6626d23fa2c2a4b12a",
@@ -438,7 +441,7 @@
         "sequences_verified": true
       },
       "unsupported": [
-        "Alembic branches and schema alterations",
+        "Alembic branches and other schema alterations",
         "Production deployment"
       ],
       "wrong_plan_rejected": true
@@ -483,7 +486,7 @@
             "add",
             "https://github.com/sankaHQ/extensions.git",
             "--revision",
-            "0dee899b2da67a1f2e801fffc5234c5219818887",
+            "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
             "--name",
             "release",
             "--trust",
@@ -571,7 +574,7 @@
           [
             "apply",
             "--plan-hash",
-            "sha256:6684690af0ee639ae98c8e28d821297e7e2582fdd02ea85bb66add0c40ddae80",
+            "sha256:041ff545a9221096cb98f96e2fdb9d3fe6f8c4ec5230d94af5dd270d08bca233",
             "--extension-env",
             "SANKA_GO_SOURCE_PYTHON",
             "--extension-env",
@@ -614,39 +617,41 @@
           ]
         ],
         "extension_id": "sanka/python-to-golang",
-        "extension_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
-        "manifest_sha256": "42a5c9774ef1d09af19e6540b165e8776f477c13446488818a824b4ade4e3345",
+        "extension_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
+        "manifest_sha256": "b16bb4daccee5ab3fd0eca0da12f7a68241dd1f54777026723e61d9a8460c46c",
         "release_status": "experimental-published",
-        "release_tag": "api-converters-v0.1.0a7",
+        "release_tag": "api-converters-v0.1.0a8",
         "sdk_version": "0.1.0a4",
         "wheels": {
           "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
-          "sanka_extension_python_to_golang-0.1.0a7-py3-none-any.whl": "5c8640e494d0cc11f595c298f7a6cbb96717ca7f295212beb3e3a6b9c3be00a5",
+          "sanka_extension_python_to_golang-0.1.0a8-py3-none-any.whl": "2a8e44d4b420f070ade2af94342b3964a7b03457d42460fff7f6566418649d52",
           "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
           "sanka_http_replay-0.1.0a2-py3-none-any.whl": "df9e62cd4fec94a4b2c454a5273efa2abfa8e56032e6d7a2e0a1491adad995b4"
         }
       },
       "example": "fastapi/relational-widgets",
-      "extension_plan_hash": "sha256:5daa1cca097234c5ae3665193b5f6bbdb995164d91cec9bec9910063042f8951",
+      "existing_rows_backfilled": true,
+      "extension_plan_hash": "sha256:184947c7fbb4171380a8ee1261c5cff5c1d0de5817c155b3d5b2706a96540932",
       "generated_sha256": {
         ".env.example": "f5557abf7627ef106b3d3e7f77a6377de6dede6e583b07021ac45c1521c58aa4",
         "app.go": "8a59ce656f306813e2d966f23ea72edc5860c5fd7148990848d5cf896569ad52",
         "cmd/api/main.go": "4d05b36156208116c290e9c703dedda757582dca5d73216e8305f88fe4553af8",
         "cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
         "cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
-        "contract.json": "7fec48d041543a8767addaae0af76dcf51125aa6301a10d2b8f48ab5cd99e777",
+        "contract.json": "32bff18225ec8d2e764c83a6f1c9a02d6535f0ddb41ebf164275f4971333ca28",
         "database.go": "da42017b43eb652169f6a0d24580596fc51641bdf9c36dce8ca7acce1e4cad2c",
         "go.mod": "243cf486728e4d7f23cc3e154100b31513ae08af5669c3c4bbf88aab52a2663a",
         "go.sum": "facc032232fd9b2f23f0dab7df446a1fdc88ae4b5f8d1f82a7c56b5656db84b0",
         "migrations/00001_0001.sql": "175221067c43fe3271106e585369b890bd2a0be6135ba20a942214df8340b24e",
-        "migrations/00002_0002.sql": "49ca3920851c688794e7489268431503edbadc20968de74315db97a25e10dd01",
+        "migrations/00002_0002.sql": "0944aa57fe9419170e45de46dc732d5e49a4b6141c6ac31fa429a0fd2be659a6",
+        "migrations/00003_0003.sql": "fc7dd5992fac3227c8a344186ee3d7e55d1693edf09ec1daf947b55c82253c62",
         "models.go": "700134b8500209743c8497042b62cc0814e42507a624f35e2fb8b91e00fb9309",
-        "tools/transfer_existing.py": "e059d87476f3427421298db53b8f0d3ff34bc32eb7d2621114d760f4780df843"
+        "tools/transfer_existing.py": "44556be450a237e2b4c85681ee78d9362eb0bcba8d5a83b494412026d2db0a04"
       },
       "outcome": "passed",
       "postgresql_indexes_equal": true,
       "repeated_plan_identical": true,
-      "reviewed_core_plan_hash": "sha256:6684690af0ee639ae98c8e28d821297e7e2582fdd02ea85bb66add0c40ddae80",
+      "reviewed_core_plan_hash": "sha256:041ff545a9221096cb98f96e2fdb9d3fe6f8c4ec5230d94af5dd270d08bca233",
       "rollback_tables_removed": true,
       "scenarios_compared": 17,
       "schema": "sanka-examples/acceptance/v1",
@@ -654,7 +659,8 @@
       "source_sha256": {
         "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
         "alembic/versions/0001_parents.py": "304cedc9c0ba4ca1ae7212f35449dbb42ed2c3fdd161815734bddab922062c05",
-        "alembic/versions/0002_widgets.py": "83f5c103f5cd594f19c4eed7c8b6c8f30ffc85a3dfdaf7736c06b83bae70d1e3",
+        "alembic/versions/0002_widgets.py": "1bf536d23a29369294cdbc46da85d53db40098bc04e3b38f262d3cb8649f1df0",
+        "alembic/versions/0003_widget_fields.py": "0aba7b4d0d0cc966bc4c7815578c5007216c8c45fd47442aa245d569639b0d0a",
         "app.py": "1273f998c8df115d45fcb22aa11a41da6ea82b54736179654517c676d5430cc6",
         "models.py": "bda5b52c4b4272223bf2180a5e430a6249bcb870ee9056355947dded4cd65456",
         "requirements.in": "b3ea730faae2c7172d6d0b13bc9b6ccec6beca87223e8e6626d23fa2c2a4b12a",
@@ -879,7 +885,7 @@
         "sequences_verified": true
       },
       "unsupported": [
-        "Alembic branches and schema alterations",
+        "Alembic branches and other schema alterations",
         "Production deployment"
       ],
       "wrong_plan_rejected": true
@@ -924,7 +930,7 @@
             "add",
             "https://github.com/sankaHQ/extensions.git",
             "--revision",
-            "0dee899b2da67a1f2e801fffc5234c5219818887",
+            "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
             "--name",
             "release",
             "--trust",
@@ -1012,7 +1018,7 @@
           [
             "apply",
             "--plan-hash",
-            "sha256:5c07bdabae8efe330d073825a7af6ad7d88fd9b1acc33800be16a840a3fd2f18",
+            "sha256:d7acb8567749b1ebf906ed36e6769d8670723ab71fc0ccfcfce32f94a5547f1c",
             "--extension-env",
             "SANKA_GO_SOURCE_PYTHON",
             "--extension-env",
@@ -1055,39 +1061,41 @@
           ]
         ],
         "extension_id": "sanka/python-to-golang",
-        "extension_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
-        "manifest_sha256": "42a5c9774ef1d09af19e6540b165e8776f477c13446488818a824b4ade4e3345",
+        "extension_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
+        "manifest_sha256": "b16bb4daccee5ab3fd0eca0da12f7a68241dd1f54777026723e61d9a8460c46c",
         "release_status": "experimental-published",
-        "release_tag": "api-converters-v0.1.0a7",
+        "release_tag": "api-converters-v0.1.0a8",
         "sdk_version": "0.1.0a4",
         "wheels": {
           "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
-          "sanka_extension_python_to_golang-0.1.0a7-py3-none-any.whl": "5c8640e494d0cc11f595c298f7a6cbb96717ca7f295212beb3e3a6b9c3be00a5",
+          "sanka_extension_python_to_golang-0.1.0a8-py3-none-any.whl": "2a8e44d4b420f070ade2af94342b3964a7b03457d42460fff7f6566418649d52",
           "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
           "sanka_http_replay-0.1.0a2-py3-none-any.whl": "df9e62cd4fec94a4b2c454a5273efa2abfa8e56032e6d7a2e0a1491adad995b4"
         }
       },
       "example": "fastapi/relational-widgets",
-      "extension_plan_hash": "sha256:db483e67b780f4c28e336098db9f1829aa064911a2a242f9a0e5de9cc13b296e",
+      "existing_rows_backfilled": true,
+      "extension_plan_hash": "sha256:6bab5ad574b6b93104b79f349c06fe768970772df724373786c26e70e47bc76d",
       "generated_sha256": {
         ".env.example": "f5557abf7627ef106b3d3e7f77a6377de6dede6e583b07021ac45c1521c58aa4",
         "app.go": "e9495059021aa4895c5c8860b261ce4e672197c321bcfa59fde994bf346a0e6d",
         "cmd/api/main.go": "4bfb2451553bea48c3718e535df32eb30df707612419e38dce9cd6faa25e1fe7",
         "cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
         "cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
-        "contract.json": "ed86d88d7b1056c9be157e94c9d32cbc35117a2d2832650ed56cc495001705b1",
+        "contract.json": "ee7813a56e8da7fcd30352fa5f33b6c9277c0be295936e1da6266a2344be813d",
         "database.go": "da42017b43eb652169f6a0d24580596fc51641bdf9c36dce8ca7acce1e4cad2c",
         "go.mod": "b039252519b9a2a3c1abd973ece50f44481accac22a775f95687b01295044906",
         "go.sum": "2ca5b221ec5f6c23ff45f7635d68d09c6596d50bc30a604c746c85a891c4121d",
         "migrations/00001_0001.sql": "175221067c43fe3271106e585369b890bd2a0be6135ba20a942214df8340b24e",
-        "migrations/00002_0002.sql": "49ca3920851c688794e7489268431503edbadc20968de74315db97a25e10dd01",
+        "migrations/00002_0002.sql": "0944aa57fe9419170e45de46dc732d5e49a4b6141c6ac31fa429a0fd2be659a6",
+        "migrations/00003_0003.sql": "fc7dd5992fac3227c8a344186ee3d7e55d1693edf09ec1daf947b55c82253c62",
         "models.go": "700134b8500209743c8497042b62cc0814e42507a624f35e2fb8b91e00fb9309",
-        "tools/transfer_existing.py": "e059d87476f3427421298db53b8f0d3ff34bc32eb7d2621114d760f4780df843"
+        "tools/transfer_existing.py": "44556be450a237e2b4c85681ee78d9362eb0bcba8d5a83b494412026d2db0a04"
       },
       "outcome": "passed",
       "postgresql_indexes_equal": true,
       "repeated_plan_identical": true,
-      "reviewed_core_plan_hash": "sha256:5c07bdabae8efe330d073825a7af6ad7d88fd9b1acc33800be16a840a3fd2f18",
+      "reviewed_core_plan_hash": "sha256:d7acb8567749b1ebf906ed36e6769d8670723ab71fc0ccfcfce32f94a5547f1c",
       "rollback_tables_removed": true,
       "scenarios_compared": 17,
       "schema": "sanka-examples/acceptance/v1",
@@ -1095,7 +1103,8 @@
       "source_sha256": {
         "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
         "alembic/versions/0001_parents.py": "304cedc9c0ba4ca1ae7212f35449dbb42ed2c3fdd161815734bddab922062c05",
-        "alembic/versions/0002_widgets.py": "83f5c103f5cd594f19c4eed7c8b6c8f30ffc85a3dfdaf7736c06b83bae70d1e3",
+        "alembic/versions/0002_widgets.py": "1bf536d23a29369294cdbc46da85d53db40098bc04e3b38f262d3cb8649f1df0",
+        "alembic/versions/0003_widget_fields.py": "0aba7b4d0d0cc966bc4c7815578c5007216c8c45fd47442aa245d569639b0d0a",
         "app.py": "1273f998c8df115d45fcb22aa11a41da6ea82b54736179654517c676d5430cc6",
         "models.py": "bda5b52c4b4272223bf2180a5e430a6249bcb870ee9056355947dded4cd65456",
         "requirements.in": "b3ea730faae2c7172d6d0b13bc9b6ccec6beca87223e8e6626d23fa2c2a4b12a",
@@ -1320,7 +1329,7 @@
         "sequences_verified": true
       },
       "unsupported": [
-        "Alembic branches and schema alterations",
+        "Alembic branches and other schema alterations",
         "Production deployment"
       ],
       "wrong_plan_rejected": true
@@ -1365,7 +1374,7 @@
             "add",
             "https://github.com/sankaHQ/extensions.git",
             "--revision",
-            "0dee899b2da67a1f2e801fffc5234c5219818887",
+            "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
             "--name",
             "release",
             "--trust",
@@ -1453,7 +1462,7 @@
           [
             "apply",
             "--plan-hash",
-            "sha256:88c6c9ae0d65d5b03785523b42ea26973a4f283e843894670430917826214bef",
+            "sha256:53ed5dd379ba95e3a7841d3fcb9f82854cac44096347b1c0ffbc8e194ce1ebcf",
             "--extension-env",
             "SANKA_GO_SOURCE_PYTHON",
             "--extension-env",
@@ -1496,39 +1505,41 @@
           ]
         ],
         "extension_id": "sanka/python-to-golang",
-        "extension_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
-        "manifest_sha256": "42a5c9774ef1d09af19e6540b165e8776f477c13446488818a824b4ade4e3345",
+        "extension_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
+        "manifest_sha256": "b16bb4daccee5ab3fd0eca0da12f7a68241dd1f54777026723e61d9a8460c46c",
         "release_status": "experimental-published",
-        "release_tag": "api-converters-v0.1.0a7",
+        "release_tag": "api-converters-v0.1.0a8",
         "sdk_version": "0.1.0a4",
         "wheels": {
           "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
-          "sanka_extension_python_to_golang-0.1.0a7-py3-none-any.whl": "5c8640e494d0cc11f595c298f7a6cbb96717ca7f295212beb3e3a6b9c3be00a5",
+          "sanka_extension_python_to_golang-0.1.0a8-py3-none-any.whl": "2a8e44d4b420f070ade2af94342b3964a7b03457d42460fff7f6566418649d52",
           "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
           "sanka_http_replay-0.1.0a2-py3-none-any.whl": "df9e62cd4fec94a4b2c454a5273efa2abfa8e56032e6d7a2e0a1491adad995b4"
         }
       },
       "example": "fastapi/relational-widgets",
-      "extension_plan_hash": "sha256:915c0fd9f29adbccf771ba82c7bd3040ed91b5b8c99e976ac417d23eae7308bf",
+      "existing_rows_backfilled": true,
+      "extension_plan_hash": "sha256:5a7c93b7ffa0e3fccb51ed08fc13ba41e3f71fbf16a92cd26136523226c17c3f",
       "generated_sha256": {
         ".env.example": "f5557abf7627ef106b3d3e7f77a6377de6dede6e583b07021ac45c1521c58aa4",
         "app.go": "1e4780ba3522136a84b71fec95b7e294cbc41cb7eb9c2621cd0ce39ba1358130",
         "cmd/api/main.go": "4bfb2451553bea48c3718e535df32eb30df707612419e38dce9cd6faa25e1fe7",
         "cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
         "cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
-        "contract.json": "f5220b8feff203254678e59be6b9dda73931b28302d55e0a343c23b860ac7802",
+        "contract.json": "102b41b7d2dee5f67b2b54d80894eb08e6bce747b022d4c24763587aa03d5ea5",
         "database.go": "da42017b43eb652169f6a0d24580596fc51641bdf9c36dce8ca7acce1e4cad2c",
         "go.mod": "a10c7b9a60b1271f6c56cc8371780eaca78977849b616892238c58bb737d59be",
         "go.sum": "a66cacc0d5fd37dc203dcfd9a5b7bbbfce870baf6cb9767c9d45182d42a23867",
         "migrations/00001_0001.sql": "175221067c43fe3271106e585369b890bd2a0be6135ba20a942214df8340b24e",
-        "migrations/00002_0002.sql": "49ca3920851c688794e7489268431503edbadc20968de74315db97a25e10dd01",
+        "migrations/00002_0002.sql": "0944aa57fe9419170e45de46dc732d5e49a4b6141c6ac31fa429a0fd2be659a6",
+        "migrations/00003_0003.sql": "fc7dd5992fac3227c8a344186ee3d7e55d1693edf09ec1daf947b55c82253c62",
         "models.go": "700134b8500209743c8497042b62cc0814e42507a624f35e2fb8b91e00fb9309",
-        "tools/transfer_existing.py": "e059d87476f3427421298db53b8f0d3ff34bc32eb7d2621114d760f4780df843"
+        "tools/transfer_existing.py": "44556be450a237e2b4c85681ee78d9362eb0bcba8d5a83b494412026d2db0a04"
       },
       "outcome": "passed",
       "postgresql_indexes_equal": true,
       "repeated_plan_identical": true,
-      "reviewed_core_plan_hash": "sha256:88c6c9ae0d65d5b03785523b42ea26973a4f283e843894670430917826214bef",
+      "reviewed_core_plan_hash": "sha256:53ed5dd379ba95e3a7841d3fcb9f82854cac44096347b1c0ffbc8e194ce1ebcf",
       "rollback_tables_removed": true,
       "scenarios_compared": 17,
       "schema": "sanka-examples/acceptance/v1",
@@ -1536,7 +1547,8 @@
       "source_sha256": {
         "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
         "alembic/versions/0001_parents.py": "304cedc9c0ba4ca1ae7212f35449dbb42ed2c3fdd161815734bddab922062c05",
-        "alembic/versions/0002_widgets.py": "83f5c103f5cd594f19c4eed7c8b6c8f30ffc85a3dfdaf7736c06b83bae70d1e3",
+        "alembic/versions/0002_widgets.py": "1bf536d23a29369294cdbc46da85d53db40098bc04e3b38f262d3cb8649f1df0",
+        "alembic/versions/0003_widget_fields.py": "0aba7b4d0d0cc966bc4c7815578c5007216c8c45fd47442aa245d569639b0d0a",
         "app.py": "1273f998c8df115d45fcb22aa11a41da6ea82b54736179654517c676d5430cc6",
         "models.py": "bda5b52c4b4272223bf2180a5e430a6249bcb870ee9056355947dded4cd65456",
         "requirements.in": "b3ea730faae2c7172d6d0b13bc9b6ccec6beca87223e8e6626d23fa2c2a4b12a",
@@ -1761,7 +1773,7 @@
         "sequences_verified": true
       },
       "unsupported": [
-        "Alembic branches and schema alterations",
+        "Alembic branches and other schema alterations",
         "Production deployment"
       ],
       "wrong_plan_rejected": true

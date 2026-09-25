@@ -1,7 +1,9 @@
 # FastAPI relational widgets to Go
 
 This synthetic FastAPI app has parent and widget tables, a foreign key, a
-non-unique index, and two linear Alembic revisions. Eight CRUD routes exercise
+non-unique index, and three linear Alembic revisions. The third adds a required
+boolean column with a static default and a nullable text column to existing
+widget rows. Eight CRUD routes exercise
 successful writes, updates, deletes, unique-key conflicts, and foreign-key
 conflicts. The checked-in `sanka-verify.json` holds the ordered HTTP cases.
 
@@ -15,10 +17,10 @@ target, checks transfer dry-run/execute/verify, compares source and Go HTTP and
 database state, and rolls back both generated targets. All schemas are dropped
 even when a check fails. Nothing is deployed.
 
-The source files are in [`source/`](source/). They match the qualified a6
-FastAPI profile: one linear migration chain, direct SQLAlchemy sessions, and a
-single foreign-key relationship. Alembic's conventional `env.py` is omitted
-because it is outside that profile; the CLI verifier runs the checked-in
+The source files are in [`source/`](source/). They use a linear migration chain,
+direct SQLAlchemy sessions, and a single foreign-key relationship. Alembic's
+conventional `env.py` is omitted because it is outside that profile; the CLI
+verifier runs the checked-in
 revisions against the disposable source schema. For an independent source
 process, supply a PostgreSQL `DATABASE_URL` whose `parents` and `widgets`
 tables have been initialized from those revisions, then run `uvicorn app:app`
@@ -30,8 +32,8 @@ Python 3.12, `uv`, Git, Go 1.26.5, and a local PostgreSQL database are required.
 The database role must be able to create and drop schemas. Use a disposable
 database; the runner never touches existing application schemas.
 
-The published `api-converters-v0.1.0a7` release is pinned to merge commit
-`0dee899b2da67a1f2e801fffc5234c5219818887`. Run from the repository root:
+The published `api-converters-v0.1.0a8` release is pinned to merge commit
+`4e7e66ea5141232cd61ab8c2886a3d496d130b67`. Run from the repository root:
 
 ```sh
 export SANKA_MIGRATE_TEST_POSTGRES_DSN='postgresql://USER:PASSWORD@127.0.0.1:5432/sanka_example'
@@ -52,10 +54,11 @@ into an isolated environment. It installs the converter through the CLI's
 public marketplace at the pinned release commit; no adjacent Extensions
 checkout or local wheel is used. Raw local artifacts go under ignored `.sanka/`.
 
-This synthetic example does not support branching or schema-altering Alembic
-migrations, synchronize writes after transfer, or qualify a production cutover.
+This synthetic example does not support Alembic branches or schema changes
+beyond the bounded add-column case. It does not synchronize writes after
+transfer or qualify a production cutover.
 
 The [acceptance evidence](evidence.json) records all five CLI stages, 17
 source-to-Go observations and seven post-transfer HTTP comparisons per router,
-equal rows, indexes and sequences, refusal of unsafe transfer attempts, and
-successful rollbacks.
+equal rows, indexes and sequences, default backfill of existing rows, refusal
+of unsafe transfer attempts, and successful rollbacks.
