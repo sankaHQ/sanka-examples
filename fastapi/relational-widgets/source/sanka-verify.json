@@ -1,0 +1,163 @@
+{
+  "schema": "sanka.http-scenarios/v1",
+  "scenarios": [
+    {
+      "id": "step0",
+      "method": "POST",
+      "path": "/parents",
+      "expected_status": 201,
+      "body": {
+        "name": "parent",
+        "count": 0,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step1",
+      "method": "POST",
+      "path": "/parents",
+      "expected_status": 201,
+      "body": {
+        "name": "other",
+        "count": 0,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step2",
+      "method": "POST",
+      "path": "/widgets",
+      "expected_status": 201,
+      "body": {
+        "name": "child",
+        "parent_id": 1,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step3",
+      "method": "POST",
+      "path": "/widgets",
+      "expected_status": 409,
+      "body": {
+        "name": "child",
+        "parent_id": 1,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step4",
+      "method": "POST",
+      "path": "/widgets",
+      "expected_status": 409,
+      "body": {
+        "name": "orphan",
+        "parent_id": 999,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step5",
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "expected_status": 409,
+      "body": {
+        "parent_id": 999
+      }
+    },
+    {
+      "id": "step6",
+      "method": "PUT",
+      "path": "/widgets/1",
+      "expected_status": 409,
+      "body": {
+        "name": "replaced",
+        "parent_id": 999,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step7",
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "expected_status": 200,
+      "body": {
+        "parent_id": 2
+      }
+    },
+    {
+      "id": "step8",
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "expected_status": 200,
+      "body": {}
+    },
+    {
+      "id": "step9",
+      "method": "DELETE",
+      "path": "/parents/2",
+      "expected_status": 409
+    },
+    {
+      "id": "step10",
+      "method": "DELETE",
+      "path": "/parents/1",
+      "expected_status": 204
+    },
+    {
+      "id": "step11",
+      "method": "DELETE",
+      "path": "/widgets/1",
+      "expected_status": 204
+    },
+    {
+      "id": "step12",
+      "method": "DELETE",
+      "path": "/parents/2",
+      "expected_status": 204
+    },
+    {
+      "id": "step13",
+      "method": "POST",
+      "path": "/parents",
+      "expected_status": 201,
+      "body": {
+        "name": "recreated",
+        "count": 0,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step14",
+      "method": "POST",
+      "path": "/widgets",
+      "expected_status": 201,
+      "body": {
+        "name": "child",
+        "parent_id": 3,
+        "enabled": true
+      }
+    },
+    {
+      "id": "step15",
+      "method": "PUT",
+      "path": "/widgets/4",
+      "expected_status": 200,
+      "body": {
+        "name": "child",
+        "parent_id": 3,
+        "enabled": true,
+        "note": "updated"
+      }
+    },
+    {
+      "id": "step16",
+      "method": "PATCH",
+      "path": "/widgets/4",
+      "expected_status": 200,
+      "body": {
+        "note": null
+      }
+    }
+  ]
+}

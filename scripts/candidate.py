@@ -73,6 +73,7 @@ class Candidate:
         targets: list[str],
         match_file: str,
         revision: str = EXTENSIONS_REVISION,
+        cli_version: str = CLI_VERSION,
     ):
         if not re.fullmatch(r"[0-9a-f]{40}", revision):
             raise ValueError("Candidate revision must be a full immutable commit hash")
@@ -82,8 +83,9 @@ class Candidate:
         self.packages = packages
         self.targets = targets
         self.match_file = match_file
+        self.cli_version = cli_version
         self.report: dict = {
-            "cli_version": CLI_VERSION,
+            "cli_version": self.cli_version,
             "extension_revision": self.revision,
             "extension_id": f"sanka/{extension}",
             "sdk_version": "0.1.0a4",
@@ -244,7 +246,7 @@ class Candidate:
             "install",
             "--python",
             str(cli_env / "bin/python"),
-            f"sanka-cli=={CLI_VERSION}",
+            f"sanka-cli=={self.cli_version}",
         )
         self.report["cli_dependencies"] = self.run(
             uv, "pip", "freeze", "--python", str(cli_env / "bin/python")
@@ -291,7 +293,7 @@ class Candidate:
             "id": f"sanka/{self.extension}",
             "version": "0.1.0a1",
             "kind": "migration",
-            "runtime": {"sanka_cli": f"=={CLI_VERSION}"},
+            "runtime": {"sanka_cli": f"=={self.cli_version}"},
             "distribution": {
                 "name": distribution,
                 "version": "0.1.0a1",
@@ -363,8 +365,9 @@ class Published(Candidate):
         match_file: str,
         revision: str = PUBLISHED_REVISION,
         release_tag: str | None = None,
+        cli_version: str = CLI_VERSION,
     ):
-        super().__init__(example, extension, packages, targets, match_file, revision)
+        super().__init__(example, extension, packages, targets, match_file, revision, cli_version)
         self.release_tag = release_tag or PUBLISHED_TAGS[extension]
         self.report["release_status"] = "experimental-published"
         self.report["release_tag"] = self.release_tag
