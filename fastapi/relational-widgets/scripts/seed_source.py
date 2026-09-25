@@ -22,21 +22,27 @@ try:
         Operations.context(MigrationContext.configure(connection)),
     ):
         for revision in sorted((source / "alembic/versions").glob("*.py")):
+            if revision.name == "0003_widget_fields.py":
+                connection.exec_driver_sql(
+                    "INSERT INTO parents(id,name,count,enabled,note) VALUES "
+                    "(4,'alpha',0,false,NULL),(9,'beta',3,true,'original')"
+                )
+                connection.exec_driver_sql(
+                    "INSERT INTO widgets(id,name,parent_id) VALUES "
+                    "(15,'first',4),(23,'second',4),(27,'third',9)"
+                )
             runpy.run_path(str(revision))["upgrade"]()
 finally:
     engine.dispose()
 
 with psycopg.connect(dsn, autocommit=True) as connection:
-    connection.execute(
-        "INSERT INTO parents(id,name,count,enabled,note) VALUES "
-        "(4,'alpha',0,false,NULL),(9,'beta',3,true,'original')"
-    )
-    connection.execute(
-        "INSERT INTO widgets(id,name,parent_id,enabled,note) VALUES "
-        "(15,'first',4,true,NULL),(23,'second',4,false,'old'),"
-        "(27,'third',9,true,'other')"
-    )
+    assert (
+        connection.execute("SELECT enabled,note FROM widgets ORDER BY id").fetchall()
+        == [(True, None)] * 3
+    ), "Alembic failed to backfill existing widget rows"
+    connection.execute("UPDATE widgets SET enabled=false,note='old' WHERE id=23")
+    connection.execute("UPDATE widgets SET note='other' WHERE id=27")
     connection.execute("SELECT setval('parents_id_seq',41,true)")
     connection.execute("SELECT setval('widgets_id_seq',36,true)")
     connection.execute("CREATE TABLE alembic_version(version_num text NOT NULL)")
-    connection.execute("INSERT INTO alembic_version VALUES ('0002')")
+    connection.execute("INSERT INTO alembic_version VALUES ('0003')")

@@ -26,8 +26,8 @@ REPOSITORY = EXAMPLE.parents[1]
 sys.path.insert(0, str(REPOSITORY / "scripts"))
 from candidate import Published
 
-RELEASE_TAG = "api-converters-v0.1.0a7"
-RELEASE_REVISION = "0dee899b2da67a1f2e801fffc5234c5219818887"
+RELEASE_TAG = "api-converters-v0.1.0a8"
+RELEASE_REVISION = "4e7e66ea5141232cd61ab8c2886a3d496d130b67"
 CONFIG = {
     "source_framework": "fastapi",
     "database_layer": "pgx",
@@ -318,7 +318,7 @@ def transfer_existing(
 def accept(revision: str, target: str) -> dict:
     require(
         len(revision) == 40 and all(c in "0123456789abcdef" for c in revision),
-        "Pin the published a7 merge commit before running acceptance",
+        "Pin the published a8 merge commit before running acceptance",
     )
     dsn = os.environ["SANKA_MIGRATE_TEST_POSTGRES_DSN"]
     original = hashes(EXAMPLE / "source")
@@ -400,9 +400,13 @@ def accept(revision: str, target: str) -> dict:
                     "Repeated plan changed",
                 )
                 require(
-                    {"migrations/00001_0001.sql", "migrations/00002_0002.sql"}
+                    {
+                        "migrations/00001_0001.sql",
+                        "migrations/00002_0002.sql",
+                        "migrations/00003_0003.sql",
+                    }
                     <= set(plan["files"]),
-                    "Two Alembic revisions were not lowered",
+                    "Three Alembic revisions were not lowered",
                 )
                 output = project / ".sanka/extensions/sanka/python-to-golang/golang"
                 try:
@@ -519,11 +523,12 @@ def accept(revision: str, target: str) -> dict:
                         "verify": verified["outcome"],
                     },
                     "postgresql_indexes_equal": True,
+                    "existing_rows_backfilled": True,
                     "rollback_tables_removed": True,
                     "scenarios_compared": len(result["candidate"]),
                     "transfer": transfer,
                     "unsupported": [
-                        "Alembic branches and schema alterations",
+                        "Alembic branches and other schema alterations",
                         "Production deployment",
                     ],
                 }
