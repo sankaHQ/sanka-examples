@@ -11,7 +11,7 @@
       "language": "go",
       "framework": "fiber",
       "extension_id": "sanka/python-to-golang",
-      "candidate_revision": "5b7fdeb80c524d87795ddae75ea356d00cea0d12",
+      "candidate_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
       "release_status": "experimental-published",
       "supported_stages": [
         "scan",
@@ -20,7 +20,34 @@
         "test",
         "verify"
       ],
-      "release_tag": "api-converters-v0.1.0a6"
+      "release_tag": "api-converters-v0.1.0a7"
+    },
+    {
+      "language": "go",
+      "framework": "chi",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
+      "release_status": "experimental-published",
+      "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+      "release_tag": "api-converters-v0.1.0a7"
+    },
+    {
+      "language": "go",
+      "framework": "mux",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
+      "release_status": "experimental-published",
+      "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+      "release_tag": "api-converters-v0.1.0a7"
+    },
+    {
+      "language": "go",
+      "framework": "gin",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "0dee899b2da67a1f2e801fffc5234c5219818887",
+      "release_status": "experimental-published",
+      "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+      "release_tag": "api-converters-v0.1.0a7"
     }
   ],
   "license": "Apache-2.0",
