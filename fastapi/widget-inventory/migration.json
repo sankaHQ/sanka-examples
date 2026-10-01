@@ -1,0 +1,74 @@
+{
+  "schema": "sanka-examples/migration/v1",
+  "id": "fastapi/widget-inventory",
+  "source": {
+    "language": "python",
+    "framework": "fastapi",
+    "path": "source"
+  },
+  "destinations": [
+    {
+      "language": "go",
+      "framework": "fiber",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "release_tag": "api-converters-v0.1.0a13"
+    },
+    {
+      "language": "go",
+      "framework": "chi",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "release_tag": "api-converters-v0.1.0a13"
+    },
+    {
+      "language": "go",
+      "framework": "mux",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "release_tag": "api-converters-v0.1.0a13"
+    },
+    {
+      "language": "go",
+      "framework": "gin",
+      "extension_id": "sanka/python-to-golang",
+      "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+      "release_status": "experimental-published",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ],
+      "release_tag": "api-converters-v0.1.0a13"
+    }
+  ],
+  "license": "Apache-2.0",
+  "provenance": "synthetic",
+  "acceptance": "evidence.json"
+}

@@ -1,0 +1,1604 @@
+{
+  "status": "passed_within_scope",
+  "cli_version": "0.3.4",
+  "source_check": "16 ordered source requests, including ROWID reuse after deletion",
+  "scope": "Four flat write endpoints and 16 ordered scenarios. SQLite row/index/identity parity and full generated rollback; no production cutover or arbitrary authentication/business logic qualification.",
+  "targets": {
+    "fiber": {
+      "status": "passed_within_scope",
+      "candidate": {
+        "extension_id": "sanka/python-to-golang",
+        "extension_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+        "release_tag": "api-converters-v0.1.0a13",
+        "version": "0.1.0a13",
+        "wheel_sha256": "88f4ce68ae658aeae5ff5aea8efdb603901b424abbd3d5b6efabee84d1117ca8"
+      },
+      "stages": {
+        "scan": "success",
+        "plan": "success",
+        "apply": "success",
+        "test": "success",
+        "verify": "success"
+      },
+      "source_preserved": true,
+      "source_sha256": {
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "models.py": "8fbf98456d0e7b22247b351020dd03851d2c22677e5debef700f3c5b74bd3693",
+        "requirements.txt": "e278169acb97db0a9c64913fddeb757aace9dd266d36fed7afe3e57266d44978",
+        "sanka-verify.json": "2d3c181e483326024d7b3a6abed9affe97521efd6062b63786cdf101348f1d3d",
+        "app.py": "8c2d4617a389a67873854ed3f9aae1c580de3b5c7c83b7b367a4b54a75cb5219",
+        "requirements.in": "3613e459f05b645e986d908d6b90f47af9555a51335eaf5bbbbab333f1612e9b"
+      },
+      "generated_sha256": {
+        ".sanka/extensions/sanka/python-to-golang/golang/models.go": "8887c354f6f335cc30d3eb7d81fb1ec767ae3f778a0cdaedea411b1aa48782c8",
+        ".sanka/extensions/sanka/python-to-golang/golang/sqlite.go": "3825c3e15b3ccf082f0341e403fe6457cbf782f027a4e66f342207a943c54476",
+        ".sanka/extensions/sanka/python-to-golang/golang/database.go": "0e34e76219ccbaa4bf1350fbd1ef500033e8edd43a3db75604b68288af29ae59",
+        ".sanka/extensions/sanka/python-to-golang/golang/app.go": "487bff53ba1c41acdf6b8a65d73ded03753c1956e5eb4bb67cd463efbd33346f",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main.go": "25d2a18255dc2d6263a9c20b12c21021dd09c547621ba05e61929aecfc2f5d06",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
+        ".sanka/extensions/sanka/python-to-golang/golang/migrations/00001_initial.sql": "385dfd72bced6fc1844bccf4d88d6c9b89324eea14f4bed653fe7b900288119b"
+      },
+      "plan_hash": "sha256:e81fd4b94158fd6116dec1df104b1a0638e377f42954e4e7b3e5ab66f8ad9bc3",
+      "test": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": false
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      },
+      "verify": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": true
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      }
+    },
+    "chi": {
+      "status": "passed_within_scope",
+      "candidate": {
+        "extension_id": "sanka/python-to-golang",
+        "extension_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+        "release_tag": "api-converters-v0.1.0a13",
+        "version": "0.1.0a13",
+        "wheel_sha256": "88f4ce68ae658aeae5ff5aea8efdb603901b424abbd3d5b6efabee84d1117ca8"
+      },
+      "stages": {
+        "scan": "success",
+        "plan": "success",
+        "apply": "success",
+        "test": "success",
+        "verify": "success"
+      },
+      "source_preserved": true,
+      "source_sha256": {
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "models.py": "8fbf98456d0e7b22247b351020dd03851d2c22677e5debef700f3c5b74bd3693",
+        "requirements.txt": "e278169acb97db0a9c64913fddeb757aace9dd266d36fed7afe3e57266d44978",
+        "sanka-verify.json": "2d3c181e483326024d7b3a6abed9affe97521efd6062b63786cdf101348f1d3d",
+        "app.py": "8c2d4617a389a67873854ed3f9aae1c580de3b5c7c83b7b367a4b54a75cb5219",
+        "requirements.in": "3613e459f05b645e986d908d6b90f47af9555a51335eaf5bbbbab333f1612e9b"
+      },
+      "generated_sha256": {
+        ".sanka/extensions/sanka/python-to-golang/golang/models.go": "8887c354f6f335cc30d3eb7d81fb1ec767ae3f778a0cdaedea411b1aa48782c8",
+        ".sanka/extensions/sanka/python-to-golang/golang/sqlite.go": "3825c3e15b3ccf082f0341e403fe6457cbf782f027a4e66f342207a943c54476",
+        ".sanka/extensions/sanka/python-to-golang/golang/database.go": "0e34e76219ccbaa4bf1350fbd1ef500033e8edd43a3db75604b68288af29ae59",
+        ".sanka/extensions/sanka/python-to-golang/golang/app.go": "b65a6631d072ee94c4ef753324302411d4dbf8f08c46d84f49688c6f402d7dab",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main.go": "1a3d9729436365d0d515d17f14bd46ce4ba0e19fc60c22828692a60518bf3cd7",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
+        ".sanka/extensions/sanka/python-to-golang/golang/migrations/00001_initial.sql": "385dfd72bced6fc1844bccf4d88d6c9b89324eea14f4bed653fe7b900288119b"
+      },
+      "plan_hash": "sha256:8f621ce97cf0bad4593784e2f156b2d2d43aa2e670a4dce145b56e542ac08d7b",
+      "test": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": false
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      },
+      "verify": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": true
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      }
+    },
+    "mux": {
+      "status": "passed_within_scope",
+      "candidate": {
+        "extension_id": "sanka/python-to-golang",
+        "extension_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+        "release_tag": "api-converters-v0.1.0a13",
+        "version": "0.1.0a13",
+        "wheel_sha256": "88f4ce68ae658aeae5ff5aea8efdb603901b424abbd3d5b6efabee84d1117ca8"
+      },
+      "stages": {
+        "scan": "success",
+        "plan": "success",
+        "apply": "success",
+        "test": "success",
+        "verify": "success"
+      },
+      "source_preserved": true,
+      "source_sha256": {
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "models.py": "8fbf98456d0e7b22247b351020dd03851d2c22677e5debef700f3c5b74bd3693",
+        "requirements.txt": "e278169acb97db0a9c64913fddeb757aace9dd266d36fed7afe3e57266d44978",
+        "sanka-verify.json": "2d3c181e483326024d7b3a6abed9affe97521efd6062b63786cdf101348f1d3d",
+        "app.py": "8c2d4617a389a67873854ed3f9aae1c580de3b5c7c83b7b367a4b54a75cb5219",
+        "requirements.in": "3613e459f05b645e986d908d6b90f47af9555a51335eaf5bbbbab333f1612e9b"
+      },
+      "generated_sha256": {
+        ".sanka/extensions/sanka/python-to-golang/golang/models.go": "8887c354f6f335cc30d3eb7d81fb1ec767ae3f778a0cdaedea411b1aa48782c8",
+        ".sanka/extensions/sanka/python-to-golang/golang/sqlite.go": "3825c3e15b3ccf082f0341e403fe6457cbf782f027a4e66f342207a943c54476",
+        ".sanka/extensions/sanka/python-to-golang/golang/database.go": "0e34e76219ccbaa4bf1350fbd1ef500033e8edd43a3db75604b68288af29ae59",
+        ".sanka/extensions/sanka/python-to-golang/golang/app.go": "62f295a8ff84fd82ecec275d79bba579ccef05a32c662d5dbb30abf7e01ceae1",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main.go": "1a3d9729436365d0d515d17f14bd46ce4ba0e19fc60c22828692a60518bf3cd7",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
+        ".sanka/extensions/sanka/python-to-golang/golang/migrations/00001_initial.sql": "385dfd72bced6fc1844bccf4d88d6c9b89324eea14f4bed653fe7b900288119b"
+      },
+      "plan_hash": "sha256:6f2961bf9f7eb0a243a292d5654b00573f0a5d067e6e84bf5c3117078d743109",
+      "test": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": false
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      },
+      "verify": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": true
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      }
+    },
+    "gin": {
+      "status": "passed_within_scope",
+      "candidate": {
+        "extension_id": "sanka/python-to-golang",
+        "extension_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+        "release_tag": "api-converters-v0.1.0a13",
+        "version": "0.1.0a13",
+        "wheel_sha256": "88f4ce68ae658aeae5ff5aea8efdb603901b424abbd3d5b6efabee84d1117ca8"
+      },
+      "stages": {
+        "scan": "success",
+        "plan": "success",
+        "apply": "success",
+        "test": "success",
+        "verify": "success"
+      },
+      "source_preserved": true,
+      "source_sha256": {
+        "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "models.py": "8fbf98456d0e7b22247b351020dd03851d2c22677e5debef700f3c5b74bd3693",
+        "requirements.txt": "e278169acb97db0a9c64913fddeb757aace9dd266d36fed7afe3e57266d44978",
+        "sanka-verify.json": "2d3c181e483326024d7b3a6abed9affe97521efd6062b63786cdf101348f1d3d",
+        "app.py": "8c2d4617a389a67873854ed3f9aae1c580de3b5c7c83b7b367a4b54a75cb5219",
+        "requirements.in": "3613e459f05b645e986d908d6b90f47af9555a51335eaf5bbbbab333f1612e9b"
+      },
+      "generated_sha256": {
+        ".sanka/extensions/sanka/python-to-golang/golang/models.go": "8887c354f6f335cc30d3eb7d81fb1ec767ae3f778a0cdaedea411b1aa48782c8",
+        ".sanka/extensions/sanka/python-to-golang/golang/sqlite.go": "3825c3e15b3ccf082f0341e403fe6457cbf782f027a4e66f342207a943c54476",
+        ".sanka/extensions/sanka/python-to-golang/golang/database.go": "0e34e76219ccbaa4bf1350fbd1ef500033e8edd43a3db75604b68288af29ae59",
+        ".sanka/extensions/sanka/python-to-golang/golang/app.go": "28070ed20c2a24d60aa4dfc1847a1cb23260b481e015e28298d9bedad236ecba",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/migrate/main.go": "b96e05b7fdf3630e1a8505c9a0dd1832f9c04484cdd7e3a940e0f2b714bcaa03",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main.go": "1a3d9729436365d0d515d17f14bd46ce4ba0e19fc60c22828692a60518bf3cd7",
+        ".sanka/extensions/sanka/python-to-golang/golang/cmd/api/main_test.go": "96abc1390955912f55481cfd6e49af2fe9ea1e32fda61e218b85fc9144ac9866",
+        ".sanka/extensions/sanka/python-to-golang/golang/migrations/00001_initial.sql": "385dfd72bced6fc1844bccf4d88d6c9b89324eea14f4bed653fe7b900288119b"
+      },
+      "plan_hash": "sha256:1579ef0b06eafddd77f3f9f43a15887e379cca6c07637c577dbcf480044cb64e",
+      "test": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": false
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      },
+      "verify": {
+        "ok": true,
+        "qualification": {
+          "candidate_executed": true,
+          "cutover_qualified": false,
+          "original_tests_executed": false,
+          "source_compared": true
+        },
+        "scenarios": {
+          "scenarios": [
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-1",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": true,
+                "enabled": false,
+                "name": "wrong"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-2",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 7,
+                "enabled": true,
+                "name": "alpha",
+                "note": null
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-3",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 0,
+                "enabled": false,
+                "note": ""
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-4",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {},
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-5",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "note": null
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-6",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "name": null
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-7",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "extra": 1
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-8",
+              "method": "PATCH",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-9",
+              "method": "PATCH",
+              "path": "/widgets/999"
+            },
+            {
+              "body": {
+                "name": "missing"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-10",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 9,
+                "enabled": false,
+                "name": "beta"
+              },
+              "expected_status": 200,
+              "headers": {},
+              "id": "widgets-11",
+              "method": "PUT",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": 1,
+                "enabled": true,
+                "name": "missing"
+              },
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-12",
+              "method": "PUT",
+              "path": "/widgets/999"
+            },
+            {
+              "expected_status": 204,
+              "headers": {},
+              "id": "widgets-13",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "expected_status": 404,
+              "headers": {},
+              "id": "widgets-14",
+              "method": "DELETE",
+              "path": "/widgets/1"
+            },
+            {
+              "body": {
+                "count": -2147483648,
+                "enabled": false,
+                "name": "next"
+              },
+              "expected_status": 201,
+              "headers": {},
+              "id": "widgets-15",
+              "method": "POST",
+              "path": "/widgets"
+            },
+            {
+              "body": {
+                "count": 2147483648,
+                "enabled": true,
+                "name": "overflow"
+              },
+              "expected_status": 400,
+              "headers": {},
+              "id": "widgets-16",
+              "method": "POST",
+              "path": "/widgets"
+            }
+          ],
+          "schema": "sanka.http-scenarios/v1"
+        }
+      }
+    }
+  }
+}
