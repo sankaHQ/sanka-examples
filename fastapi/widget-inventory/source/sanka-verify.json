@@ -1,0 +1,156 @@
+{
+  "schema": "sanka.http-scenarios/v1",
+  "scenarios": [
+    {
+      "id": "widgets-1",
+      "expected_status": 400,
+      "method": "POST",
+      "path": "/widgets",
+      "body": {
+        "name": "missing"
+      }
+    },
+    {
+      "id": "widgets-2",
+      "expected_status": 400,
+      "method": "POST",
+      "path": "/widgets",
+      "body": {
+        "name": "wrong",
+        "count": true,
+        "enabled": false
+      }
+    },
+    {
+      "id": "widgets-3",
+      "expected_status": 201,
+      "method": "POST",
+      "path": "/widgets",
+      "body": {
+        "name": "alpha",
+        "count": 7,
+        "enabled": true,
+        "note": null
+      }
+    },
+    {
+      "id": "widgets-4",
+      "expected_status": 200,
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "body": {
+        "count": 0,
+        "enabled": false,
+        "note": ""
+      }
+    },
+    {
+      "id": "widgets-5",
+      "expected_status": 200,
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "body": {}
+    },
+    {
+      "id": "widgets-6",
+      "expected_status": 200,
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "body": {
+        "note": null
+      }
+    },
+    {
+      "id": "widgets-7",
+      "expected_status": 400,
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "body": {
+        "name": null
+      }
+    },
+    {
+      "id": "widgets-8",
+      "expected_status": 400,
+      "method": "PATCH",
+      "path": "/widgets/1",
+      "body": {
+        "extra": 1
+      }
+    },
+    {
+      "id": "widgets-9",
+      "expected_status": 404,
+      "method": "PATCH",
+      "path": "/widgets/999",
+      "body": {
+        "count": 1
+      }
+    },
+    {
+      "id": "widgets-10",
+      "expected_status": 400,
+      "method": "PUT",
+      "path": "/widgets/1",
+      "body": {
+        "name": "missing"
+      }
+    },
+    {
+      "id": "widgets-11",
+      "expected_status": 200,
+      "method": "PUT",
+      "path": "/widgets/1",
+      "body": {
+        "name": "beta",
+        "count": 9,
+        "enabled": false
+      }
+    },
+    {
+      "id": "widgets-12",
+      "expected_status": 404,
+      "method": "PUT",
+      "path": "/widgets/999",
+      "body": {
+        "name": "missing",
+        "count": 1,
+        "enabled": true
+      }
+    },
+    {
+      "id": "widgets-13",
+      "expected_status": 204,
+      "method": "DELETE",
+      "path": "/widgets/1"
+    },
+    {
+      "id": "widgets-14",
+      "expected_status": 404,
+      "method": "DELETE",
+      "path": "/widgets/1"
+    },
+    {
+      "id": "widgets-15",
+      "expected_status": 201,
+      "method": "POST",
+      "path": "/widgets",
+      "body": {
+        "name": "next",
+        "count": -2147483648,
+        "enabled": false
+      }
+    },
+    {
+      "id": "widgets-16",
+      "expected_status": 400,
+      "method": "POST",
+      "path": "/widgets",
+      "body": {
+        "name": "overflow",
+        "count": 2147483648,
+        "enabled": true
+      }
+    }
+  ]
+}

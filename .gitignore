@@ -11,3 +11,5 @@ node_modules/
 .build/
 target/
 .sanka-*.json
+
+fastapi/widget-inventory/source/*.sqlite3*

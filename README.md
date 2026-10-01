@@ -57,6 +57,7 @@ needed for the offline walkthrough.
 | [django/blog-posts](django/blog-posts/) | Django + DRF | Foreign key to `AUTH_USER_MODEL`, seeded users |
 | [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Exact runnable project used by the Django-to-FastAPI migration guide |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
+| [fastapi/widget-inventory](fastapi/widget-inventory/) | FastAPI + SQLAlchemy | SQLite write/validation example; 16 ordered scenarios, no container setup |
 
 ## Experimental migration walkthroughs
 

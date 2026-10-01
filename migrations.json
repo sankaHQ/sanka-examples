@@ -143,6 +143,78 @@
       "evidence": "evidence.json",
       "candidate_revision": "826005294a616ae52bd166ee534a5b66513328b3",
       "release_tag": "mobile-converters-v0.1.0a1"
+    },
+    {
+      "id": "fastapi/widget-inventory",
+      "status": "checked-in",
+      "source": {
+        "language": "python",
+        "framework": "fastapi",
+        "path": "source"
+      },
+      "destinations": [
+        {
+          "language": "go",
+          "framework": "fiber",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+          "release_status": "experimental-published",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "release_tag": "api-converters-v0.1.0a13"
+        },
+        {
+          "language": "go",
+          "framework": "chi",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+          "release_status": "experimental-published",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "release_tag": "api-converters-v0.1.0a13"
+        },
+        {
+          "language": "go",
+          "framework": "mux",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+          "release_status": "experimental-published",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "release_tag": "api-converters-v0.1.0a13"
+        },
+        {
+          "language": "go",
+          "framework": "gin",
+          "extension_id": "sanka/python-to-golang",
+          "candidate_revision": "273175bb3778f8355f2590ceedde0eb72863f113",
+          "release_status": "experimental-published",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
+          "release_tag": "api-converters-v0.1.0a13"
+        }
+      ],
+      "evidence": "evidence.json"
     }
   ],
   "planned": [],
