@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "sanka-gadget-example-only"
@@ -21,6 +22,18 @@ DATABASES = {
         "NAME": os.environ.get("SANKA_TEST_DB", str(BASE_DIR / "db.sqlite3")),
     }
 }
+if os.environ.get("SANKA_TEST_DB", "").startswith(("postgresql://", "postgres://")):
+    database = urlsplit(os.environ["SANKA_TEST_DB"])
+    if not database.hostname or not database.username or not database.path.strip("/"):
+        raise ValueError("SANKA_TEST_DB must include a PostgreSQL host, user and database")
+    DATABASES["default"] = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": unquote(database.path[1:]),
+        "USER": unquote(database.username),
+        "PASSWORD": unquote(database.password or ""),
+        "HOST": database.hostname,
+        "PORT": database.port or 5432,
+    }
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 USE_TZ = True
 TIME_ZONE = "UTC"
