@@ -1,5 +1,9 @@
 # Flask status API → Go / Fiber
 
+For the current public guide setup and database scope, see
+[Python migration guide examples](../../PYTHON_MIGRATIONS.md). The acceptance
+evidence below records its original pinned release; it is not a new release claim.
+
 A runnable synthetic Python application with two public, literal JSON GET routes.
 The experimental, published `sanka/python-to-golang` extension generates the Fiber
 application under ignored `.sanka/` artifacts. There is no hand-maintained Go

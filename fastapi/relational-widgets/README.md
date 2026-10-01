@@ -1,5 +1,9 @@
 # FastAPI relational widgets to Go
 
+For the current public guide setup and database scope, see
+[Python migration guide examples](../../PYTHON_MIGRATIONS.md). The acceptance
+evidence below records its original pinned release; it is not a new release claim.
+
 This synthetic FastAPI app has parent and widget tables, a foreign key, a
 non-unique index, and three linear Alembic revisions. The third adds a required
 boolean column with a static default and a nullable text column to existing

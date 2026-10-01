@@ -1,0 +1,15 @@
+[
+  {"id": "create", "method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}, "expected_source_status": 201},
+  {"id": "list", "method": "GET", "path": "/api/gadgets/", "expected_source_status": 200,
+   "setup": [{"method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}}]},
+  {"id": "detail", "method": "GET", "path": "/api/gadgets/1/", "expected_source_status": 200,
+   "setup": [{"method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}}]},
+  {"id": "edit", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": 3}, "expected_source_status": 200,
+   "setup": [{"method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}}]},
+  {"id": "invalid", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": -1}, "expected_source_status": 400,
+   "setup": [{"method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}}]},
+  {"id": "delete", "method": "DELETE", "path": "/api/gadgets/1/", "expected_source_status": 204,
+   "setup": [{"method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}}]},
+  {"id": "missing", "method": "GET", "path": "/api/gadgets/999/", "expected_source_status": 404},
+  {"id": "browser", "method": "GET", "path": "/api/gadgets/", "headers": {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}, "expected_source_status": 200}
+]

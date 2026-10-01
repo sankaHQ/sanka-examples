@@ -1,0 +1,14 @@
+{
+  "schema": "sanka.http-scenarios/v1",
+  "scenarios": [
+    {"id": "empty", "method": "GET", "path": "/api/gadgets/", "expected_status": 200},
+    {"id": "create", "method": "POST", "path": "/api/gadgets/", "body": {"name": "guide", "quantity": 2, "notes": ""}, "expected_status": 201},
+    {"id": "detail", "method": "GET", "path": "/api/gadgets/1/", "expected_status": 200},
+    {"id": "invalid", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": -1}, "expected_status": 400},
+    {"id": "edit", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": 3}, "expected_status": 200},
+    {"id": "list", "method": "GET", "path": "/api/gadgets/", "expected_status": 200},
+    {"id": "browser", "method": "GET", "path": "/api/gadgets/", "headers": {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}, "expected_status": 200},
+    {"id": "delete", "method": "DELETE", "path": "/api/gadgets/1/", "expected_status": 204},
+    {"id": "missing", "method": "GET", "path": "/api/gadgets/1/", "expected_status": 404}
+  ]
+}
