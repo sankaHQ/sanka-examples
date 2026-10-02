@@ -12,7 +12,7 @@ Install the published CLI separately from the application environment. No extra
 marketplace alias is required; existing project locks are not automatically repinned.
 
 ```bash
-uv tool install sanka-cli==0.3.4
+uv tool install sanka-cli==0.3.6
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -r requirements.txt
 unset SANKA_TEST_DB
@@ -81,28 +81,38 @@ fix also remains an unpublished candidate.
 
 ## DRF to Go
 
-`sanka-verify.json` contains nine ordered HTTP scenarios for Go; its format
-differs from the independent DRF replay file above. Public Go a12 targets
-PostgreSQL. SQLite targets are an unreleased candidate, not a public feature.
+`sanka-verify.json` contains 13 ordered HTTP scenarios for Go, covering all six
+endpoint methods, including full PUT replacement, required-field validation and
+a missing-record update. GET after PUT checks the persisted replacement. Its
+format differs from the independent DRF replay file above.
+
+Public CLI 0.3.6 and Go extension a14 detect the DRF project and SQLite source.
+The default SQLite target needs no Docker, Podman or database URL. Test and
+Verify use isolated disposable SQLite databases and preserve the example data.
 
 ```bash
 sanka extension add sanka/python-to-golang
 export SANKA_GO_SOURCE_PYTHON="$PWD/.venv/bin/python"
-sanka scan . --extension-config '{"source_framework":"drf","source_file":"crud_config/urls.py","models_file":"inventory/models.py","database_layer":"pgx"}' \
-  --extension-env SANKA_GO_SOURCE_PYTHON --extension-env SANKA_GO_TARGET_TEST_DATABASE_URL
-sanka plan . --to fiber --all-endpoints \
-  --extension-config '{"source_framework":"drf","source_file":"crud_config/urls.py","models_file":"inventory/models.py","database_layer":"pgx"}' \
-  --extension-env SANKA_GO_SOURCE_PYTHON --extension-env SANKA_GO_TARGET_TEST_DATABASE_URL
-sanka apply --root . --plan-hash '<reviewed-plan-hash>'
-sanka test . --extension-env SANKA_GO_TARGET_TEST_DATABASE_URL
-sanka verify . \
-  --extension-env SANKA_GO_SOURCE_PYTHON \
-  --extension-env SANKA_GO_TARGET_TEST_DATABASE_URL
+sanka scan . --extension-env SANKA_GO_SOURCE_PYTHON
+sanka plan . --to fiber --all-endpoints --extension-env SANKA_GO_SOURCE_PYTHON
 ```
 
-Use `chi`, `mux` or `gin` instead of `fiber` for another router. The target URL
-must point to a disposable PostgreSQL database. This DRF-to-Go path uses the default SQLite source profile;
-the FastAPI relational-widgets example qualifies PostgreSQL-to-PostgreSQL.
+Review the generated files, endpoint scope and plan hash, then:
+
+```bash
+sanka apply --root . --plan-hash '<reviewed-plan-hash>' --extension-env SANKA_GO_SOURCE_PYTHON
+sanka test . --extension-env SANKA_GO_SOURCE_PYTHON
+sanka verify . --extension-env SANKA_GO_SOURCE_PYTHON
+```
+
+Use `chi`, `mux` or `gin` instead of `fiber` for another router. To also run the
+original Django tests during Verify:
+
+```bash
+export SANKA_GO_RUN_ORIGINAL_TESTS=1
+sanka verify . --extension-env SANKA_GO_SOURCE_PYTHON \
+  --extension-env SANKA_GO_RUN_ORIGINAL_TESTS
+```
 
 ## CLI, AI Agent and TUI
 

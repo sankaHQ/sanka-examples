@@ -6,9 +6,13 @@
     {"id": "detail", "method": "GET", "path": "/api/gadgets/1/", "expected_status": 200},
     {"id": "invalid", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": -1}, "expected_status": 400},
     {"id": "edit", "method": "PATCH", "path": "/api/gadgets/1/", "body": {"quantity": 3}, "expected_status": 200},
+    {"id": "replace-required", "method": "PUT", "path": "/api/gadgets/1/", "body": {"name": "incomplete"}, "expected_status": 400},
+    {"id": "replace", "method": "PUT", "path": "/api/gadgets/1/", "body": {"name": "Replaced gadget", "quantity": 5, "notes": "full replacement"}, "expected_status": 200},
+    {"id": "replacement-detail", "method": "GET", "path": "/api/gadgets/1/", "expected_status": 200},
     {"id": "list", "method": "GET", "path": "/api/gadgets/", "expected_status": 200},
     {"id": "browser", "method": "GET", "path": "/api/gadgets/", "headers": {"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}, "expected_status": 200},
     {"id": "delete", "method": "DELETE", "path": "/api/gadgets/1/", "expected_status": 204},
+    {"id": "replace-missing", "method": "PUT", "path": "/api/gadgets/1/", "body": {"name": "Missing gadget", "quantity": 1}, "expected_status": 404},
     {"id": "missing", "method": "GET", "path": "/api/gadgets/1/", "expected_status": 404}
   ]
 }
