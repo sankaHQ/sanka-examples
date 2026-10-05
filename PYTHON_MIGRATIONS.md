@@ -1,19 +1,33 @@
 # Python migration guide examples
 
-Use a disposable checkout with published CLI 0.3.4. The official marketplace is
+Use a disposable clone of `main` with published CLI 0.3.8. No commit checkout
+is required for the public walkthroughs. The official marketplace is
 available by default: `sanka extension add sanka/python-to-golang` does not need
 a `release` alias. Existing locks preserve their selected revision.
 
 | Source | Example | Database |
 | --- | --- | --- |
 | Django / DRF | [Gadget inventory](django/gadget-inventory/README.md) | SQLite by default; PostgreSQL through `SANKA_TEST_DB` |
-| FastAPI | [Relational widgets](fastapi/relational-widgets/README.md) | PostgreSQL with three Alembic revisions |
+| FastAPI | [Widget inventory](fastapi/widget-inventory/README.md) | SQLite by default; no container setup |
 | Flask | [Status API](flask/status-api/README.md) | No persistence; HTTP example |
 
-The Flask status example is not a database transfer test. Public Go a12 targets
-PostgreSQL. Go SQLite-to-SQLite support is an unreleased candidate in
-[Extensions #154](https://github.com/sankaHQ/extensions/pull/154).
-SQLite-to-PostgreSQL and PostgreSQL-to-PostgreSQL are separate acceptance paths.
+The Flask status example is not a database transfer test. Public Go a16 supports
+SQLite → SQLite, SQLite → PostgreSQL and PostgreSQL → PostgreSQL.
+PostgreSQL → SQLite is not supported. The default Django and FastAPI guides use
+SQLite, so Docker and Podman are not needed. The separate
+[relational widgets](fastapi/relational-widgets/README.md) example exercises
+PostgreSQL with three Alembic revisions.
+
+Follow one complete public guide, including its configuration and isolated Test
+and Verify databases:
+
+- [Python → Go](https://sanka.com/docs/developers/migrate/python-to-go/)
+- [DRF → FastAPI](https://sanka.com/docs/developers/migrate/django-to-fastapi/)
+- [DRF → Flask](https://sanka.com/docs/developers/migrate/django-to-flask/)
+
+These guides include expected command output. Review your own Plan hash and
+`.sanka/plan.json` before Apply; hashes and report filenames vary. Historical
+`evidence.json` files retain the versions actually used for their recorded runs.
 
 ## Disposable PostgreSQL: Docker or Podman
 
@@ -57,11 +71,12 @@ SANKA_TEST_DB="$SANKA_DATABASE_URL" .venv/bin/python manage.py migrate
 ```
 
 Forward `SANKA_TEST_DB` on Scan and Plan so capture sees PostgreSQL. For FastAPI
-or Flask, use these settings before reviewing the plan hash:
+or Flask, set `TARGET=fastapi` or `TARGET=flask` and use these settings before
+reviewing the plan hash:
 
 ```bash
 sanka scan . --extension-env SANKA_TEST_DB
-sanka plan . --to "$TARGET" --strategy native --generation minimal \
+sanka plan . --to "python-$TARGET" --strategy native --generation minimal \
   --package-manager uv --output ".sanka/output/$TARGET" --all-endpoints \
   --extension-config '{"settings_module":"crud_config.settings","db_env":"SANKA_TEST_DB","database_backend":"postgresql","postgres_admin_dsn_env":"SANKA_REPLAY_POSTGRES_ADMIN_DSN"}' \
   --extension-env SANKA_TEST_DB --extension-env SANKA_REPLAY_POSTGRES_ADMIN_DSN

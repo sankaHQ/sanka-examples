@@ -13,6 +13,10 @@ commit; unpublished candidates use immutable candidate installation instead.
 
 ## Published Django quickstart
 
+A normal clone uses `main`; no commit checkout or detached HEAD is needed.
+Use the [Python migration guides](PYTHON_MIGRATIONS.md) for the current public
+CLI and source-specific walkthroughs.
+
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first,
 then use separate CLI and application environments with Python 3.12:
 
@@ -25,7 +29,7 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 sanka extension add sanka/drf-to-fastapi
 sanka scan .
-sanka plan . --to fastapi --generation minimal \
+sanka plan . --to python-fastapi --generation minimal \
   --output .sanka/output/fastapi --strategy native --package-manager uv
 ```
 
@@ -55,7 +59,7 @@ needed for the offline walkthrough.
 | --- | --- | --- |
 | [django/order-tracker](django/order-tracker/) | Django + DRF | Two related models (FK + `related_name`), unique constraint, choices, decimals — the recommended starting point |
 | [django/blog-posts](django/blog-posts/) | Django + DRF | Foreign key to `AUTH_USER_MODEL`, seeded users |
-| [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Exact runnable project used by the Django-to-FastAPI migration guide |
+| [django/gadget-inventory](django/gadget-inventory/) | Django + DRF | Shared project for the DRF-to-FastAPI, DRF-to-Flask and Python-to-Go guides |
 | [django/widget-inventory](django/widget-inventory/) | Django + DRF | Smallest possible app: one model, full CRUD |
 | [fastapi/widget-inventory](fastapi/widget-inventory/) | FastAPI + SQLAlchemy | SQLite write/validation example; 16 ordered scenarios, no container setup |
 
