@@ -29,7 +29,7 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 sanka extension add sanka/drf-to-fastapi
 sanka scan .
-sanka plan . --to fastapi --generation minimal \
+sanka plan . --to python-fastapi --generation minimal \
   --output .sanka/output/fastapi --strategy native --package-manager uv
 ```
 

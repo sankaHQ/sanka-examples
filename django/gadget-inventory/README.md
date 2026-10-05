@@ -12,7 +12,7 @@ Install the published CLI separately from the application environment. No extra
 marketplace alias is required; existing project locks are not automatically repinned.
 
 ```bash
-uv tool install --upgrade --python 3.12 'sanka-cli==0.3.7'
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.8'
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -r requirements.txt
 unset SANKA_TEST_DB
@@ -30,7 +30,7 @@ Choose `TARGET=fastapi` or `TARGET=flask` once:
 TARGET=fastapi
 sanka extension add "sanka/drf-to-$TARGET"
 sanka scan .
-sanka plan . --to "$TARGET" --strategy native --generation minimal \
+sanka plan . --to "python-$TARGET" --strategy native --generation minimal \
   --package-manager uv --output ".sanka/output/$TARGET" --all-endpoints \
   --extension-config '{"settings_module":"crud_config.settings","db_env":"SANKA_TEST_DB","database_backend":"sqlite"}'
 ```
@@ -87,7 +87,7 @@ endpoint methods, including full PUT replacement, required-field validation and
 a missing-record update. GET after PUT checks the persisted replacement. Its
 format differs from the independent DRF replay file above.
 
-Public CLI 0.3.7 and Go extension a15 detect the DRF project and SQLite source.
+Public CLI 0.3.8 and Go extension a16 detect the DRF project and SQLite source.
 The default SQLite target needs no Docker, Podman or database URL. Test and
 Verify use isolated disposable SQLite databases and preserve the example data.
 
@@ -95,7 +95,7 @@ Verify use isolated disposable SQLite databases and preserve the example data.
 sanka extension add sanka/python-to-golang
 export SANKA_GO_SOURCE_PYTHON="$PWD/.venv/bin/python"
 sanka scan . --extension-env SANKA_GO_SOURCE_PYTHON
-sanka plan . --to fiber --all-endpoints --extension-env SANKA_GO_SOURCE_PYTHON
+sanka plan . --to go-fiber --all-endpoints --extension-env SANKA_GO_SOURCE_PYTHON
 ```
 
 Review the generated files, endpoint scope and plan hash, then:
@@ -106,8 +106,8 @@ sanka test . --extension-env SANKA_GO_SOURCE_PYTHON
 sanka verify . --extension-env SANKA_GO_SOURCE_PYTHON
 ```
 
-Use `chi`, `mux` or `gin` instead of `fiber` for another router. To also run the
-original Django tests during Verify:
+Use `go-chi`, `go-mux` or `go-gin` instead of `go-fiber` for another router.
+To also run the original Django tests during Verify:
 
 ```bash
 export SANKA_GO_RUN_ORIGINAL_TESTS=1
