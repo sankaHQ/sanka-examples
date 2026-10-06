@@ -1,6 +1,6 @@
 # Python migration guide examples
 
-Use a disposable clone of `main` with published CLI 0.3.8. No commit checkout
+Use a disposable clone of `main` with published CLI 0.3.9. No commit checkout
 is required for the public walkthroughs. The official marketplace is
 available by default: `sanka extension add sanka/python-to-golang` does not need
 a `release` alias. Existing locks preserve their selected revision.
@@ -11,7 +11,7 @@ a `release` alias. Existing locks preserve their selected revision.
 | FastAPI | [Widget inventory](fastapi/widget-inventory/README.md) | SQLite by default; no container setup |
 | Flask | [Status API](flask/status-api/README.md) | No persistence; HTTP example |
 
-The Flask status example is not a database transfer test. Public Go a16 supports
+The Flask status example is not a database transfer test. Public Go a17 supports
 SQLite → SQLite, SQLite → PostgreSQL and PostgreSQL → PostgreSQL.
 PostgreSQL → SQLite is not supported. The default Django and FastAPI guides use
 SQLite, so Docker and Podman are not needed. The separate
@@ -28,6 +28,22 @@ and Verify databases:
 These guides include expected command output. Review your own Plan hash and
 `.sanka/plan.json` before Apply; hashes and report filenames vary. Historical
 `evidence.json` files retain the versions actually used for their recorded runs.
+
+## Install or upgrade Sanka
+
+```bash
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.9'
+sanka --version
+sanka extension marketplace list
+sanka extension marketplace upgrade official
+```
+
+Run the target example's `sanka extension add` command after refreshing. Refreshing
+keeps existing project locks; explicit installation selects the current extension.
+Python-to-Go `0.1.0a17` writes a README into the generated Go project with commands
+for its selected router and database. An exported `SANKA_GO_SOURCE_PYTHON` is
+forwarded automatically by CLI 0.3.9; other fixture variables still need explicit
+`--extension-env` flags.
 
 ## Disposable PostgreSQL: Docker or Podman
 

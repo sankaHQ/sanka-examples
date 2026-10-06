@@ -13,6 +13,24 @@ This example is original synthetic Sanka example code, licensed under Apache-2.0
 ([license](source/LICENSE)). It contains no customer data, credentials, databases,
 or model calls. Dependency packages retain their respective licenses.
 
+## Current guide
+
+Use CLI 0.3.9 with Go `0.1.0a17` from the official catalog. Follow the
+[complete public guide](https://sanka.com/docs/developers/migrate/python-to-go/?framework=flask&guide=cli) for source setup, Plan configuration,
+reviewed Apply and the supported Test/Verify scope:
+
+```bash
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.9'
+cd source
+sanka extension marketplace list
+sanka extension marketplace upgrade official
+sanka extension add sanka/python-to-golang
+```
+
+The acceptance commands below retain their historical versions and immutable
+pins to reproduce the checked-in evidence. They are separate from the current
+guide; no extra marketplace alias is needed for a new installation.
+
 ## Source application
 
 Use Python 3.12 and `uv`. From the repository root:
@@ -48,7 +66,7 @@ The generated destination must return the same statuses, media types and parsed
 JSON bodies. JSON whitespace, property order and optional Content-Type parameters
 are not compared. [expected.json](expected.json) is the executable contract.
 
-## Published converter
+## Historical pinned converter
 
 This extension is **experimental** and published as the scoped GitHub prerelease
 [`api-converters-v0.1.0a1`](https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1)
