@@ -12,10 +12,12 @@ Install the published CLI separately from the application environment. No extra
 marketplace alias is required; existing project locks are not automatically repinned.
 
 ```bash
-uv tool install --upgrade --python 3.12 'sanka-cli==0.3.8'
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.9'
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -r requirements.txt
 unset SANKA_TEST_DB
+sanka extension marketplace list
+sanka extension marketplace upgrade official
 ```
 
 For PostgreSQL, select the checked-in settings template, set `SANKA_TEST_DB`
@@ -76,7 +78,7 @@ The public [DRF → FastAPI guide](https://sanka.com/docs/developers/migrate/dja
 and [DRF → Flask guide](https://sanka.com/docs/developers/migrate/django-to-flask/)
 include the target-specific configuration, isolated database setup and expected
 output. Both SQLite walkthroughs passed all eight replay cases with public CLI
-0.3.7, FastAPI a21 and Flask a15. Keep every supplied scenario: passing generated
+0.3.9, FastAPI a21 and Flask a15. Keep every supplied scenario: passing generated
 tests alone is not parity evidence, and these cases do not cover every
 application behavior.
 
@@ -87,23 +89,23 @@ endpoint methods, including full PUT replacement, required-field validation and
 a missing-record update. GET after PUT checks the persisted replacement. Its
 format differs from the independent DRF replay file above.
 
-Public CLI 0.3.8 and Go extension a16 detect the DRF project and SQLite source.
+Public CLI 0.3.9 and Go extension a17 detect the DRF project and SQLite source.
 The default SQLite target needs no Docker, Podman or database URL. Test and
 Verify use isolated disposable SQLite databases and preserve the example data.
 
 ```bash
 sanka extension add sanka/python-to-golang
 export SANKA_GO_SOURCE_PYTHON="$PWD/.venv/bin/python"
-sanka scan . --extension-env SANKA_GO_SOURCE_PYTHON
-sanka plan . --to go-fiber --all-endpoints --extension-env SANKA_GO_SOURCE_PYTHON
+sanka scan .
+sanka plan . --to go-fiber --all-endpoints
 ```
 
 Review the generated files, endpoint scope and plan hash, then:
 
 ```bash
-sanka apply --root . --plan-hash '<reviewed-plan-hash>' --extension-env SANKA_GO_SOURCE_PYTHON
-sanka test . --extension-env SANKA_GO_SOURCE_PYTHON
-sanka verify . --extension-env SANKA_GO_SOURCE_PYTHON
+sanka apply --root . --plan-hash '<reviewed-plan-hash>'
+sanka test .
+sanka verify .
 ```
 
 Use `go-chi`, `go-mux` or `go-gin` instead of `go-fiber` for another router.
@@ -111,8 +113,7 @@ To also run the original Django tests during Verify:
 
 ```bash
 export SANKA_GO_RUN_ORIGINAL_TESTS=1
-sanka verify . --extension-env SANKA_GO_SOURCE_PYTHON \
-  --extension-env SANKA_GO_RUN_ORIGINAL_TESTS
+sanka verify . --extension-env SANKA_GO_RUN_ORIGINAL_TESTS
 ```
 
 ## CLI, AI Agent and TUI

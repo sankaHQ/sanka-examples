@@ -21,12 +21,14 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first,
 then use separate CLI and application environments with Python 3.12:
 
 ```bash
-uv tool install --python 3.12 sanka-cli
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.9'
 git clone https://github.com/sankaHQ/sanka-examples
 cd sanka-examples/django/order-tracker
 uv venv --python 3.12 .venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
+sanka extension marketplace list
+sanka extension marketplace upgrade official
 sanka extension add sanka/drf-to-fastapi
 sanka scan .
 sanka plan . --to python-fastapi --generation minimal \
@@ -65,8 +67,11 @@ needed for the offline walkthrough.
 
 ## Experimental migration walkthroughs
 
-These are synthetic runnable sources. Each guide pins its converter commit and
-records what passed. Generated applications are ignored `.sanka/` artifacts.
+These are synthetic runnable sources. Current walkthroughs use CLI 0.3.9 and the
+official catalog, including Go
+`0.1.0a17`. The table below records historical pinned acceptance; its versions
+match the checked-in evidence rather than the latest installation instructions.
+Generated applications are ignored `.sanka/` artifacts.
 
 | Source example | Source | Destination | Verified migration scope |
 | --- | --- | --- | --- |

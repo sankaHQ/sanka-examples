@@ -52,7 +52,33 @@ remain separate checks. This change does not change the runtime publication gate
 or its fixture pin. Candidate extension publication and human PR approval remain
 separate from example acceptance.
 
-## Published installation
+## Current walkthroughs
+
+Use CLI 0.3.9 and the official catalog for new walkthroughs. See
+[Python migration guide examples](PYTHON_MIGRATIONS.md) for installation, catalog
+refresh and Go `0.1.0a17` setup. Rust and mobile package versions are independent
+of the API bundle version. Use the same CLI installation for their current guides:
+
+- [TypeScript → Rust](https://sanka.com/docs/developers/migrate/typescript-to-rust/): Rust `0.1.0a3` in API bundle a17.
+- [React Native → SwiftUI](https://sanka.com/docs/developers/migrate/react-native-to-swiftui/): mobile `0.1.0a1`, with macOS structural comparison.
+- [React Native → Compose](https://sanka.com/docs/developers/migrate/react-native-to-compose/): mobile `0.1.0a1`, Scan and Plan only.
+
+```bash
+uv tool install --upgrade --python 3.12 'sanka-cli==0.3.9'
+sanka extension marketplace list
+sanka extension marketplace upgrade official
+# Run the appropriate installation command in the source example directory:
+sanka extension add sanka/typescript-to-rust
+# or:
+sanka extension add sanka/react-native-to-native
+```
+
+The Express and React Native example READMEs are hashed acceptance inputs. Their
+recorded setup remains unchanged; use the current guides above for a new run.
+The pinned harness below reproduces historical evidence and intentionally keeps
+its recorded CLI, SDK and converter versions.
+
+## Historical pinned installation
 
 `scripts/candidate.py` also provides `Published`, the consumer for converters that
 are catalogued at an immutable public commit and attached to a GitHub release. It

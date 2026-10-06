@@ -31,11 +31,11 @@ checked-in target application.
 Apache-2.0. This is a synthetic Sanka example adapted from the converter's
 existing qualified SQLite write fixture.
 
-Published Go a13 acceptance passed Scan, Plan, Apply, Test and Verify on Fiber,
+Historical Go a13 acceptance passed Scan, Plan, Apply, Test and Verify on Fiber,
 chi, mux and Gin with public CLI 0.3.4. See [evidence.json](evidence.json) for
 exact identities, source and generated hashes, and bounded comparison scope.
 
-To repeat the public installed-converter check (downloads dependencies):
+To repeat that historical public installed-converter check (downloads dependencies):
 
 ```bash
 python3 accept_migration.py --router fiber --report .sanka/acceptance.json
