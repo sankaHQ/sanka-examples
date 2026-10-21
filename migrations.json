@@ -233,6 +233,32 @@
         }
       ],
       "evidence": "evidence.json"
+    },
+    {
+      "id": "java/spring-greetings",
+      "source": {
+        "language": "java",
+        "framework": "spring-boot",
+        "path": "source"
+      },
+      "destinations": [
+        {
+          "language": "python",
+          "framework": "fastapi",
+          "extension_id": "sanka/java-to-python",
+          "candidate_revision": "8bc904668ef152c22c57db657b5aecab49c3fdf3",
+          "release_status": "experimental-unpublished",
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ]
+        }
+      ],
+      "status": "checked-in",
+      "evidence": "evidence.json"
     }
   ],
   "planned": [],
