@@ -19,7 +19,7 @@ is not a security patch or a production cutover.
 
 Use PHP 8.4.27 with PDO MySQL/SQLite and mbstring, Laravel 12.70.1, Python 3.12.13,
 Go 1.27.0 and MySQL 8.4.11. Build the reviewed extensions revision with
-`uv run python scripts/build_php_release.py`. Its shared PHP wheel contains
+`uv run python scripts/build_php_release.py` from a clean committed checkout. Its shared PHP wheel contains
 Composer, Python and Go dependency locks. Install those dependencies before
 starting isolated replay, with Composer scripts and plugins disabled.
 
@@ -39,9 +39,11 @@ python3 php/check.py --bundle /absolute/path/to/release/php-converters \
 ```
 
 The harness installs a fresh published CLI and the exact candidate wheel closure
-through a temporary HTTPS marketplace. It checks every wheel digest, copies each
+through a temporary HTTPS marketplace. It binds the requested revision to the
+bundle's build provenance and checks every manifest and wheel digest. It copies each
 source, runs Scan → Plan → Apply → Test → Verify for both targets, and checks source
-preservation. Reports remain in `php/.sanka/evidence/`; an absent report is not a pass.
+preservation. Every stage must explicitly report success before a passing receipt
+is written. Reports remain in `php/.sanka/evidence/`; an absent report is not a pass.
 No generated target is maintained by hand. A candidate response is deliberately
 changed in the extension's Linux gate to prove Verify can fail.
 

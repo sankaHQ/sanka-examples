@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    paths: ["php/**", "scripts/candidate.py", ".github/workflows/php-examples.yml"]
+    paths: ["php/**", "scripts/candidate.py", "scripts/test_php_candidate.py", ".github/workflows/php-examples.yml"]
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: sankaHQ/extensions
-          ref: 43de68d1e2c4619ddd117c5b3115923e7f377c83
+          ref: 73623f4554a7681f2f0db43dcf56c26119cacc18
           path: .candidate/extensions
           persist-credentials: false
       - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
@@ -86,7 +86,9 @@ jobs:
         env:
           SANKA_PHP_REPLAY: "1"
           SANKA_PHP_MYSQL_ADMIN_URL: mysql://root:sanka-fixture-admin@127.0.0.1:3306/sanka_php_admin
-        run: python3 php/check.py --bundle .candidate/extensions/release/php-converters --revision 43de68d1e2c4619ddd117c5b3115923e7f377c83
+        run: python3 php/check.py --bundle .candidate/extensions/release/php-converters --revision 73623f4554a7681f2f0db43dcf56c26119cacc18
+      - name: Check candidate acceptance guards
+        run: python3 -m unittest discover -s scripts -p 'test_php_candidate.py'
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         if: always()
         with:

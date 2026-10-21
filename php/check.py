@@ -25,10 +25,33 @@ class PhpCandidate(Candidate):
     def __init__(self, source: Path, extension: str, target: str, bundle: Path, revision: str):
         super().__init__(source, extension, [], [target], "sanka-php.json", revision, "0.3.9")
         self.bundle = bundle.resolve(strict=True)
+        provenance = self.bundle / "build-provenance.json"
+        if not provenance.is_file() or provenance.is_symlink():
+            raise ValueError("Candidate bundle lacks build provenance")
+        record = json.loads(provenance.read_text())
+        if record.get("schema") != "sanka.php-candidate-build/v1" or record.get("revision") != revision:
+            raise ValueError("Candidate bundle was not built from the requested revision")
+        self.artifacts = record.get("artifacts")
+        if not isinstance(self.artifacts, dict) or not self.artifacts:
+            raise ValueError("Candidate build provenance lacks artifact digests")
+        for name, expected in self.artifacts.items():
+            path = self.bundle / name
+            if Path(name).name != name or path.is_symlink() or not path.is_file() or sha(path) != expected:
+                raise ValueError("Candidate artifact differs from its recorded build")
+        self.report["build_provenance_sha256"] = sha(provenance)
+
+    def cli(self, *args: str) -> dict:
+        result = super().cli(*args)
+        if result.get("outcome") != "success":
+            raise RuntimeError(f"CLI stage did not succeed: {args[0]} ({result.get('outcome')})")
+        return result
 
     def _setup(self):
         self._prepare_workspace()
-        manifest = json.loads((self.bundle / f"sanka-extension-{self.extension}.json").read_text())
+        manifest_path = self.bundle / f"sanka-extension-{self.extension}.json"
+        if self.artifacts.get(manifest_path.name) != sha(manifest_path):
+            raise ValueError("Candidate manifest is not bound to its recorded build")
+        manifest = json.loads(manifest_path.read_text())
         if manifest["id"] != "sanka/" + self.extension or manifest["version"] != "0.1.0a1":
             raise ValueError("Candidate identity differs from the requested PHP extension")
         wheels = self.root / "wheels"
@@ -38,7 +61,7 @@ class PhpCandidate(Candidate):
             if Path(name).name != name or not name.endswith(".whl"):
                 raise ValueError("Invalid candidate wheel path")
             path = self.bundle / name
-            if path.is_symlink() or sha(path) != entry["sha256"]:
+            if path.is_symlink() or sha(path) != entry["sha256"] or self.artifacts.get(name) != entry["sha256"]:
                 raise ValueError("Candidate wheel checksum mismatch")
             shutil.copyfile(path, wheels / name)
         self.report["wheels"] = {p.name: sha(p) for p in sorted(wheels.glob("*.whl"))}
