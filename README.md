@@ -55,6 +55,13 @@ specification, isolated CLI acceptance, and offline compatibility tests. Live
 model quality and economics are separate, unverified gates. No provider keys are
 needed for the offline walkthrough.
 
+## PHP migration candidates
+
+[PHP to FastAPI and Go](php/) contains explicit custom-PHP and Laravel route
+closure examples, a CLI acceptance harness and pinned real-world GitHub
+assessments. These packages are unpublished candidates; see each report for
+the verified scope.
+
 ## Apps
 
 | App | Framework | What it exercises |

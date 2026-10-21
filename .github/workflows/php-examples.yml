@@ -1,0 +1,98 @@
+name: PHP CLI examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths: ["php/**", "scripts/candidate.py", "scripts/test_php_candidate.py", ".github/workflows/php-examples.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      mysql:
+        image: mysql:8.4.11@sha256:0f51e63e537a1f176423fa03ef559aabe6fa4372a53160a44bc7e75da7d15364
+        env:
+          MYSQL_ROOT_PASSWORD: sanka-fixture-admin
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_DATABASE: sanka_php_admin
+        ports: ["3306:3306"]
+        options: >-
+          --health-cmd "mysqladmin ping -psanka-fixture-admin"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: sankaHQ/extensions
+          ref: 73623f4554a7681f2f0db43dcf56c26119cacc18
+          path: .candidate/extensions
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          version: "0.11.21"
+          python-version: "3.12.13"
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962
+        with:
+          php-version: "8.4.27"
+          extensions: pdo_mysql, pdo_sqlite, mbstring, xml, ctype, fileinfo, tokenizer
+          tools: composer:2.10.3
+          coverage: none
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16
+        with:
+          go-version: "1.27.0"
+          cache: true
+          cache-dependency-path: .candidate/extensions/packages/sanka-php-migration/src/sanka_php_migration/locks/**/go.sum
+      - name: Prepare locked source and target dependencies
+        working-directory: .candidate/extensions
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv sync --frozen --all-packages
+          locks="$GITHUB_WORKSPACE/.candidate/extensions/packages/sanka-php-migration/src/sanka_php_migration/locks"
+          # Initial acquisition produces a reviewable lock artifact. The final
+          # step fails until those exact bytes are committed and CI is rerun.
+          if [ ! -f "$locks/laravel/composer.lock" ]; then
+            composer update --working-dir="$locks/laravel" --no-install --no-scripts --no-plugins --no-interaction
+          fi
+          mkdir -p "$RUNNER_TEMP/php-framework"
+          cp "$locks/laravel/composer.json" "$locks/laravel/composer.lock" "$RUNNER_TEMP/php-framework/"
+          composer install --working-dir="$RUNNER_TEMP/php-framework" --no-dev --no-scripts --no-plugins --no-interaction --prefer-dist
+          uv venv --python 3.12.13 "$RUNNER_TEMP/php-target"
+          uv pip sync --python "$RUNNER_TEMP/php-target/bin/python" --require-hashes "$locks/python-mysql/requirements.txt"
+          for dialect in none sqlite mysql; do
+            (cd "$locks/$dialect" && GOTOOLCHAIN=local go mod download)
+          done
+          echo "SANKA_PHP_FRAMEWORK=$RUNNER_TEMP/php-framework" >> "$GITHUB_ENV"
+          echo "SANKA_PHP_PYTHON=$RUNNER_TEMP/php-target/bin/python" >> "$GITHUB_ENV"
+          echo "SANKA_PHP_GOMODCACHE=$(go env GOMODCACHE)" >> "$GITHUB_ENV"
+          echo "SANKA_PHP_GOCACHE=$(go env GOCACHE)" >> "$GITHUB_ENV"
+      - name: Build the reviewed candidate wheel closure
+        working-directory: .candidate/extensions
+        run: |
+          uv run python scripts/build_php_release.py
+      - name: Run every CLI stage against original PHP
+        env:
+          SANKA_PHP_REPLAY: "1"
+          SANKA_PHP_MYSQL_ADMIN_URL: mysql://root:sanka-fixture-admin@127.0.0.1:3306/sanka_php_admin
+        run: python3 php/check.py --bundle .candidate/extensions/release/php-converters --revision 73623f4554a7681f2f0db43dcf56c26119cacc18
+      - name: Check candidate acceptance guards
+        run: python3 -m unittest discover -s scripts -p 'test_php_candidate.py'
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: php-cli-evidence
+          path: php/.sanka/evidence/*.json
+          include-hidden-files: true
+          retention-days: 7

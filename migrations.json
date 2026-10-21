@@ -57,7 +57,13 @@
           "extension_id": "sanka/python-to-golang",
           "candidate_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
           "release_status": "experimental-published",
-          "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
           "release_tag": "api-converters-v0.1.0a8"
         },
         {
@@ -66,7 +72,13 @@
           "extension_id": "sanka/python-to-golang",
           "candidate_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
           "release_status": "experimental-published",
-          "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
           "release_tag": "api-converters-v0.1.0a8"
         },
         {
@@ -75,7 +87,13 @@
           "extension_id": "sanka/python-to-golang",
           "candidate_revision": "4e7e66ea5141232cd61ab8c2886a3d496d130b67",
           "release_status": "experimental-published",
-          "supported_stages": ["scan", "plan", "apply", "test", "verify"],
+          "supported_stages": [
+            "scan",
+            "plan",
+            "apply",
+            "test",
+            "verify"
+          ],
           "release_tag": "api-converters-v0.1.0a8"
         }
       ],
@@ -233,6 +251,12 @@
       "notes": "Checked-in Jev cookbook with its own offline acceptance workflow. Migration/v1 metadata integration is tracked separately; live model quality, latency and economics remain unverified.",
       "path": "ai/llm-classification-to-jev",
       "readme": "ai/llm-classification-to-jev/README.md"
+    },
+    {
+      "id": "php/route-closures",
+      "status": "tracked-separately",
+      "readme": "php/README.md",
+      "scope": "Unpublished PHP candidate; CLI qualification recorded separately. Real GitHub projects are assessment-only."
     }
   ]
 }

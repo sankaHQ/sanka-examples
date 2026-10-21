@@ -13,3 +13,7 @@ target/
 .sanka-*.json
 
 fastapi/widget-inventory/source/*.sqlite3*
+
+# Local PHP candidate receipts and caches
+php/.sanka/
+**/__pycache__/
