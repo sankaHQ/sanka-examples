@@ -66,5 +66,5 @@ jobs:
           uv run python scripts/prepare_java_fixture.py
           uv run python scripts/build_java_release.py
       - name: Run source JUnit, installed CLI lifecycle and intentional mismatch
-        run: python3 java/spring-greetings/check.py --bundle .sanka/extensions/release/java-converters
+        run: python3 java/spring-greetings/check.py --bundle .sanka/extensions/release/java-converters --check-evidence
       - run: python3 scripts/check_catalog.py

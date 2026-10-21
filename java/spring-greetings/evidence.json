@@ -9,7 +9,7 @@
   },
   "candidate": {
     "cli_version": "0.3.9",
-    "extension_revision": "8bc904668ef152c22c57db657b5aecab49c3fdf3",
+    "extension_revision": "eaa970b9b080ce279a509187125e49af07295f03",
     "extension_id": "sanka/java-to-python",
     "sdk_version": "0.1.0a4",
     "release_status": "experimental-unpublished",
@@ -18,9 +18,9 @@
       "sanka_extension_java_to_python-0.1.0a1-py3-none-any.whl": "186f99782a56eef4d5375c2026b71136c19df6c36f3d887c5f0c8242da7a2375",
       "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
       "sanka_http_replay-0.1.0a2-py3-none-any.whl": "b130c560e83cae464093c9d8bdcc67edee2fae628335ed1d1331dafcad88f2e6",
-      "sanka_java_migration-0.1.0a1-py3-none-any.whl": "80d3c277354637f4d7af175c67c1a5c82af5ebce510034b43b95983c631fcd4a"
+      "sanka_java_migration-0.1.0a1-py3-none-any.whl": "16c5c50203524a13d6e5bc63323c9e6b8b3cc72a9062c7df0de3e3de2f0563e0"
     },
-    "build_provenance_sha256": "a754cdb775f8a81b26c2535733ef88719ec2fcb58524c0f6b7cf40e654c08a2e"
+    "build_provenance_sha256": "55b3fea53f6dd6a4d17683d76795bb86398f38c765bc18f75d469f69b4a9c4d0"
   },
   "source_preserved": true,
   "source_sha256": {

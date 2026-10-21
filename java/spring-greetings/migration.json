@@ -11,7 +11,7 @@
       "language": "python",
       "framework": "fastapi",
       "extension_id": "sanka/java-to-python",
-      "candidate_revision": "8bc904668ef152c22c57db657b5aecab49c3fdf3",
+      "candidate_revision": "eaa970b9b080ce279a509187125e49af07295f03",
       "release_status": "experimental-unpublished",
       "supported_stages": [
         "scan",

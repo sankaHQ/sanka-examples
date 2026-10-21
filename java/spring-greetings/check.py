@@ -137,7 +137,21 @@ class JavaCandidate(Candidate):
         return len(tests)
 
 
-def qualify(bundle: Path, revision: str) -> None:
+def compare_evidence(actual: dict, recorded: dict) -> None:
+    # This diagnostic covers every artifact in a user's Maven cache, including
+    # unrelated cached dependencies. All portable acceptance fields must match.
+    diagnostic = {"source_dependencies"}
+    left = {key: value for key, value in actual.items() if key not in diagnostic}
+    right = {key: value for key, value in recorded.items() if key not in diagnostic}
+    if json.dumps(left, sort_keys=True, allow_nan=False) != json.dumps(
+        right, sort_keys=True, allow_nan=False
+    ):
+        raise ValueError(
+            "fresh acceptance differs from committed evidence; review and regenerate the receipt"
+        )
+
+
+def qualify(bundle: Path, revision: str, check_evidence: bool = False) -> None:
     if os.environ.get("SANKA_JAVA_REPLAY") != "1":
         raise ValueError(
             "set SANKA_JAVA_REPLAY=1 to execute this trusted synthetic example"
@@ -253,6 +267,10 @@ def qualify(bundle: Path, revision: str) -> None:
             "complete_backend": False,
         }
         destination.write_text(json.dumps(receipt, indent=2) + "\n")
+        if check_evidence:
+            compare_evidence(
+                receipt, json.loads((EXAMPLE / "evidence.json").read_text())
+            )
         print(
             json.dumps(
                 {
@@ -271,6 +289,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bundle", type=Path, required=True)
     parser.add_argument("--revision")
+    parser.add_argument("--check-evidence", action="store_true")
     args = parser.parse_args()
     revision = (
         args.revision
@@ -278,4 +297,4 @@ if __name__ == "__main__":
             "candidate_revision"
         ]
     )
-    qualify(args.bundle, revision)
+    qualify(args.bundle, revision, args.check_evidence)

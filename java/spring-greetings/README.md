@@ -71,6 +71,10 @@ the extension. It checks the example's own JUnit tests, source preservation, eve
 lifecycle result, actual parity observations and an intentional mismatch. It
 writes a fresh `.sanka/evidence.json` and retains `.sanka/python-fastapi` for review.
 Move that generated directory before another run; existing output is preserved.
+CI adds `--check-evidence` to require fresh observations, runtime pins, wheel and
+generated-file hashes, source identity and test results to match the committed
+receipt. Only the diagnostic hash of the entire local Maven cache is excluded,
+because that cache may contain unrelated artifacts.
 
 ## Run either application
 
