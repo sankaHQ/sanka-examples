@@ -1,0 +1,49 @@
+{
+  "schema": "sanka.php-pilot-assessment/v1",
+  "pilots": [
+    {
+      "repository": "https://github.com/guillaumebriday/laravel-blog",
+      "revision": "c88e307c833708665b0c2d486a8fe633eb4cefd7",
+      "license": "MIT",
+      "assessment_date": "2026-10-22",
+      "status": "unsupported-assessment-only",
+      "source_digest": "b6d31375d9f594a95b6062bf5e08bb6ff2f5c9d0b13946a73b0b5ee67528c5c8",
+      "inspected_files": 267,
+      "resolved_routes": 0,
+      "route_inventory_complete": false,
+      "blocker_count": 280,
+      "representative_blockers": [
+        "assessment only: define sanka-php.json with the route and data closure",
+        "Composer dependencies outside the qualified source profile",
+        "Composer autoloaders, scripts, custom repositories or plugins require adaptation",
+        "source Composer lock must match qualified Laravel 12.70.1",
+        "routes/api.php: Route and Request require explicit qualified imports",
+        "routes/api.php: unsupported import or import alias",
+        "routes/api.php: unsupported import or import alias"
+      ],
+      "next_qualification": "Select an original endpoint and include its controller, auth, validation and data dependencies before extending the capture profile."
+    },
+    {
+      "repository": "https://github.com/mevdschee/php-crud-api",
+      "revision": "399a398749ab687a68286260023bd73d79da5f26",
+      "license": "MIT",
+      "assessment_date": "2026-10-22",
+      "status": "unsupported-assessment-only",
+      "source_digest": "d67cb7cc85fdb05e887045ffe8ba9708ba3e85bbed5dfc8cc10237ccdf35d470",
+      "inspected_files": 108,
+      "resolved_routes": 0,
+      "route_inventory_complete": false,
+      "blocker_count": 617,
+      "representative_blockers": [
+        "assessment only: define sanka-php.json with the route and data closure",
+        "Composer dependencies outside the qualified source profile",
+        "Composer autoloaders, scripts, custom repositories or plugins require adaptation",
+        "src/Tqdev/PhpCrudApi/Api.php:3: top-level PHP execution",
+        "src/Tqdev/PhpCrudApi/Api.php:5: top-level PHP execution",
+        "src/Tqdev/PhpCrudApi/Api.php:6: top-level PHP execution",
+        "src/Tqdev/PhpCrudApi/Api.php:7: top-level PHP execution"
+      ],
+      "next_qualification": "Select an original endpoint and include its controller, auth, validation and data dependencies before extending the capture profile."
+    }
+  ]
+}
