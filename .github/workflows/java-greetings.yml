@@ -1,11 +1,11 @@
-name: Spring greetings to FastAPI candidate
+name: Java GET and PostgreSQL CRUD to FastAPI
 
 on:
   pull_request:
-    paths: ['java/spring-greetings/**', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
+    paths: ['java/**', 'scripts/java_candidate.py', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
   push:
     branches: [main]
-    paths: ['java/spring-greetings/**', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
+    paths: ['java/**', 'scripts/java_candidate.py', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
   workflow_dispatch:
 
 permissions:
@@ -19,6 +19,18 @@ jobs:
   qualify:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17.11
+        env:
+          POSTGRES_USER: sanka_java_fixture
+          POSTGRES_DB: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ['5432/tcp']
+        options: >-
+          --health-cmd "pg_isready -U sanka_java_fixture -d postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+          --memory 512m --cpus 1
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -37,6 +49,7 @@ jobs:
           python3 - <<'PY'
           import json, os, re
           revision = json.load(open('java/spring-greetings/migration.json'))['destinations'][0]['candidate_revision']
+          assert revision == json.load(open('java/order-api/migration.json'))['destinations'][0]['candidate_revision']
           if not re.fullmatch(r'[0-9a-f]{40}', revision):
               raise ValueError('converter revision must be immutable')
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
@@ -50,6 +63,8 @@ jobs:
           persist-credentials: false
       - name: Prepare and build the pinned candidate
         working-directory: .sanka/extensions
+        env:
+          FIXTURE_POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           python3 scripts/fetch_java_parser.py
           python3 scripts/fetch_java_maven.py
@@ -63,8 +78,20 @@ jobs:
           for name in SANKA_JAVA_REPLAY SANKA_JAVA_MAVEN SANKA_JAVA_MAVEN_REPO SANKA_JAVA_PYTHON; do
             echo "$name=${!name}" >> "$GITHUB_ENV"
           done
+          export SANKA_JAVA_POSTGRES_CONFIG="$PWD/.java-tools/postgres-ci.json"
+          python3 - <<'PYCONFIG'
+          import json, os
+          from pathlib import Path
+          config = Path(os.environ['SANKA_JAVA_POSTGRES_CONFIG'])
+          config.write_text(json.dumps({'host': '127.0.0.1', 'port': int(os.environ['FIXTURE_POSTGRES_PORT']), 'user': 'sanka_java_fixture', 'password': '', 'database': 'postgres'}))
+          config.chmod(0o600)
+          PYCONFIG
+          echo "SANKA_JAVA_POSTGRES_CONFIG=$SANKA_JAVA_POSTGRES_CONFIG" >> "$GITHUB_ENV"
           uv run python scripts/prepare_java_fixture.py
+          uv run python scripts/prepare_java_fixture.py --fixture packages/sanka-extension-java-to-python/tests/fixtures/orders
           uv run python scripts/build_java_release.py
       - name: Run source JUnit, installed CLI lifecycle and intentional mismatch
         run: python3 java/spring-greetings/check.py --bundle .sanka/extensions/release/java-converters --check-evidence
+      - name: Qualify CRUD requests, errors, database state and rollback
+        run: python3 java/order-api/check.py --bundle .sanka/extensions/release/java-converters --check-evidence
       - run: python3 scripts/check_catalog.py

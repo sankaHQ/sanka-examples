@@ -57,9 +57,11 @@ needed for the offline walkthrough.
 
 ## Java migration candidate
 
-[Spring Boot greetings to FastAPI](java/spring-greetings/) runs all five CLI stages
-against an immutable unpublished candidate, with native JUnit/Python tests and
-Spring MockMvc versus FastAPI TestClient comparison.
+[Spring Boot greetings](java/spring-greetings/) and
+[Spring Boot PostgreSQL orders](java/order-api/) run all five CLI stages against
+an immutable unpublished FastAPI candidate, with native JUnit/Python tests and
+Spring MockMvc versus FastAPI TestClient comparison. The orders example also
+compares persisted rows and identity sequences after every request.
 
 ## PHP migration candidates
 

@@ -1,0 +1,27 @@
+{
+  "schema": "sanka-examples/migration/v1",
+  "id": "java/order-api",
+  "source": {
+    "language": "java",
+    "framework": "spring-boot",
+    "path": "source"
+  },
+  "destinations": [
+    {
+      "language": "python",
+      "framework": "fastapi",
+      "extension_id": "sanka/java-to-python",
+      "candidate_revision": "5f941337129c5b62f0d13dad62b8f3fd49acf561",
+      "release_status": "experimental-unpublished",
+      "supported_stages": [
+        "scan",
+        "plan",
+        "apply",
+        "test",
+        "verify"
+      ]
+    }
+  ],
+  "license": "Apache-2.0",
+  "provenance": "synthetic"
+}
