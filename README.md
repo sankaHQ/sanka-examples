@@ -55,6 +55,12 @@ specification, isolated CLI acceptance, and offline compatibility tests. Live
 model quality and economics are separate, unverified gates. No provider keys are
 needed for the offline walkthrough.
 
+## Java migration candidate
+
+[Spring Boot greetings to FastAPI](java/spring-greetings/) runs all five CLI stages
+against an immutable unpublished candidate, with native JUnit/Python tests and
+Spring MockMvc versus FastAPI TestClient comparison.
+
 ## PHP migration candidates
 
 [PHP to FastAPI and Go](php/) contains explicit custom-PHP and Laravel route

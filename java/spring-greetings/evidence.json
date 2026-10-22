@@ -1,0 +1,206 @@
+{
+  "status": "passed_within_scope",
+  "stages": {
+    "scan": "success",
+    "plan": "success",
+    "apply": "success",
+    "test": "success",
+    "verify": "success"
+  },
+  "candidate": {
+    "cli_version": "0.3.9",
+    "extension_revision": "eaa970b9b080ce279a509187125e49af07295f03",
+    "extension_id": "sanka/java-to-python",
+    "sdk_version": "0.1.0a4",
+    "release_status": "experimental-unpublished",
+    "wheels": {
+      "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
+      "sanka_extension_java_to_python-0.1.0a1-py3-none-any.whl": "186f99782a56eef4d5375c2026b71136c19df6c36f3d887c5f0c8242da7a2375",
+      "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+      "sanka_http_replay-0.1.0a2-py3-none-any.whl": "b130c560e83cae464093c9d8bdcc67edee2fae628335ed1d1331dafcad88f2e6",
+      "sanka_java_migration-0.1.0a1-py3-none-any.whl": "16c5c50203524a13d6e5bc63323c9e6b8b3cc72a9062c7df0de3e3de2f0563e0"
+    },
+    "build_provenance_sha256": "55b3fea53f6dd6a4d17683d76795bb86398f38c765bc18f75d469f69b4a9c4d0"
+  },
+  "source_preserved": true,
+  "source_sha256": {
+    "pom.xml": "ae4a85c318eb552b0b3e8235447352d6dff1a298d9e7436be78be2f122b2fe26",
+    "sanka-verify.json": "114fbdc03a2da17c887cb6c1b05fbf42ab69eae1e4c45e511670f4d1b95a4544",
+    "src/main/java/example/greetings/Application.java": "455016107feb8844dd574dabb5cf074ded524b424a8bafe990e5b5197bf0e33b",
+    "src/main/java/example/greetings/Greeting.java": "27799531f9c9fb1443253e2a8222648911b9d36adc0796f78254f3cf450bd6fe",
+    "src/main/java/example/greetings/GreetingController.java": "036f108e3259a5f7663c638abf8cca425b1516271e17afa4b71a5b90600ae171",
+    "src/test/java/example/greetings/GreetingControllerTest.java": "a75e7608d5aa0f5316cc661d6b12b8ab4d80873ccdc7315430206811f6ccad76"
+  },
+  "generated_sha256": {
+    "README.md": "5c3265935a0e4a48c6ff4baa70dc5527eb1ab5dcb4c5b7d751f58e69ec96f27a",
+    "app.py": "e7d2ecb211aa71030b4d20ef0885007d73c5ead4ce84d53a5b930f72be2d8b15",
+    "requirements.lock": "ecad32d7beed27a217bdc3f9256ed591dbfa744811c5556e0d08b67ef5cfbb02",
+    "scenarios.json": "52b1789bc261b6af0fbd65637023f3b365fae5744bfd963f554ee8e4ed83840f",
+    "test_app.py": "12cadb2a23408fcb5f5b81226ded3f8bc95f66d8c082907c6445831a54a8688c"
+  },
+  "source_native_tests": 3,
+  "candidate_native_tests": 9,
+  "comparison_cases": 9,
+  "transport": "Spring MockMvc / FastAPI TestClient",
+  "source_digest": "979490016bde8cd67ca490a8d6e729766c2800ed80f77293b99506e00300a5cd",
+  "candidate_digest": "06b19dc21408f206afcc0533ad95ccdd1bffed9b4934cd2b5a98762f37968d49",
+  "scenarios_digest": "47feb1510a8ac8ef40361926119e61a0534577733b0dce4f1c5d871d5c56dcfe",
+  "intentional_mismatch_rejected": true,
+  "observations": [
+    {
+      "body": {
+        "large": 9007199254740993,
+        "ok": true,
+        "service": "greetings"
+      },
+      "id": "status",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, world",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "default",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, world",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "empty",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings?name=",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, \u4e16\u754c",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "unicode",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings?name=%E4%B8%96%E7%95%8C",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, Alice,Bob",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "repeated",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings?name=Alice&name=Bob",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, ,",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "repeated-empty",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings?name=&name=",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, Alice",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "path",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings/Alice",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, \u4e16\u754c",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "path-unicode",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings/%E4%B8%96%E7%95%8C",
+      "status": 200
+    },
+    {
+      "body": {
+        "active": true,
+        "message": "Hello, world",
+        "note": null,
+        "requestId": 9007199254740993
+      },
+      "id": "unknown",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/api/greetings?unused=yes",
+      "status": 200
+    }
+  ],
+  "target_runtime": {
+    "annotated-doc": "0.0.5",
+    "annotated-types": "0.8.0",
+    "anyio": "4.15.1",
+    "certifi": "2026.10.19",
+    "click": "8.5.0",
+    "fastapi": "0.141.1",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "iniconfig": "2.3.1",
+    "packaging": "26.3",
+    "pluggy": "1.7.0",
+    "pydantic": "2.13.5",
+    "pydantic-core": "2.46.5",
+    "pygments": "2.21.0",
+    "pytest": "9.1.1",
+    "starlette": "1.9.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "uvicorn": "0.52.4"
+  },
+  "source_dependencies": {
+    "dependency_digest": "917388a9675e2bbd7fa77a42d240383a678bf39da247e798daf4be98164c5d6e",
+    "dependency_count": 322
+  },
+  "scope": "Three stateless GET routes, string query/path binding, records, null, Unicode and exact int64 JSON. Spring MockMvc compared with FastAPI TestClient.",
+  "unsupported": [
+    "security",
+    "persistence",
+    "CRUD",
+    "custom services",
+    "errors",
+    "HEAD/OPTIONS",
+    "arbitrary headers",
+    "live TCP"
+  ],
+  "complete_backend": false
+}

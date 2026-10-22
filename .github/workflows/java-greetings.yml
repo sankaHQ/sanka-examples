@@ -1,0 +1,70 @@
+name: Spring greetings to FastAPI candidate
+
+on:
+  pull_request:
+    paths: ['java/spring-greetings/**', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
+  push:
+    branches: [main]
+    paths: ['java/spring-greetings/**', 'scripts/candidate.py', '.github/workflows/java-greetings.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: java-greetings-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          version: '0.11.21'
+          python-version: '3.12.13'
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: '21.0.12'
+      - name: Read the immutable converter pin
+        id: pin
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          revision = json.load(open('java/spring-greetings/migration.json'))['destinations'][0]['candidate_revision']
+          if not re.fullmatch(r'[0-9a-f]{40}', revision):
+              raise ValueError('converter revision must be immutable')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('revision=' + revision + '\n')
+          PY
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: sankaHQ/extensions
+          ref: ${{ steps.pin.outputs.revision }}
+          path: .sanka/extensions
+          persist-credentials: false
+      - name: Prepare and build the pinned candidate
+        working-directory: .sanka/extensions
+        run: |
+          python3 scripts/fetch_java_parser.py
+          python3 scripts/fetch_java_maven.py
+          uv sync --frozen --all-packages
+          uv venv --python 3.12.13 .java-tools/python
+          uv pip sync --python .java-tools/python/bin/python --require-hashes packages/sanka-extension-java-to-python/src/sanka_extension_java_to_python/requirements.lock
+          export SANKA_JAVA_REPLAY=1
+          export SANKA_JAVA_MAVEN="$PWD/.java-tools/apache-maven-3.9.16/bin/mvn"
+          export SANKA_JAVA_MAVEN_REPO="$PWD/.java-tools/maven-repository"
+          export SANKA_JAVA_PYTHON="$PWD/.java-tools/python/bin/python"
+          for name in SANKA_JAVA_REPLAY SANKA_JAVA_MAVEN SANKA_JAVA_MAVEN_REPO SANKA_JAVA_PYTHON; do
+            echo "$name=${!name}" >> "$GITHUB_ENV"
+          done
+          uv run python scripts/prepare_java_fixture.py
+          uv run python scripts/build_java_release.py
+      - name: Run source JUnit, installed CLI lifecycle and intentional mismatch
+        run: python3 java/spring-greetings/check.py --bundle .sanka/extensions/release/java-converters --check-evidence
+      - run: python3 scripts/check_catalog.py
