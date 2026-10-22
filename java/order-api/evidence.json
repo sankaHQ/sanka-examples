@@ -1,0 +1,1613 @@
+{
+  "status": "passed_within_scope",
+  "stages": {
+    "scan": "success",
+    "plan": "success",
+    "apply": "success",
+    "test": "success",
+    "verify": "success"
+  },
+  "candidate": {
+    "cli_version": "0.3.9",
+    "extension_revision": "5f941337129c5b62f0d13dad62b8f3fd49acf561",
+    "extension_id": "sanka/java-to-python",
+    "sdk_version": "0.1.0a4",
+    "release_status": "experimental-unpublished",
+    "wheels": {
+      "sanka_connector_sdk-0.1.0a12-py3-none-any.whl": "34da5c35aaa60fc19258e76b72a3eca58bf52fff96e2ccf9a0aa1115f8878d8e",
+      "sanka_extension_java_to_python-0.1.0a2-py3-none-any.whl": "53dc7484e373a5b19b9458e9f5ed9d855e74f645623505934a561a1d266b03d0",
+      "sanka_extension_sdk-0.1.0a4-py3-none-any.whl": "f1a6655095ab81e549137e1d9604492bda2a31677d674c6359b0a39a2da96307",
+      "sanka_http_replay-0.1.0a2-py3-none-any.whl": "b130c560e83cae464093c9d8bdcc67edee2fae628335ed1d1331dafcad88f2e6",
+      "sanka_java_migration-0.1.0a2-py3-none-any.whl": "4f64ad0018c75a3b49c95c498ff2136b857e8f294f28150537bd43cb0b9c0d4e"
+    },
+    "build_provenance_sha256": "ee0cbc56d17852b6f682108a59a30b9c2e5be8519c212c593476992cfe4893b7"
+  },
+  "source_preserved": true,
+  "source_sha256": {
+    "pom.xml": "02d007f33acfebb67c274f4e274f33a7430ba4b643af69bdadc6c7ee1b2c4c0f",
+    "sanka-verify.json": "7b920d31d4c0733daeabda3f321e28306dd852f02fa403ed89573e93fb5dc8c6",
+    "src/main/java/example/orders/ApiError.java": "1fbeef6e7fe848016ca289b6a45ac60a8e134dbffc8b1d2c247534bda4c9d5b8",
+    "src/main/java/example/orders/Application.java": "eddbf33a4c374a5e55ff74ca4e76ce453908dd691da40e2891245e7e581ce5b8",
+    "src/main/java/example/orders/Errors.java": "6a0fe8674f88bac658a1ae29d6ef5ad651d7b267dc0f456190ba1b90c9bf304d",
+    "src/main/java/example/orders/NotFound.java": "4c4e79043a20427802e90bffae95373ad3f8c71c63b69f31e5f37f5cdbc6ccb8",
+    "src/main/java/example/orders/Order.java": "919b0293b1646a95f83553c4f813471023927c65ead54768484b711c2cb98128",
+    "src/main/java/example/orders/OrderController.java": "08864e99ceb3bd492344366adab170a9819b14a8ec7c7d2f96a12c444aaa2587",
+    "src/main/java/example/orders/OrderInput.java": "153d691792632afe4cdf64742324e6a71c5cc4ffb53d5199b24a6f82c31c8bcb",
+    "src/main/java/example/orders/OrderRepository.java": "03ac11d7d2532ec3be726d6fb48b591203a16429f2cf6d0d5487c5bfb294575f",
+    "src/main/java/example/orders/RejectedWrite.java": "109c45f9b4e17daec1a4a6fc806af67572b133dbea8d4305fdd795e83b555669",
+    "src/main/resources/application.properties": "6b0a24014556518652d3bab6f2cf30b1049893b77de32acc3fa46dfb088372e5",
+    "src/test/java/example/orders/OrdersTest.java": "bfdcc44b7c73ec7d4f3fe2602e071b0c1bfb06fd9a7e216d7312a5ad65db77d8"
+  },
+  "generated_sha256": {
+    "README.md": "92e109b6344efd25650733c4fbc4397d1c5d45a9ce1c46e589dbe0ce6afd3ff9",
+    "app.py": "c3a47a303ccc02ae6c386c49ec51fbb09c37211b0afc8fc744034f02e03986bd",
+    "requirements.lock": "3fb95b9ad192a0d6654ff6abf92f7de1ee75f008d22eec3799dd8250b7ae6a92",
+    "scenarios.json": "eb1340818357ba45604fe6e52ab7cc5ed5ebcbee93cffb2a49a3c502e9e6f0d1",
+    "schema.sql": "664e1f89f4640c994ee668bf75516d05956c3f4655a6a3999964d41379176e0b",
+    "test_app.py": "5db9a568ac2f9086bb40ffb10663814e772b5ca37049748884ad075bc2cc44a1"
+  },
+  "source_native_tests": 3,
+  "candidate_native_tests": 43,
+  "comparison_cases": 43,
+  "transport": "Spring MockMvc / FastAPI TestClient",
+  "source_digest": "d5eea9d70c206b9cec44a5cceab3d3399598cacde4cd9977158f34b90a54e790",
+  "candidate_digest": "262d73d43bd71750846a659ef821b015b6f6d8455d41967854523ff4b1df1f19",
+  "scenarios_digest": "d9ba1781eace1ecfdd7ec9a1a2d3d9b76d0ef4d395cefcf605e3c33c04ba15bb",
+  "intentional_mismatch_rejected": true,
+  "observations": [
+    {
+      "body": [],
+      "id": "empty",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/all",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "not_found"
+      },
+      "id": "missing",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/999",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 404,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "invalid-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/not-a-number",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "overflow-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/9223372036854775808",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "missing-body",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "missing-fields",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "blank",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "negative",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "fraction",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "precision",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "null-amount",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "long-name",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "unicode-length",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "long-note",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "object-name",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "bad-number",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": false,
+          "last_value": 1
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": []
+      }
+    },
+    {
+      "body": {
+        "amount": "999999999999.99",
+        "id": 1,
+        "name": "\u6ce8\u6587 \u4e16\u754c",
+        "note": null
+      },
+      "id": "create-exact",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 1
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "999999999999.99",
+            "id": 1,
+            "name": "\u6ce8\u6587 \u4e16\u754c",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "999999999999.99",
+        "id": 1,
+        "name": "\u6ce8\u6587 \u4e16\u754c",
+        "note": null
+      },
+      "id": "get-exact",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 1
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "999999999999.99",
+            "id": 1,
+            "name": "\u6ce8\u6587 \u4e16\u754c",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "1.2",
+        "id": 2,
+        "name": "Second",
+        "note": ""
+      },
+      "id": "create-scale",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "999999999999.99",
+            "id": 1,
+            "name": "\u6ce8\u6587 \u4e16\u754c",
+            "note": null
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "1.20",
+        "id": 2,
+        "name": "Second",
+        "note": ""
+      },
+      "id": "read-scale",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/2",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "999999999999.99",
+            "id": 1,
+            "name": "\u6ce8\u6587 \u4e16\u754c",
+            "note": null
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.01",
+        "id": 1,
+        "name": "Updated",
+        "note": "changed"
+      },
+      "id": "update",
+      "media_type": "application/json",
+      "method": "PUT",
+      "path": "/orders/1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.01",
+        "id": 1,
+        "name": "Updated",
+        "note": "changed"
+      },
+      "id": "read-update",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "invalid-update",
+      "media_type": "application/json",
+      "method": "PUT",
+      "path": "/orders/1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "not_found"
+      },
+      "id": "missing-update",
+      "media_type": "application/json",
+      "method": "PUT",
+      "path": "/orders/999",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 2
+        }
+      },
+      "status": 404,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "rejected_write"
+      },
+      "id": "rollback",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/rollback",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 3
+        }
+      },
+      "status": 409,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": [
+        {
+          "amount": "0.01",
+          "id": 1,
+          "name": "Updated",
+          "note": "changed"
+        },
+        {
+          "amount": "1.20",
+          "id": 2,
+          "name": "Second",
+          "note": ""
+        }
+      ],
+      "id": "after-rollback",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/all",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 3
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.00",
+        "id": 4,
+        "name": "After rollback",
+        "note": null
+      },
+      "id": "create-after-rollback",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 4
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "12.25",
+        "id": 5,
+        "name": "123",
+        "note": "true"
+      },
+      "id": "coerce-string",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 5
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "1.20",
+            "id": 2,
+            "name": "Second",
+            "note": ""
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          }
+        ]
+      }
+    },
+    {
+      "body": null,
+      "id": "delete",
+      "media_type": "",
+      "method": "DELETE",
+      "path": "/orders/2",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 5
+        }
+      },
+      "status": 204,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "not_found"
+      },
+      "id": "deleted",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/2",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 5
+        }
+      },
+      "status": 404,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "not_found"
+      },
+      "id": "missing-delete",
+      "media_type": "application/json",
+      "method": "DELETE",
+      "path": "/orders/2",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 5
+        }
+      },
+      "status": 404,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          }
+        ]
+      }
+    },
+    {
+      "body": [
+        {
+          "amount": "0.01",
+          "id": 1,
+          "name": "Updated",
+          "note": "changed"
+        },
+        {
+          "amount": "0.00",
+          "id": 4,
+          "name": "After rollback",
+          "note": null
+        },
+        {
+          "amount": "12.25",
+          "id": 5,
+          "name": "123",
+          "note": "true"
+        }
+      ],
+      "id": "final",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/all",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 5
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.00",
+        "id": 6,
+        "name": "Zero",
+        "note": null
+      },
+      "id": "negative-zero",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 6
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "1E+2",
+        "id": 7,
+        "name": "Exponent",
+        "note": null
+      },
+      "id": "decimal-exponent",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 7
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "1.00",
+        "id": 8,
+        "name": "\u2003",
+        "note": null
+      },
+      "id": "unicode-space",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 201,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "decimal-underscore",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "too-many-zeroes",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "null-name",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "invalid_request"
+      },
+      "id": "array-name",
+      "media_type": "application/json",
+      "method": "POST",
+      "path": "/orders/new",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 400,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.01",
+        "id": 1,
+        "name": "Updated",
+        "note": "changed"
+      },
+      "id": "hex-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/0x1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.01",
+        "id": 1,
+        "name": "Updated",
+        "note": "changed"
+      },
+      "id": "padded-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/%20+1%20",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "amount": "0.01",
+        "id": 1,
+        "name": "Updated",
+        "note": "changed"
+      },
+      "id": "inner-space-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/0%201",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 200,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    },
+    {
+      "body": {
+        "code": "not_found"
+      },
+      "id": "negative-id",
+      "media_type": "application/json",
+      "method": "GET",
+      "path": "/orders/-1",
+      "sequences": {
+        "orders_id_seq": {
+          "is_called": true,
+          "last_value": 8
+        }
+      },
+      "status": 404,
+      "tables": {
+        "orders": [
+          {
+            "amount": "0.01",
+            "id": 1,
+            "name": "Updated",
+            "note": "changed"
+          },
+          {
+            "amount": "0.00",
+            "id": 4,
+            "name": "After rollback",
+            "note": null
+          },
+          {
+            "amount": "12.25",
+            "id": 5,
+            "name": "123",
+            "note": "true"
+          },
+          {
+            "amount": "0.00",
+            "id": 6,
+            "name": "Zero",
+            "note": null
+          },
+          {
+            "amount": "100.00",
+            "id": 7,
+            "name": "Exponent",
+            "note": null
+          },
+          {
+            "amount": "1.00",
+            "id": 8,
+            "name": "\u2003",
+            "note": null
+          }
+        ]
+      }
+    }
+  ],
+  "target_runtime": {
+    "annotated-doc": "0.0.5",
+    "annotated-types": "0.8.0",
+    "anyio": "4.15.1",
+    "certifi": "2026.10.19",
+    "click": "8.5.0",
+    "fastapi": "0.141.1",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "iniconfig": "2.3.1",
+    "packaging": "26.3",
+    "pluggy": "1.7.0",
+    "psycopg": "3.3.4",
+    "psycopg-binary": "3.3.4",
+    "pydantic": "2.13.5",
+    "pydantic-core": "2.46.5",
+    "pygments": "2.21.0",
+    "pytest": "9.1.1",
+    "sqlalchemy": "2.0.52",
+    "starlette": "1.9.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "uvicorn": "0.52.4"
+  },
+  "source_dependencies": {
+    "dependency_digest": "41519691571da30871eb3aa482008a1ca23c337129df9c5d8b56dd2ffbab9992",
+    "dependency_count": 399
+  },
+  "scope": "Flat PostgreSQL CRUD: validated JSON requests, exact string decimals, 200/201/204/400/404/409 responses, persisted rows and identity sequence after all 43 requests, including rollback after flush.",
+  "unsupported": [
+    "authentication",
+    "authorization",
+    "relationships",
+    "custom queries",
+    "concurrent writes",
+    "live TCP",
+    "production cutover"
+  ],
+  "complete_backend": false,
+  "database_mutation_rejected": true,
+  "database_runtime": "PostgreSQL 17.11",
+  "native_schema_sha256": "664e1f89f4640c994ee668bf75516d05956c3f4655a6a3999964d41379176e0b"
+}

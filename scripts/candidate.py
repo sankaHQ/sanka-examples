@@ -65,6 +65,8 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
 
 
 class Candidate:
+    extension_version = "0.1.0a1"
+
     def __init__(
         self,
         example: Path,
@@ -292,12 +294,12 @@ class Candidate:
         manifest = {
             "schema_version": "sanka-extension-manifest/v2",
             "id": f"sanka/{self.extension}",
-            "version": "0.1.0a1",
+            "version": self.extension_version,
             "kind": "migration",
             "runtime": {"sanka_cli": f"=={self.cli_version}"},
             "distribution": {
                 "name": distribution,
-                "version": "0.1.0a1",
+                "version": self.extension_version,
                 "executable": distribution,
             },
             "protocol_version": "sanka-extension/v1",
