@@ -37,14 +37,16 @@ def main() -> None:
             # Evidence describes a run, and is not part of the source application.
             (c.project / "evidence.json").unlink(missing_ok=True)
             before = hashes(c.project)
+            # SANKA_NODE pins the runtime: `uv run` can put another Node first on PATH.
+            # engine-strict npm ci then rejects it unless it is a supported release.
+            node = os.environ.get("SANKA_NODE") or shutil.which("node", path=c.env["PATH"])
+            if not node:
+                raise RuntimeError("Set SANKA_NODE or put a supported Node.js runtime on PATH")
+            c.env["PATH"] = str(Path(node).parent) + os.pathsep + c.env["PATH"]
             c.run("npm", "ci", "--no-audit", "--no-fund")
             c.run("npm", "run", "build")
             report["source_http"] = json.loads(c.run(sys.executable, "source_check.py"))["source_http"]
             report["stages"]["source"] = "passed"
-            # engine-strict npm ci has already rejected an unsupported Node on PATH.
-            node = shutil.which("node", path=c.env["PATH"])
-            if not node:
-                raise RuntimeError("A supported Node.js runtime must be on PATH")
             c.env["SANKA_NODE"] = node
             c.env["SANKA_NODE_TOOLS"] = str(c.project / "node_modules")
             c.env["RUSTUP_HOME"] = os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup"))

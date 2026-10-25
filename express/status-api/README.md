@@ -66,6 +66,11 @@ rustup toolchain install 1.93.1 --profile minimal
 uv run --no-project --python 3.12 python check.py --report .sanka/acceptance.json
 ```
 
+The harness uses `SANKA_NODE` when set, otherwise the first `node` on `PATH`. When
+`uv` runs a system Python, that interpreter's scripts directory (for example
+`/usr/local/bin`) comes first on `PATH` and can hide your Node, so set
+`SANKA_NODE="$(command -v node)"` before `uv run` in that case.
+
 The converter is published as the scoped GitHub prerelease
 [`api-converters-v0.1.0a1`](https://github.com/sankaHQ/extensions/releases/tag/api-converters-v0.1.0a1)
 from catalog commit `db8953b596325b8ed982c69e92a5a08ad0d3a5d6`, together with its `sanka-ts-capture` and
