@@ -45,7 +45,7 @@ flask/status-api/.venv/bin/python -m flask \
 ```
 
 The final command runs a local development server; stop it with Ctrl-C. All seven
-runtime dependencies are pinned, including Flask 3.1.2 and Werkzeug 3.1.3.
+runtime dependencies are pinned, including Flask 3.1.3 and Werkzeug 3.1.9.
 The source root contains only the application, dependency pins and license;
 test and migration scripts live outside it because this capture profile rejects
 additional unrelated Python modules.

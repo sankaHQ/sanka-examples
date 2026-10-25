@@ -7,6 +7,7 @@ import json
 import os
 import platform
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 
@@ -40,7 +41,11 @@ def main() -> None:
             c.run("npm", "run", "build")
             report["source_http"] = json.loads(c.run(sys.executable, "source_check.py"))["source_http"]
             report["stages"]["source"] = "passed"
-            c.env["SANKA_NODE"] = str(c.project / "node_modules/node/bin/node")
+            # engine-strict npm ci has already rejected an unsupported Node on PATH.
+            node = shutil.which("node", path=c.env["PATH"])
+            if not node:
+                raise RuntimeError("A supported Node.js runtime must be on PATH")
+            c.env["SANKA_NODE"] = node
             c.env["SANKA_NODE_TOOLS"] = str(c.project / "node_modules")
             c.env["RUSTUP_HOME"] = os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup"))
             c.env["CARGO_HOME"] = os.environ.get("CARGO_HOME", str(Path.home() / ".cargo"))

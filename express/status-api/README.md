@@ -10,8 +10,10 @@ Dependencies retain their own licenses. No customer data or services are used.
 
 Use macOS or Linux with npm, Python 3.12, Git, OpenSSL and uv. Installation downloads
 public dependencies; application execution has no network dependency beyond local
-HTTP. `package-lock.json` pins the full npm dependency tree. The project installs
-Node 22.14.0 locally, without replacing your global Node installation.
+HTTP. `package-lock.json` pins the full npm dependency tree. Use an installed Node
+22.23.4+, 24.22.1+ or 26.12.1+ runtime from the corresponding supported release
+line. Installation rejects older or unsupported Node releases; this project does
+not install a separate Node binary.
 
 ```bash
 cd express/status-api
