@@ -29,6 +29,25 @@
     "typescript": "5.9.3"
   },
   "overrides": {
-    "@react-navigation/elements": "2.6.5"
+    "@react-navigation/elements": "2.6.5",
+    "metro": "0.83.8",
+    "metro-babel-transformer": "0.83.8",
+    "metro-cache": "0.83.8",
+    "metro-cache-key": "0.83.8",
+    "metro-config": "0.83.8",
+    "metro-core": "0.83.8",
+    "metro-file-map": "0.83.8",
+    "metro-minify-terser": "0.83.8",
+    "metro-resolver": "0.83.8",
+    "metro-runtime": "0.83.8",
+    "metro-source-map": "0.83.8",
+    "metro-symbolicate": "0.83.8",
+    "metro-transform-plugins": "0.83.8",
+    "metro-transform-worker": "0.83.8",
+    "postcss": "8.5.31",
+    "shell-quote": "1.12.0",
+    "source-map-js": "1.2.2",
+    "undici": "6.29.1",
+    "uuid": "11.1.1"
   }
 }

@@ -17,9 +17,12 @@ npm start
 ```
 
 `package-lock.json` pins the dependency closure. The runtime is Expo 54.0.37,
-React Native 0.81.5 and React 19.1.0, with React Navigation 7. The dependency override
+React Native 0.81.5 and React 19.1.0, with React Navigation 7. One dependency override
 pins React Navigation Elements to the version compatible with the selected native
-package. The Expo entry point loads `App.tsx`; no missing generated native project
+package. The others move Expo tooling packages to patched releases: Metro 0.83.8
+(which no longer uses image-size), PostCSS 8.5.31, shell-quote 1.12.0, source-map-js
+1.2.2, undici 6.29.1 and uuid 11.1.1. Expo CLI still requires node-forge 1.4.0, which
+has no patched release. The Expo entry point loads `App.tsx`; no missing generated native project
 is required for the Expo Go route. Open the Metro URL with an Expo Go build matching
 SDK 54. A configured iOS simulator or Android emulator can use `npm run ios` or
 `npm run android`. Those platform launch commands are provided as manual steps;

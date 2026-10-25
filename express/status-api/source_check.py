@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+import shutil
 import socket
 import subprocess
 import time
@@ -47,8 +48,11 @@ def wait_observe(process: subprocess.Popen, port: int) -> dict:
 
 def main() -> None:
     port = available_port()
-    node = ROOT / "node_modules/node/bin/node"
-    process = subprocess.Popen([str(node), ".sanka/source/server.js"], cwd=ROOT, env={**os.environ, "PORT": str(port)})
+    # The installed runtime that npm ci accepted under engine-strict.
+    node = shutil.which("node")
+    if not node:
+        raise RuntimeError("A supported Node.js runtime must be on PATH")
+    process = subprocess.Popen([node, ".sanka/source/server.js"], cwd=ROOT, env={**os.environ, "PORT": str(port)})
     try:
         print(json.dumps({"source_http": wait_observe(process, port)}, indent=2))
     finally:

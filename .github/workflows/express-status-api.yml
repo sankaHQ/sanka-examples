@@ -18,7 +18,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: '22.14.0'
+          node-version: '22.23.4'
       - run: npm ci --no-audit --no-fund
         working-directory: express/status-api
       - run: npm run check
@@ -33,7 +33,10 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: '22.14.0'
+          node-version: '22.23.4'
+      # uv run puts the system Python's scripts directory, with the runner's default
+      # Node, first on PATH; pin the harness to the Node selected above.
+      - run: echo "SANKA_NODE=$(command -v node)" >> "$GITHUB_ENV"
       - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
         with:
           version: '0.11.21'
