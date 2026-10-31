@@ -1,6 +1,6 @@
 # Build your first Sanka extension
 
-This small Sanka Code extension reads `example-app.json` and proposes upgrading
+This small Sanka Cloud code extension reads `example-app.json` and proposes upgrading
 `{"schema_version": 1, "title": "Order tracker"}` to
 `{"schema_version": 2, "name": "Order tracker"}`. It leaves the input untouched.
 It implements **scan and plan only**. It is a teaching example, not an application
