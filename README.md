@@ -50,7 +50,7 @@ private services. It is independent of the application migration examples below.
 ## Classifier conversion candidate
 
 The [LLM classification to Jev cookbook](ai/llm-classification-to-jev/) exercises
-an unpublished Sanka Code converter candidate with an explicit reviewed decision
+an unpublished Sanka Cloud code converter candidate with an explicit reviewed decision
 specification, isolated CLI acceptance, and offline compatibility tests. Live
 model quality and economics are separate, unverified gates. No provider keys are
 needed for the offline walkthrough.

@@ -1,4 +1,4 @@
-# Migrate an enum classifier to Jev with Sanka Code
+# Migrate an enum classifier to Jev with Sanka Cloud
 
 This cookbook migrates one synchronous Python support
 classifier from OpenAI Responses to an application-owned Jev Choice adapter.
