@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "example-sanka-config-upgrade"
 version = "0.1.0"
-description = "A scan-and-plan Sanka Code extension starter"
+description = "A scan-and-plan Sanka Cloud code extension starter"
 requires-python = ">=3.12"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
